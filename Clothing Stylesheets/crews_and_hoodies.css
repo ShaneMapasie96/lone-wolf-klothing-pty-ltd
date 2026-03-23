@@ -1,0 +1,220 @@
+/* Import the Poppins font with various weights */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Container for product layout section */
+.crews-and-hoodies-container {
+    line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Category title */
+.crews-and-hoodies-container .product-title {
+    position: relative;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin: 80px 0 10px;
+    overflow: hidden;
+}
+
+/* Pseudo-elements adjustments for the category title */
+.crews-and-hoodies-container .product-title::before,
+.crews-and-hoodies-container .product-title::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    height: 2px;
+    background-color: red;
+}
+
+.crews-and-hoodies-container .product-title::before {
+    left: 30.5%;
+    width: calc(12% - 50px);
+    transform: translateY(-50%);
+}
+
+.crews-and-hoodies-container .product-title::after {
+    right: 30.5%;
+    width: calc(12% - 50px);
+    transform: translateY(-50%);
+}
+
+/* Category description */
+.crews-and-hoodies-container .product-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1em;
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+/* Items container */
+.crews-and-hoodies-container .items_container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Each item */
+.crews-and-hoodies-container .item {
+    width: 30%;
+    max-width: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: transparent;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    transition: transform 0.4s;
+}
+
+/* Hover effect for item images within figure */
+.crews-and-hoodies-container .item:hover figure > img {
+    transform: scale(1.05);
+}
+
+/* Figure element within items */
+.crews-and-hoodies-container figure {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    overflow: hidden;
+}
+
+/* Image within figure */
+.crews-and-hoodies-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+
+/* Details container */
+.crews-and-hoodies-container .details_container {
+    padding: 1rem;
+}
+
+/* Section headers */
+.crews-and-hoodies-container h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Description */
+.crews-and-hoodies-container .description {
+    line-height: 1.6;
+    font-size: 1em;
+    color: #969696;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 1em;
+}
+
+/* Buy container */
+.crews-and-hoodies-container .buy_container {
+    background-color: transparent;
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 0 5px #cccccc;
+}
+
+/* Price */
+.crews-and-hoodies-container .price {
+    font-size: 1em;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    border: 2px solid #78788c;
+    background: transparent;
+    color: #000000;
+    border-radius: 10px;
+}
+
+/* Add to cart button */
+.crews-and-hoodies-container .add-to-cart-button {
+    width: 100%;
+    background: transparent;
+    border: 2px solid #78788c;
+    outline: 0;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 2rem;
+    font-size: 1em;
+    box-shadow: 0 0 5px #cccccc;
+    color: #000000;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.crews-and-hoodies-container .add-to-cart-button:hover {
+    cursor: pointer;
+    background: #78788c;
+    color: #ffffff;
+}
+
+/* Flexbox utility class */
+.crews-and-hoodies-container.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em 0;
+}
+
+/* Styles for labels */
+label {
+    color: gray;
+    font-size: 0.9em;
+}
+
+/* Styles for input holder */
+.input-holder {
+    width: 50%;
+}
+
+/* Styles for input elements */
+.crews-and-hoodies-container .input-style {
+    width: 70%;
+    margin-left: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 2px solid #78788c;
+    background: transparent;
+}
+
+/* Color row container */
+.color-row {
+    display: flex;
+    align-items: center;
+}
+
+/* Styles for color elements */
+.colors {
+    width: 60%;
+    display: flex;
+    margin-left: 10px;
+}
+
+/* Individual color elements */
+.color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 4px;
+    cursor: pointer;
+}
+
+/* Specific color adjustments for each color */
+.color:nth-child(6) { background: #ffdb58; }
+.color:nth-child(5) { background: #da2231; }
+.color:nth-child(4) { background: #fc8eac; }
+.color:nth-child(3) { background: black; }
+.color:nth-child(2) { background: grey; }
+.color:nth-child(1) { background: white; }

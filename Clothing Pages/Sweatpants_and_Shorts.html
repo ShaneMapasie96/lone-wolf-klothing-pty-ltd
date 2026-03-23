@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/Home Stylesheet/home.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        <link rel="stylesheet" href="/Home Stylesheet/Footer.css">
+        <link rel="stylesheet" href="/Clothing Stylesheets/sweatpants_and_shorts.css">
+
+        <title>Lone Wolf Klothing Pty Ltd</title>
+
+</head>
+<body>
+<!--Navigation Bar-->
+<div class="navbar-container">
+    <div class="custom-navbar">
+        <img src="/Images/logo.png" class="custom-logo">
+        <a href="/Home Page/home.html">Home</a>
+        
+        <!-- Clothing Dropdown -->
+        <div class="custom-dropdown">
+            <button class="custom-dropbtn">Clothing
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="custom-dropdown-content">
+                <a href="/Clothing Pages/T-Shirts_and_Tops.html">T-Shirts & Tops</a>
+                <a href="/Clothing Pages/Crews_and_Hoodies.html">Crews & Hoodies</a>
+                <a class="active" href="/Clothing Pages/Sweatpants_and_Shorts.html">Sweatpants & Shorts</a>
+            </div>
+        </div>
+        
+        <!-- Accessories Dropdown -->
+        <div class="custom-dropdown">
+            <button class="custom-dropbtn">Accessories
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="custom-dropdown-content">
+                <a href="/Accessories Pages/Bucket_Hats.html">Bucket Hats</a>
+                <a href="/Accessories Pages/Beanies.html">Beanies</a>
+            </div>
+        </div>
+        
+    </div><!--Navigation Bar-->
+</div><!--Navbar Container-->
+
+
+<div class="sweatpants_and_shorts-container"> <!--sweatpants_and_shorts container -->
+    <div class="product-heading">
+        <h2 class="product-title">Sweatpants & Shorts</h2>
+        <p class="product-description">
+            Gently used floor model sneakers and discontinued styles at our lowest prices of the year.<br> Get 'em before they're gone!
+        </p>
+    </div>
+
+    <div class="items_container">
+        <div class="item">
+            <figure>
+                <img id="item1-img" src="/Sweatpants/White LW Sweatpants.PNG" alt="White LW Sweatpants" />
+            </figure>
+            <div class="details_container">
+                <h3>Lone Wolf Sweatpants</h3>
+                <div class="buy_container">
+                    <p class="price">R115</p>
+                    <div class="flex-space-between">
+                        <div class="input-holder">
+                            <label for="size-select">Size:</label>
+                            <select name="size" id="size-select" class="input-style">
+                                <option value="X small">XS</option>
+                                <option value="small">S</option>
+                                <option value="medium">M</option>
+                                <option value="large">L</option>
+                                <option value="X large">XL</option>
+                            </select>
+                        </div>
+                        <div class="input-holder">
+                            <label for="quantity-select">Quantity:</label>
+                            <select name="quantity" id="quantity-select" class="input-style">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="color-row" id="color-row-1">
+                        <label for="color-select">Color:</label>
+                        <div class="colors">
+                            <span class="color" data-img="/Sweatpants/White LW Sweatpants.PNG"></span>
+                            <span class="color" data-img="/Sweatpants/Grey LW Sweatpants.PNG"></span>
+                            <span class="color" data-img="/Sweatpants/Black LW Sweatpants.PNG"></span>
+                            <span class="color" data-img="/Sweatpants/Pink LW Sweatpants.PNG"></span>
+                            <span class="color" data-img="/Sweatpants/Red LW Sweatpants.PNG"></span>
+                            <span class="color" data-img="/Sweatpants/M-Yellow LW Sweatpants.PNG"></span>
+                        </div>
+                    </div>
+                    <button type="button" class="add-to-cart-button" onclick="addToCart('item2-img')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="item"> <!--Start of Product Card Two-->
+            <figure>
+                <img id="item2-img" src="/Sweatpants/White Wolf Sweatpants.PNG" alt="White Wolf Sweatpants" />
+            </figure>
+            <div class="details_container">
+                <h3>Wolf Sweatpants</h3>
+                <div class="buy_container">
+                    <p class="price">R115</p>
+                    <div class="flex-space-between">
+                        <div class="input-holder">
+                            <label for="size-select">Size:</label>
+                            <select name="size" id="size-select" class="input-style">
+                                <option value="X small">XS</option>
+                                <option value="small">S</option>
+                                <option value="medium">M</option>
+                                <option value="large">L</option>
+                                <option value="X large">XL</option>
+                            </select>
+                        </div>
+                        <div class="input-holder">
+                            <label for="quantity-select">Quantity:</label>
+                            <select name="quantity" id="quantity-select" class="input-style">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="color-row" id="color-row-2">
+                        <label for="color-select">Color:</label>
+                        <div class="colors pallet-two">
+                            <span class="color" data-img="/Sweatpants/White Wolf Sweatpants.PNG"></span>
+                            <span class="color" data-img="/Sweatpants/Grey Wolf Sweatpants.PNG"></span>
+                            <span class="color" data-img="/Sweatpants/Black Wolf Sweatpants.PNG"></span>
+                            <span class="color" data-img="/Sweatpants/Pink Wolf Sweatpants.PNG"></span>
+                            <span class="color" data-img="/Sweatpants/Red Wolf Sweatpants.PNG"></span>
+                            <span class="color" data-img="/Sweatpants/M-Yellow Wolf Sweatpants.PNG"></span>
+                        </div>
+                    </div>
+                    <button type="button" class="add-to-cart-button" onclick="addToCart('item3-img')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <figure>
+                <img id="item3-img" src="/Shorts/White LW Shorts.PNG" alt="White LW Shorts" />
+            </figure>
+            <div class="details_container">
+                <h3>Lone Wolf Shorts</h3>
+                <div class="buy_container">
+                    <p class="price">R115</p>
+                    <div class="flex-space-between">
+                        <div class="input-holder">
+                            <label for="size-select">Size:</label>
+                            <select name="size" id="size-select" class="input-style">
+                                <option value="X small">XS</option>
+                                <option value="small">S</option>
+                                <option value="medium">M</option>
+                                <option value="large">L</option>
+                                <option value="X large">XL</option>
+                            </select>
+                        </div>
+                        <div class="input-holder">
+                            <label for="quantity-select">Quantity:</label>
+                            <select name="quantity" id="quantity-select" class="input-style">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="color-row" id="color-row-3">
+                        <label for="color-select">Color:</label>
+                        <div class="colors pallet-three">
+                            <span class="color" data-img="/Shorts/White LW Shorts.PNG"></span>
+                            <span class="color" data-img="/Shorts/Grey LW Shorts.PNG"></span>
+                            <span class="color" data-img="/Shorts/Black LW Shorts.PNG"></span>
+                            <span class="color" data-img="/Shorts/Pink LW Shorts.PNG"></span>
+                            <span class="color" data-img="/Shorts/Red LW Shorts.PNG"></span>
+                            <span class="color" data-img="/Shorts/M-Yellow LW Shorts.PNG"></span>
+                        </div>
+                    </div>
+                    <button type="button" class="add-to-cart-button" onclick="addToCart('item4-img')">Add to Cart</button>
+                </div>
+            </div>
+        </div><!--end of item class-->
+        
+        <div class="item"> <!--Start of Product Card 4-->
+            <figure>
+                <img id="item4-img" src="/Shorts/White Wolf Shorts.PNG" alt="White Wolf Shorts" />
+            </figure>
+            <div class="details_container">
+                <h3>Wolf Shorts</h3>
+                <div class="buy_container">
+                    <p class="price">R115</p>
+                    <div class="flex-space-between">
+                        <div class="input-holder">
+                            <label for="size-select">Size:</label>
+                            <select name="size" id="size-select" class="input-style">
+                                <option value="X small">XS</option>
+                                <option value="small">S</option>
+                                <option value="medium">M</option>
+                                <option value="large">L</option>
+                                <option value="X large">XL</option>
+                            </select>
+                        </div>
+                        <div class="input-holder">
+                            <label for="quantity-select">Quantity:</label>
+                            <select name="quantity" id="quantity-select" class="input-style">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="color-row" id="color-row-4">
+                        <label for="color-select">Color:</label>
+                        <div class="colors pallet-four">
+                            <span class="color" data-img="/Shorts/White Wolf Shorts.PNG"></span>
+                            <span class="color" data-img="/Shorts/Grey Wolf Shorts.PNG"></span>
+                            <span class="color" data-img="/Shorts/Black Wolf Shorts.PNG"></span>
+                            <span class="color" data-img="/Shorts/Pink Wolf Shorts.PNG"></span>
+                            <span class="color" data-img="/Shorts/Red Wolf Shorts.PNG"></span>
+                            <span class="color" data-img="/Shorts/M-Yellow Shorts.PNG"></span>
+                        </div>
+                    </div>
+                    <button type="button" class="add-to-cart-button" onclick="addToCart('item4-img')">Add to Cart</button>
+                </div>
+            </div>
+        </div><!---End of Product Card 4-->
+
+    </div><!--End of Items Container-->
+</div><!--Sweatpants Container-->
+
+<!-- Link to external JavaScript file -->
+<script src="/JavaScript Files/clothing_pages.js"></script>
+<script src="/JavaScript Files/addToCart.js"></script>
+
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="unique-row">
+      <div class="footer-col">
+        <h4>company</h4>
+        <ul>
+          <li><a href="/Company Pages/about.html">about us</a></li>
+          <li><a href="/Company Pages/our_services.html">our services</a></li>
+          <li><a href="/Company Pages/privacy_policy.html">privacy policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>get help</h4>
+        <ul>
+          <li><a href="/Get Help Pages/contact.html">Contact Us</a></li>
+          <li><a href="/Get Help Pages/Shipping.html">shipping</a></li>
+          <li><a href="/Get Help Pages/Returns.html">returns</a></li>
+          <li><a href="/Get Help Pages/Payments_Options.html">payment options</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>online shop</h4>
+        <ul>
+          <li><a href="/Clothing Pages/T-Shirts_and_Tops.html">T-Shirts & Tops</a></li>
+          <li><a href="/Clothing Pages/Crews_and_Hoodies.html">Crews & Hoodies</a></li>
+          <li><a href="/Clothing Pages/Sweatpants_and_Shorts.html">Sweatpants & Shorts</a></li>
+          <li><a href="/Accessories Pages/Bucket_Hats.html">Bucket Hats</a></li>
+          <li><a href="/Accessories Pages/Beanies.html">Beanies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>follow us</h4>
+        <div class="social-links">
+          <a href="https://www.facebook.com/synobk" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/synobk_sa" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/synobk_sa" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/synobk_sa" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>&copy; 2024 Lone Wolf Klothing Pty Ltd. All rights reserved.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+/* Import the Poppins font with various weights */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Apply styles to the product layout section */
+.t-shirts_and_tops-container {
+    line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styles for the category title */
+.t-shirts_and_tops-container .product-title {
+    position: relative;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+/* Adjustments for the pseudo-elements before and after the category title */
+.t-shirts_and_tops-container .product-title::before,
+.t-shirts_and_tops-container .product-title::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    height: 2px;
+    background-color: red;
+}
+
+/* Adjustments for the pseudo-element before */
+.t-shirts_and_tops-container .product-title:before {
+    left: 30.5%;
+    width: calc(13% - 50px);
+    transform: translateY(-50%);
+}
+
+/* Adjustments for the pseudo-element after */
+.t-shirts_and_tops-container .product-title::after {
+    right: 30.5%;
+    width: calc(13% - 50px);
+    transform: translateY(-50%);
+}
+
+/* Styles for category description */
+.t-shirts_and_tops-container .product-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1em;
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+/* Styles for items container */
+.t-shirts_and_tops-container .items_container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Styles for each item */
+.t-shirts_and_tops-container .item {
+    width: 30%;
+    max-width: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: transparent;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+/* Hover effect for item images within figure */
+.t-shirts_and_tops-container .item:hover figure > img {
+    transform: scale(1.05);/* Scale down the image by 5% on hover */
+    
+}
+
+/* Styles for details container */
+.t-shirts_and_tops-container .details_container {
+    padding: 1rem;
+}
+
+/* Styles for figure element */
+.t-shirts_and_tops-container figure {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    overflow: hidden;
+}
+
+/* Styles for images within figure */
+.t-shirts_and_tops-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+
+/* Styles for section headers */
+.t-shirts_and_tops-container h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Styles for descriptions */
+.t-shirts_and_tops-container .description {
+    line-height: 1.6;
+    font-size: 1em;
+    color: #969696;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 1em;
+}
+
+/* Styles for the buy container */
+.t-shirts_and_tops-container .buy_container {
+    background-color: transparent;
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 0 5px #cccccc;
+}
+
+/* Styles for prices */
+.t-shirts_and_tops-container .price {
+    font-size: 1em;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    border: 2px solid #78788c;
+    background: transparent;
+    color: #000000;
+    border-radius: 10px;
+}
+
+/* Styles for buttons */
+.t-shirts_and_tops-container .add-to-cart-button {
+    width: 100%;
+    background: transparent;
+    border: 2px solid #78788c;
+    outline: 0;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 2rem;
+    font-size: 1em;
+    box-shadow: 0 0 5px #cccccc;
+    color: #000000;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for buttons */
+.t-shirts_and_tops-container .add-to-cart-button:hover {
+    cursor: pointer;
+    background: #78788c;
+    color: #ffffff;
+}
+
+/* Flexbox utility class */
+.t-shirts_and_tops-container .flex-space-between {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em 0;
+}
+
+/* Styles for labels */
+label {
+    color: gray;
+    font-size: 0.9em;
+}
+
+/* Styles for input holder */
+.input-holder {
+    width: 50%;
+}
+
+/* Styles for input elements */
+.t-shirts_and_tops-container .input-style {
+    width: 70%;
+    margin-left: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 2px solid #78788c;
+    background: transparent;
+}
+
+/* Styles for color row container */
+.color-row {
+    display: flex;
+    align-items: center;
+}
+
+/* Styles for color elements */
+.colors {
+    width: 60%;
+    display: flex;
+    margin-left: 10px;
+}
+
+/* Styles for individual color elements */
+.color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 4px;
+    cursor: pointer;
+}
+
+/* Specific color adjustments for each color */
+.color:nth-child(6) {
+    background: #ffdb58;
+}
+
+.color:nth-child(5) {
+    background: #da2231;
+}
+
+.color:nth-child(4) {
+    background: #fc8eac;
+}
+
+.color:nth-child(3) {
+    background: black;
+}
+
+.color:nth-child(2) {
+    background: grey;
+}
+
+.color:nth-child(1) {
+    background: white;
+}

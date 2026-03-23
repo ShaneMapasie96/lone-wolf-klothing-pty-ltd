@@ -1,0 +1,97 @@
+body {
+    background-image: url('/Images/Body_Background.jpeg');
+    margin: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar-container {
+    width: 100%; /* Ensure full width of the screen */
+    position: fixed; /* Fixed position to keep it at the top */
+    top: 0;
+    z-index: 1000; /* Higher z-index to keep it above other content */
+    background-color: transparent;
+    margin-bottom: 30px; /* Add margin bottom to create space below the navbar */
+}
+
+.custom-navbar {
+    overflow: hidden;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.custom-navbar .custom-logo {
+    width: 50px;
+    height: auto;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+.custom-navbar a {
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.custom-navbar a:hover {
+    background-color: #5B6978;
+}
+
+.custom-dropdown {
+    overflow: hidden;
+}
+
+.custom-dropdown.active .custom-dropbtn {
+    background-color: #CC092F;
+}
+
+.custom-dropdown .custom-dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.custom-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 6px;
+}
+
+.custom-dropdown-content a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.custom-dropdown:hover .custom-dropdown-content {
+    display: block;
+}
+
+.active {
+    background-color: #CC092F;
+}
+
+.content {
+    margin-top: 80px; /* Adjust this to match the height of your navbar */
+    padding: 20px;
+    /* Add any other styles for your content */
+}
