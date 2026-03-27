@@ -8,6 +8,54 @@ html {
     --page-title-offset-mobile: 20px;
 }
 
+/* ── Variant image navigation (prev/next on multi-image color swatches) ── */
+.variant-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 2;
+}
+
+.variant-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: #ffffff;
+    font-size: 28px;
+    line-height: 1;
+    padding: 0 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.variant-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.variant-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.variant-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transition: background 0.2s;
+}
+
+.variant-dot.active {
+    background: #ffffff;
+}
+
 body {
     background-image: url('/Images/Body_Background.jpeg');
     margin: 0;
