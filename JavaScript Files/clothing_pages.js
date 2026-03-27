@@ -108,6 +108,11 @@ document.addEventListener('DOMContentLoaded', function () {
             if ((isCrewsHoodies || isBeanies) && (color.className === 'orange' || color.className === 'beige')) {
                 return;
             }
+
+            // Skip if this color already exists in the palette
+            if (palette.querySelector('[data-color="' + color.name + '"]')) {
+                return;
+            }
             
             const swatch = document.createElement('span');
             swatch.className = 'color ' + color.className;
@@ -136,4 +141,113 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // Design dropdown data for T-Shirts color switching
+    var designData = {
+        'lone-wolf-emblem': {
+            colors: [
+                { name: 'White', img: null, variants: '/T-Shirts Images/White Pocket Size LW T-Shirt.png|/T-Shirts Images/White Pocket Size LW Emblem RMBD.png' },
+                { name: 'Grey', img: '/T-Shirts Images/Grey Pocket Size LW T-Shirt.png', variants: null },
+                { name: 'Black', img: null, variants: '/T-Shirts Images/BLK Pocket Size White LW T-Shirt.png|/T-Shirts Images/Black RMD Full LW Emblem.jpg|/T-Shirts Images/Black Full GLW Emblem T-Shirt.png' },
+                { name: 'Pink', img: '/T-Shirts Images/Pink Full LW Emblem.png', variants: null },
+                { name: 'Red', img: null, variants: '/T-Shirts Images/Red Pocket Size LW T-Shirt.png|/T-Shirts Images/Red White PS LW T-Shirt.png' },
+                { name: 'Mustard Yellow', img: '/T-Shirts Images/Mustard Yellow Pocket Size LW T-Shirt.png', variants: null }
+            ],
+            defaultImg: '/T-Shirts Images/White Pocket Size LW T-Shirt.png'
+        },
+        'wolf-head': {
+            colors: [
+                { name: 'Beige', img: '/T-Shirts Images/Beige Pocket Size BLK Wolf T-Shirt.png', variants: null },
+                { name: 'Black', img: null, variants: '/T-Shirts Images/Black Gold Wolf Head Logo T-Shirt.png|/T-Shirts Images/BLK Pocket Size Red Wolf T-Shirt.png|/T-Shirts Images/BLK Pocket Size White Wolf T-Shirt.png' },
+                { name: 'Pink', img: '/T-Shirts Images/FPINK Pocket Size Wolf T-Shirt.png', variants: null },
+                { name: 'Grey', img: '/T-Shirts Images/Grey Pocket Size Wolf T-Shirt.png', variants: null },
+                { name: 'Orange', img: '/T-Shirts Images/Orange PS Wolf Head Logo T-Shirt.png', variants: null },
+                { name: 'Red', img: '/T-Shirts Images/Red Blk Pocket Size Wolf T-Shirt.png', variants: null },
+                { name: 'Royal Blue', img: '/T-Shirts Images/Royal Blue - Wolf Head Logo T-Shirt.png', variants: null },
+                { name: 'White', img: '/T-Shirts Images/White Pocket Size Wolf T-Shirt.png', variants: null },
+                { name: 'Mustard Yellow', img: '/T-Shirts Images/Yellow Pocket Size BLK Wolf T-Shirt.png', variants: null }
+            ],
+            defaultImg: '/T-Shirts Images/Beige Pocket Size BLK Wolf T-Shirt.png'
+        }
+    };
+
+    var colorMap = {
+        'White': '#FFFFFF', 'Grey': '#808080', 'Black': '#000000',
+        'Pink': '#FFB6C1', 'Red': '#FF0000', 'Mustard Yellow': '#E1AD01',
+        'Royal Blue': '#4169E1', 'Orange': '#FF8C00', 'Beige': '#F5F5DC'
+    };
+
+    // Hook into dynamically created design dropdowns for T-Shirts
+    function attachDesignSwitch() {
+        document.querySelectorAll('.t-shirts_and_tops-container .item').forEach(function (item) {
+            var designSelect = item.querySelector('select[name="design"]');
+            if (!designSelect || designSelect._designSwitchAttached) return;
+            designSelect._designSwitchAttached = true;
+
+            designSelect.addEventListener('change', function () {
+                var selected = this.value;
+                var key = null;
+                if (/wolf head/i.test(selected)) {
+                    key = 'wolf-head';
+                } else if (/lone wolf emblem/i.test(selected)) {
+                    key = 'lone-wolf-emblem';
+                }
+                if (!key) return;
+
+                var data = designData[key];
+                if (!data) return;
+
+                var imgEl = item.querySelector('img');
+                var palette = item.querySelector('.colors');
+
+                // Remove variant nav
+                removeVariantNav(item);
+
+                // Clear existing swatches
+                palette.innerHTML = '';
+
+                // Build new swatches
+                data.colors.forEach(function (c) {
+                    var swatch = document.createElement('span');
+                    swatch.className = 'color';
+                    swatch.setAttribute('data-color', c.name);
+                    if (colorMap[c.name]) {
+                        swatch.style.backgroundColor = colorMap[c.name];
+                    }
+                    if (c.variants) {
+                        swatch.setAttribute('data-variants', c.variants);
+                    } else if (c.img) {
+                        swatch.setAttribute('data-img', c.img);
+                    }
+
+                    swatch.addEventListener('click', function () {
+                        var varAttr = swatch.getAttribute('data-variants');
+                        if (varAttr) {
+                            Array.from(palette.children).forEach(function (el) {
+                                el.classList.remove('selected-color');
+                            });
+                            swatch.classList.add('selected-color');
+                            showVariantNav(item, varAttr.split('|'));
+                        } else {
+                            removeVariantNav(item);
+                            handleColorSelection(swatch, imgEl.id);
+                        }
+                    });
+
+                    palette.appendChild(swatch);
+                });
+
+                // Select first swatch
+                if (palette.children.length > 0) {
+                    palette.children[0].classList.add('selected-color');
+                }
+
+                // Set default image
+                imgEl.src = data.defaultImg;
+            });
+        });
+    }
+
+    // Run after a short delay to let addToCart.js create the design dropdowns first
+    setTimeout(attachDesignSwitch, 100);
 });
