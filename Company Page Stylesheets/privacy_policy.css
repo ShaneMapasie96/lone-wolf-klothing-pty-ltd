@@ -10,14 +10,14 @@ body {
 }
   
   section {
-    margin-top: 25px;
+    margin-top: 108px;
   }
   .policy-container {
     text-align: center; /* Center-align content within the container */
 }
 
 .main-heading {
-  width: 55%; /* Decrease the width of the container */
+  width: min(960px, calc(100% - 32px)); /* Decrease the width of the container */
   background-color: transparent; /* Ensure a white background for the shipping content */
   border-radius: 6px;
   padding: 20px;
@@ -29,28 +29,20 @@ body {
 .main-heading::before,
 .main-heading::after {
   content: "";
-  position: absolute;
-  top: 50%;
+  flex: 1 1 140px;
+  max-width: 180px;
+  min-width: 48px;
   height: 2px;
   background-color: red;
 
 }
 
-.main-heading::before {
-    left: 16%; /* Adjust the left position for the starting point of the vertical line */
-    width: calc(25% - 50px); /* Adjust the width based on desired stopping point */
-    transform: translateY(-50%);
-}
-
-.main-heading::after {
-    right: 16%; /* Adjust the right position for the starting point of the vertical line */
-    width: calc(25% - 50px); /* Adjust the width based on desired stopping point */
-    transform: translateY(-50%);
-}
-
 
 .main-heading {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
   color: rgba(255, 255, 255, 1);
   font-size: 32px;
   line-height: 31px;
@@ -59,6 +51,7 @@ body {
   margin: 0 auto 20px;
   text-align: center;
   position: relative; /* Add position relative for positioning pseudo-elements */
+  padding: 0 16px;
 }
 
 .main-heading-paragraph {
@@ -71,14 +64,12 @@ body {
 }
   
   article {
-    width: 70%;
+    width: min(960px, calc(100% - 32px));
     border: 1px solid black;
     border-radius: 6px;
     box-shadow: 0 0 5px #cccccc;;
     padding: 15px;
-    margin: 15%;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin: 32px auto 48px;
     font-size: 22px
   }
 
@@ -98,3 +89,23 @@ body {
     font-size: 16px;
     font-weight: 500;
   }
+
+@media (max-width: 768px) {
+  section {
+    margin-top: 32px;
+  }
+
+  .main-heading {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .main-heading::before,
+  .main-heading::after {
+    display: none;
+  }
+
+  article {
+    font-size: 18px;
+  }
+}

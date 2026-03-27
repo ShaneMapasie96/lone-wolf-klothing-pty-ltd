@@ -1,10 +1,25 @@
+html {
+    scrollbar-gutter: stable;
+    overflow-y: scroll;
+}
+
+:root {
+    --page-title-offset: 88px;
+    --page-title-offset-mobile: 20px;
+}
+
 body {
     background-image: url('/Images/Body_Background.jpeg');
     margin: 0;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     line-height: 1.5;
     font-family: 'Poppins', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 .navbar-container {
@@ -12,15 +27,22 @@ body {
     position: fixed; /* Fixed position to keep it at the top */
     top: 0;
     z-index: 1000; /* Higher z-index to keep it above other content */
-    background-color: transparent;
+    background-color: rgba(17, 24, 32, 0.9);
+    backdrop-filter: blur(8px);
     margin-bottom: 30px; /* Add margin bottom to create space below the navbar */
 }
 
 .custom-navbar {
-    overflow: hidden;
+    overflow: visible;
     background-color: transparent;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    width: min(1200px, calc(100% - 24px));
+    margin: 0 auto;
+    padding: 8px 0;
 }
 
 .custom-navbar .custom-logo {
@@ -28,6 +50,18 @@ body {
     height: auto;
     margin-right: 20px;
     margin-left: 10px;
+}
+
+.custom-navbar .custom-logo-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: transparent;
+}
+
+.custom-navbar .custom-logo-link:hover {
+    background: transparent;
 }
 
 .custom-navbar a {
@@ -38,6 +72,7 @@ body {
     text-decoration: none;
     font-weight: 500;
     border-radius: 5px;
+    display: block;
 }
 
 .custom-navbar a:hover {
@@ -45,7 +80,8 @@ body {
 }
 
 .custom-dropdown {
-    overflow: hidden;
+    overflow: visible;
+    position: relative;
 }
 
 .custom-dropdown.active .custom-dropbtn {
@@ -61,12 +97,16 @@ body {
     background-color: inherit;
     font-family: inherit;
     margin: 0;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .custom-dropdown-content {
     display: none;
     position: absolute;
-    background-color: transparent;
+    top: 100%;
+    left: 0;
+    background-color: rgba(17, 24, 32, 0.96);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -86,6 +126,10 @@ body {
     display: block;
 }
 
+.custom-dropdown:focus-within .custom-dropdown-content {
+    display: block;
+}
+
 .active {
     background-color: #CC092F;
 }
@@ -94,4 +138,108 @@ body {
     margin-top: 80px; /* Adjust this to match the height of your navbar */
     padding: 20px;
     /* Add any other styles for your content */
+}
+
+/* Keep first visible heading/content block at a consistent distance below nav on all pages. */
+.t-shirts_and_tops-container .product-title,
+.crews-and-hoodies-container .product-title,
+.sweatpants_and_shorts-container .product-title,
+.beanies-container .product-title,
+.bucket-hats-container .product-title {
+    margin-top: var(--page-title-offset) !important;
+}
+
+.about_us_section {
+    padding-top: var(--page-title-offset) !important;
+}
+
+.our-services {
+    padding-top: var(--page-title-offset) !important;
+}
+
+.policy-container,
+.payment-options-container,
+.return-policy-container,
+.shipping-container,
+.form-container {
+    margin-top: var(--page-title-offset) !important;
+}
+
+@media (max-width: 900px) {
+    .custom-navbar {
+        justify-content: flex-start;
+        padding-inline: 8px;
+    }
+
+    .custom-navbar .custom-logo {
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .navbar-container {
+        position: sticky;
+    }
+
+    .custom-navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        width: calc(100% - 16px);
+        padding: 12px 0;
+    }
+
+    .custom-navbar .custom-logo {
+        margin: 0 auto 4px;
+    }
+
+    .custom-navbar .custom-logo-link {
+        width: auto;
+    }
+
+    .custom-navbar a,
+    .custom-dropdown .custom-dropbtn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .custom-dropdown-content {
+        position: static;
+        min-width: 100%;
+        box-shadow: none;
+        margin-top: 6px;
+    }
+
+    .custom-dropdown-content a {
+        text-align: center;
+    }
+
+    .content {
+        margin-top: 24px;
+        padding: 16px;
+    }
+
+    .t-shirts_and_tops-container .product-title,
+    .crews-and-hoodies-container .product-title,
+    .sweatpants_and_shorts-container .product-title,
+    .beanies-container .product-title,
+    .bucket-hats-container .product-title {
+        margin-top: var(--page-title-offset-mobile) !important;
+    }
+
+    .about_us_section {
+        padding-top: var(--page-title-offset-mobile) !important;
+    }
+
+    .our-services {
+        padding-top: var(--page-title-offset-mobile) !important;
+    }
+
+    .policy-container,
+    .payment-options-container,
+    .return-policy-container,
+    .shipping-container,
+    .form-container {
+        margin-top: var(--page-title-offset-mobile) !important;
+    }
 }

@@ -18,6 +18,7 @@ body {
 .footer-container {
   max-width: 1170px;
   margin: auto;
+  width: min(1170px, calc(100% - 32px));
 }
 
 .unique-row {
@@ -111,6 +112,14 @@ ul {
 
 /* Responsive styles */
 @media (max-width: 767px) {
+  .footer {
+    padding: 40px 0 24px;
+  }
+
+  .footer-col h4 {
+    margin-bottom: 20px;
+  }
+
   .footer-col {
     width: 50%;
     margin-bottom: 30px;
@@ -118,7 +127,16 @@ ul {
 }
 
 @media (max-width: 574px) {
+  .footer-container {
+    width: calc(100% - 24px);
+  }
+
   .footer-col {
     width: 100%;
+    padding: 0;
+  }
+
+  .footer-col .social-links a {
+    margin-right: 8px;
   }
 }

@@ -10,18 +10,22 @@ body {
 
 .about_us_section {
   display: block;
-  width: 80%;
+  width: min(960px, calc(100% - 32px));
   min-height: 60vh;
   background: transparent;
   color: rgba(255, 255, 255, 0.7);
   text-align: left;
   position: relative;
-  padding: 75px 10% 50px 10%;
+  padding: 108px 10% 50px 10%;
   margin: 0 auto; /* Add this line to center the section */
 }
 
 .about_us_section h2 {
   display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
   color: rgba(255, 255, 255, 1);
   font-size: 32px;
   line-height: 31px;
@@ -30,27 +34,17 @@ body {
   margin: 0 auto 30px;
   text-align: center;
   position: relative; /* Add position relative for positioning pseudo-elements */
+  padding: 0 16px;
 }
 
 .about_us_section h2::before,
 .about_us_section h2::after {
   content: "";
-  position: absolute;
-  top: 50%;
+  flex: 1 1 140px;
+  max-width: 180px;
+  min-width: 48px;
   height: 2px;
   background-color: red;
-}
-
-.about_us_section h2::before {
-  left: 15.5%; /* Adjust the left position for the starting point of the vertical line */
-  width: calc(25% - 50px); /* Adjust the width based on desired stopping point */
-  transform: translateY(-50%);
-}
-
-.about_us_section h2::after {
-  right: 15.5%; /* Adjust the right position for the starting point of the vertical line */
-  width: calc(25% - 50px); /* Adjust the width based on desired stopping point */
-  transform: translateY(-50%);
 }
 
 .about_us_section span {
@@ -73,19 +67,22 @@ body {
 
 .about_us_section img {
   display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
   margin-bottom: 20px;
 }
 
 .about_us_mission {
   color: rgba(255, 255, 255, 1);
   display: block;
-  width: 60%;
+  width: min(640px, 100%);
   box-sizing: border-box;
   border-radius: 10px;
   border-radius: 6px;
   box-shadow: 0 0 5px #cccccc;
   background-color: transparent;
-  margin-left: 20%;
+  margin: 0 auto;
   padding: 5px 10px;
   text-align: center; /* Add this line to center the mission section */
 }
@@ -106,4 +103,20 @@ body {
   text-align: center;
   font-weight: 500;
   line-height: 1.75;
+}
+
+@media (max-width: 768px) {
+  .about_us_section {
+    padding: 32px 16px 40px;
+  }
+
+  .about_us_section h2 {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .about_us_section h2::before,
+  .about_us_section h2::after {
+    display: none;
+  }
 }

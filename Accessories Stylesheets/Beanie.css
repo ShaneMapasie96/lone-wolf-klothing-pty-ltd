@@ -7,42 +7,35 @@
     font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
+    width: min(1200px, calc(100% - 32px));
+    margin: 0 auto;
 }
 
 /* Styles for the category title */
 .beanies-container .product-title {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
     color: #fff;
     font-size: 32px;
     font-weight: 700;
     text-align: center;
-    margin-top: 80px;
+    margin-top: 108px;
     margin-bottom: 10px;
-    overflow: hidden;
+    padding: 0 16px;
 }
 
 /* Adjustments for the pseudo-elements before and after the category title */
 .beanies-container .product-title::before,
 .beanies-container .product-title::after {
     content: "";
-    position: absolute;
-    top: 50%;
+    flex: 1 1 140px;
+    max-width: 180px;
+    min-width: 48px;
     height: 2px;
     background-color: red;
-}
-
-/* Adjustments for the pseudo-element before */
-.beanies-container .product-title:before {
-    left: 35.5%;
-    width: calc(13% - 50px);
-    transform: translateY(-50%);
-}
-
-/* Adjustments for the pseudo-element after */
-.beanies-container .product-title::after {
-    right: 35.5%;
-    width: calc(13% - 50px);
-    transform: translateY(-50%);
 }
 
 /* Styles for category description */
@@ -51,6 +44,7 @@
     font-size: 1em;
     text-align: center;
     margin-bottom: 2em;
+    padding: 0 16px;
 }
 
 /* Styles for items container */
@@ -58,11 +52,14 @@
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
+    align-items: stretch;
 }
 
 /* Styles for each item */
 .beanies-container .item {
-    width: 30%;
+    width: min(100%, 300px);
+    flex: 1 1 260px;
     max-width: 300px;
     border-radius: 20px;
     overflow: hidden;
@@ -106,6 +103,7 @@
     font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 1rem;
+    color: #ffffff;
 }
 
 /* Styles for descriptions */
@@ -137,7 +135,7 @@
     padding: 10px;
     border: 2px solid #78788c;
     background: transparent;
-    color: #000000;
+    color: #ffffff;
     border-radius: 10px;
 }
 
@@ -152,7 +150,7 @@
     margin-top: 2rem;
     font-size: 1em;
     box-shadow: 0 0 5px #cccccc;
-    color: #000000;
+    color: #ffffff;
     font-weight: bold;
     transition: all 0.3s ease;
 }
@@ -169,11 +167,12 @@
     display: flex;
     justify-content: space-between;
     margin: 1em 0;
+    gap: 12px;
 }
 
 /* Styles for labels */
 label {
-    color: gray;
+    color: #ffffff;
     font-size: 0.9em;
 }
 
@@ -190,6 +189,11 @@ label {
     border-radius: 5px;
     border: 2px solid #78788c;
     background: transparent;
+    color: #ffffff;
+}
+
+.beanies-container .input-style option {
+    color: #000000;
 }
 
 /* Styles for color row container */
@@ -203,6 +207,8 @@ label {
     width: 60%;
     display: flex;
     margin-left: 10px;
+    flex-wrap: wrap;
+    gap: 6px;
 }
 
 /* Styles for individual color elements */
@@ -238,4 +244,48 @@ label {
 
 .color:nth-child(1) {
     background: white;
+}
+
+@media (max-width: 768px) {
+    .beanies-container .product-title {
+        font-size: 28px;
+        margin-top: 32px;
+    }
+
+    .beanies-container .product-title::before,
+    .beanies-container .product-title::after {
+        display: none;
+    }
+
+    .beanies-container .item {
+        flex-basis: calc(50% - 20px);
+        max-width: none;
+    }
+}
+
+@media (max-width: 560px) {
+    .beanies-container {
+        width: calc(100% - 20px);
+    }
+
+    .beanies-container .item {
+        flex-basis: 100%;
+    }
+
+    .beanies-container .flex-space-between,
+    .color-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .input-holder,
+    .colors,
+    .beanies-container .input-style {
+        width: 100%;
+    }
+
+    .beanies-container .input-style,
+    .colors {
+        margin-left: 0;
+    }
 }
