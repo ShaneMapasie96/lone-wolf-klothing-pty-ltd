@@ -104,6 +104,7 @@
     font-weight: bold;
     margin-bottom: 1rem;
     color: #ffffff;
+    display: none;
 }
 
 /* Styles for descriptions */
@@ -188,12 +189,23 @@ label {
     padding: 8px;
     border-radius: 5px;
     border: 2px solid #78788c;
-    background: transparent;
+    background-color: rgba(17, 24, 32, 0.78);
     color: #ffffff;
 }
 
 .bucket-hats-container .input-style option {
-    color: #000000;
+    background-color: #1f2b3a;
+    color: #ffffff;
+}
+
+.bucket-hats-container .design-selector-row {
+    margin: 0.75em 0 0;
+}
+
+.bucket-hats-container .design-selector-row .input-style {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 6px;
 }
 
 /* Styles for color row container */
