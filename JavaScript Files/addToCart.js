@@ -29,7 +29,7 @@ function addToCart(itemId) {
     const encodedMessage = encodeURIComponent(fullMessage);
 
     // Prepare the WhatsApp link with the pre-filled message
-    const whatsappLink = 'https://wa.me/27610500641?text=' + encodedMessage;
+    const whatsappLink = 'https://wa.me/27615816059?text=' + encodedMessage;
 
     // Open WhatsApp with the pre-filled message
     window.open(whatsappLink, '_blank');
