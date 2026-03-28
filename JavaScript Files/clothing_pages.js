@@ -151,7 +151,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Black', img: null, variants: '/T-Shirts Images/BLK Pocket Size White LW T-Shirt.png|/T-Shirts Images/Black RMD Full LW Emblem.jpg|/T-Shirts Images/Black Full GLW Emblem T-Shirt.png' },
                 { name: 'Pink', img: '/T-Shirts Images/Pink Full LW Emblem.png', variants: null },
                 { name: 'Red', img: null, variants: '/T-Shirts Images/Red Pocket Size LW T-Shirt.png|/T-Shirts Images/Red White PS LW T-Shirt.png' },
-                { name: 'Mustard Yellow', img: '/T-Shirts Images/Mustard Yellow Pocket Size LW T-Shirt.png', variants: null }
+                { name: 'Mustard Yellow', img: '/T-Shirts Images/Mustard Yellow Pocket Size LW T-Shirt.png', variants: null },
+                { name: 'Royal Blue', img: '/T-Shirts Images/Royal Blue - Lone Wolf Emblem-T-Shirt.png', variants: null },
+                { name: 'Orange', img: '/T-Shirts Images/Orange Lone Wolf Emblem-T-Shirt.png', variants: null },
+                { name: 'Beige', img: '/T-Shirts Images/Beige Lone Wolf Emblem-T-Shirts.png', variants: null }
             ],
             defaultImg: '/T-Shirts Images/White Pocket Size LW T-Shirt.png'
         },
