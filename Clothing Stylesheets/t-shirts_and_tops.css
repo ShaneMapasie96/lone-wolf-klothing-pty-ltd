@@ -66,6 +66,8 @@
     background-color: transparent;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Hover effect for item images within figure */
@@ -77,6 +79,9 @@
 /* Styles for details container */
 .t-shirts_and_tops-container .details_container {
     padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Styles for figure element */
@@ -126,6 +131,9 @@
     border-radius: 15px;
     padding: 1rem;
     box-shadow: 0 0 5px #cccccc;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Styles for prices */
@@ -148,7 +156,7 @@
     outline: 0;
     border-radius: 10px;
     padding: 12px;
-    margin-top: 2rem;
+    margin-top: auto;
     font-size: 1em;
     box-shadow: 0 0 5px #cccccc;
     color: #ffffff;
