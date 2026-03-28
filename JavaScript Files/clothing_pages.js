@@ -165,12 +165,39 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Pink', img: '/T-Shirts Images/FPINK Pocket Size Wolf T-Shirt.png', variants: null },
                 { name: 'Grey', img: '/T-Shirts Images/Grey Pocket Size Wolf T-Shirt.png', variants: null },
                 { name: 'Orange', img: '/T-Shirts Images/Orange PS Wolf Head Logo T-Shirt.png', variants: null },
-                { name: 'Red', img: '/T-Shirts Images/Red Blk Pocket Size Wolf T-Shirt.png', variants: null },
+                { name: 'Red', img: null, variants: '/T-Shirts Images/Red Blk Pocket Size Wolf T-Shirt.png|/T-Shirts Images/Red White Wolf Head T-Shirt.png' },
                 { name: 'Royal Blue', img: '/T-Shirts Images/Royal Blue - Wolf Head Logo T-Shirt.png', variants: null },
-                { name: 'White', img: '/T-Shirts Images/White Pocket Size Wolf T-Shirt.png', variants: null },
+                { name: 'White', img: null, variants: '/T-Shirts Images/White Pocket Size Wolf T-Shirt.png|/T-Shirts Images/White RMBD Wolf Head-T-Shirt.png' },
                 { name: 'Mustard Yellow', img: '/T-Shirts Images/Yellow Pocket Size BLK Wolf T-Shirt.png', variants: null }
             ],
             defaultImg: '/T-Shirts Images/Beige Pocket Size BLK Wolf T-Shirt.png'
+        },
+        'lone-wolf-typography': {
+            colors: [
+                { name: 'Beige', img: '/T-Shirts Images/Beige Lone Wolf Typography-T-Shirt.png', variants: null },
+                { name: 'Black', img: null, variants: '/T-Shirts Images/Black Gold Lone Wolf Typography-T-Shirt.png|/T-Shirts Images/Black White Lone Wolf Typography-T-Shirt.png' },
+                { name: 'Grey', img: '/T-Shirts Images/Grey Lone Wolf Typography-T-Shirt.png', variants: null },
+                { name: 'Orange', img: '/T-Shirts Images/Orange Lone Wolf Typography-T-Shirt.png', variants: null },
+                { name: 'Pink', img: '/T-Shirts Images/Pink Lone Wolf Typography T-Shirt.png', variants: null },
+                { name: 'Red', img: null, variants: '/T-Shirts Images/Red Lone Wolf Blk Typography-T-Shirt.png|/T-Shirts Images/Red Lone Wolf  White Typography-T-Shirt.png' },
+                { name: 'Royal Blue', img: '/T-Shirts Images/Royal Blue Lone Wolf White Typography-T-Shirt.png', variants: null },
+                { name: 'White', img: '/T-Shirts Images/White Lone Wolf Typography-T-Shirt.png', variants: null }
+            ],
+            defaultImg: '/T-Shirts Images/Beige Lone Wolf Typography-T-Shirt.png'
+        },
+        'isolation-breeds-growth': {
+            colors: [
+                { name: 'Beige', img: '/T-Shirts Images/Beige-IBG-Tee.png', variants: null },
+                { name: 'Black', img: null, variants: '/T-Shirts Images/Black-IBG-RMBD-Tee.png|/T-Shirts Images/Black-IBG-WMBD-Tee.png' },
+                { name: 'Grey', img: '/T-Shirts Images/Grey-IBG-Tee.png', variants: null },
+                { name: 'Mustard Yellow', img: '/T-Shirts Images/M-Yellow-IBG-Tee.PNG', variants: null },
+                { name: 'Orange', img: '/T-Shirts Images/Orange-IBG-Tee.png', variants: null },
+                { name: 'Pink', img: '/T-Shirts Images/Pink-IBG-Tee.png', variants: null },
+                { name: 'Red', img: null, variants: '/T-Shirts Images/Red-Black-IBG-Tee.png|/T-Shirts Images/Red-White-IBG-Tee.png' },
+                { name: 'Royal Blue', img: '/T-Shirts Images/Royal-Blue-IBG-Tee.png', variants: null },
+                { name: 'White', img: null, variants: '/T-Shirts Images/White-blk-IBG-Tee.png|/T-Shirts Images/White-red-IBG-Tee.png' }
+            ],
+            defaultImg: '/T-Shirts Images/Beige-IBG-Tee.png'
         }
     };
 
@@ -190,7 +217,11 @@ document.addEventListener('DOMContentLoaded', function () {
             designSelect.addEventListener('change', function () {
                 var selected = this.value;
                 var key = null;
-                if (/wolf head/i.test(selected)) {
+                if (/isolation breeds growth/i.test(selected)) {
+                    key = 'isolation-breeds-growth';
+                } else if (/lone wolf typography/i.test(selected)) {
+                    key = 'lone-wolf-typography';
+                } else if (/wolf head/i.test(selected)) {
                     key = 'wolf-head';
                 } else if (/lone wolf emblem/i.test(selected)) {
                     key = 'lone-wolf-emblem';
