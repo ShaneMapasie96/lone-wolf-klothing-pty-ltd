@@ -39,6 +39,10 @@ function addToCart(itemId) {
 }
 
 function getProductType(itemContainer, productImage) {
+    if (itemContainer && itemContainer.closest('.tracksuits-container')) {
+        return 'Tracksuits';
+    }
+
     const heading = itemContainer.querySelector('h3');
     const headingText = heading ? heading.textContent.trim() : '';
 
@@ -107,6 +111,7 @@ function ensureDesignSelector(itemContainer) {
     const productImage = itemContainer.querySelector('img');
     const productType = getProductType(itemContainer, productImage);
     const isOuterwear = Boolean(itemContainer.closest('.outerwear-container'));
+    const isTracksuit = Boolean(itemContainer.closest('.tracksuits-container'));
     const designOptions = [
         'Lone Wolf Emblem - ' + productType,
         'Wolf Head - ' + productType,
@@ -138,6 +143,14 @@ function ensureDesignSelector(itemContainer) {
     select.name = 'design';
     select.id = label.getAttribute('for');
     select.className = 'input-style';
+
+    if (isTracksuit) {
+        select.addEventListener('change', function () {
+            if (typeof updateTracksuitDesign === 'function') {
+                updateTracksuitDesign(this);
+            }
+        });
+    }
 
     designOptions.forEach(function (optionValue) {
         const option = document.createElement('option');
