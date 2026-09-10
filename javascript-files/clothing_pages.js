@@ -94,6 +94,50 @@ function removeVariantNav(item) {
     item._variants = undefined;
 }
 
+function updateOuterwearDesign(selectElement) {
+    var item = selectElement.closest('.item');
+    var palette = item ? item.querySelector('.outerwear-colors') : null;
+    var productType = palette ? palette.getAttribute('data-outerwear-colors') : null;
+    if (!item || !palette || !productType) return;
+
+    var variants = {
+        puffer: {
+            emblem: {
+                Black: ['/puffer-jackets/black-white-lw-emblem-puffer-jacket.jpg', '/puffer-jackets/black-red-lw-emblem-puffer-jacket.jpg', '/puffer-jackets/black-gold-lw-emblem-puffer-jacket.jpg'],
+                Grey: ['/puffer-jackets/grey-lw-emblem-alaskan-puffer-jacket.jpg'],
+                'Navy Blue': ['/puffer-jackets/navy-lw-emblem-puffee-jacket.jpg'],
+                Red: ['/puffer-jackets/red-white-lw-emblem-puffer-jacket.jpg', '/puffer-jackets/red-blk-lw-puffer-jacket.jpg']
+            },
+            typography: {
+                Black: ['/puffer-jackets/black-white-lw-type-puffer-jacket.jpg', '/puffer-jackets/black-gold-lw-tye-puffer-alaskan-jacket.jpg'],
+                Grey: ['/puffer-jackets/grey-lw-type-alaskan-puffer-jacket.jpg'],
+                'Navy Blue': ['/puffer-jackets/navy-lw-type-puffer-jacket.jpg'],
+                Red: ['/puffer-jackets/red-white-lw-type-puffer-jacket.jpg', '/puffer-jackets/red-blk-lw-type-puffer-jacket.jpg']
+            },
+            'wolf-head': {
+                Black: ['/puffer-jackets/black-wolf-head-puffer-jacket.jpg', '/puffer-jackets/black-red-wolf-head-puffer-jacket.jpg', '/puffer-jackets/black-gold-wolf-head-puffer-alaskan-jacket.jpg'],
+                Grey: ['/puffer-jackets/grey-wolf-head-alaskan-puffer-jacket.jpg'],
+                'Navy Blue': ['/puffer-jackets/navy-wolf-head-puffer-jacket.jpg'],
+                Red: ['/puffer-jackets/red-white-wolf-head-puffer-jacket.jpg', '/puffer-jackets/red-blk-wolf-head-puffer-jacket.jpg']
+            }
+        },
+        'body-warmer': {
+            emblem: { Black: ['/body-warmers/black-white-lw-emblem-body-warmer.jpg', '/body-warmers/black-red-lw-emblem-body-warmer.jpg', '/body-warmers/black-gold-lw-emblem-body-warmer.jpg'] },
+            typography: { Black: ['/body-warmers/black-white-lw-type-body-warmer.jpg', '/body-warmers/black-gold-lw-type-body-warmer.jpg'] },
+            'wolf-head': { Black: ['/body-warmers/black-white-wolf-head-body-warmer.jpg', '/body-warmers/black-red-wolf-head-body-warmer.jpg', '/body-warmers/black-gold-wolf-head-body-warmer.jpg'] }
+        }
+    };
+
+    var selectedVariants = variants[productType][selectElement.value];
+    if (!selectedVariants) return;
+    palette.querySelectorAll('.color').forEach(function (swatch) {
+        var color = swatch.getAttribute('data-color');
+        swatch.setAttribute('data-variants', (selectedVariants[color] || []).join('|'));
+    });
+    var firstSwatch = palette.querySelector('.color');
+    if (firstSwatch) firstSwatch.click();
+}
+
 // Add click event listeners to all color elements after DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
     // Add extra swatches to product palettes (selective by page)
@@ -107,8 +151,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const item = palette.closest('.item');
         const isCrewsHoodies = item && item.closest('.crews-and-hoodies-container');
         const isBeanies = item && item.closest('.beanies-container');
+        const isOuterwear = item && item.closest('.outerwear-container');
+        const isTracksuits = item && item.closest('.sweatpants_and_shorts-container');
         
         extraColors.forEach((color) => {
+            if (isOuterwear) {
+                return;
+            }
+
+            if (isTracksuits && (color.className === 'royal-blue' || color.className === 'orange')) {
+                return;
+            }
+
             // Skip Orange and Beige for Crews, Hoodies, and Beanies
             if ((isCrewsHoodies || isBeanies) && (color.className === 'orange' || color.className === 'beige')) {
                 return;

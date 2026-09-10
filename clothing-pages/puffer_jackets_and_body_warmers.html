@@ -20,6 +20,7 @@
                     <a href="/clothing-pages/golfers.html">Golfers</a>
                     <a href="/clothing-pages/crews_and_hoodies.html">Crews & Hoodies</a>
                     <a href="/clothing-pages/sweatpants_and_shorts.html">Sweatpants & Shorts</a>
+                    <a href="/clothing-pages/tracksuits.html">Tracksuits</a>
                     <a class="active" href="/clothing-pages/puffer_jackets_and_body_warmers.html">Puffer Jackets & Body Warmers</a>
                 </div>
             </div>
@@ -43,18 +44,20 @@
             <div class="item">
                 <figure><img id="puffer-item-img" src="/puffer-jackets/black-gold-lw-emblem-puffer-jacket.jpg" alt="Lone Wolf Puffer Jacket"></figure>
                 <div class="details_container"><h3>Puffer Jackets</h3><div class="buy_container">
-                    <p class="price">R290</p>
+                    <p class="price">R899.95</p>
                     <div class="flex-space-between"><div class="input-holder"><label>Size:</label><select name="size" class="input-style"><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></div><div class="input-holder"><label>Quantity:</label><select name="quantity" class="input-style"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></div>
-                    <div class="design-selector-row"><label for="puffer-design">Design:</label><select id="puffer-design" name="design" class="input-style" onchange="changeImage('puffer-item-img', this.value)"><option value="/puffer-jackets/black-gold-lw-emblem-puffer-jacket.jpg">Lone Wolf Emblem</option><option value="/puffer-jackets/navy-lw-type-puffer-jacket.jpg">Lone Wolf Typography</option><option value="/puffer-jackets/black-gold-wolf-head-puffer-alaskan-jacket.jpg">Wolf Head</option></select></div>
+                    <div class="color-row"><label>Color:</label><div class="colors outerwear-colors" data-outerwear-colors="puffer"><span class="color" data-color="Black" data-variants="/puffer-jackets/black-white-lw-emblem-puffer-jacket.jpg|/puffer-jackets/black-red-lw-emblem-puffer-jacket.jpg|/puffer-jackets/black-gold-lw-emblem-puffer-jacket.jpg"></span><span class="color" data-color="Grey" data-variants="/puffer-jackets/grey-lw-emblem-alaskan-puffer-jacket.jpg"></span><span class="color" data-color="Navy Blue" data-variants="/puffer-jackets/navy-lw-emblem-puffee-jacket.jpg"></span><span class="color" data-color="Red" data-variants="/puffer-jackets/red-white-lw-emblem-puffer-jacket.jpg|/puffer-jackets/red-blk-lw-puffer-jacket.jpg"></span></div></div>
+                    <div class="design-selector-row"><label for="puffer-design">Design:</label><select id="puffer-design" name="design" class="input-style" onchange="updateOuterwearDesign(this)"><option value="emblem">Lone Wolf Emblem</option><option value="typography">Lone Wolf Typography</option><option value="wolf-head">Wolf Head</option></select></div>
                     <button type="button" class="add-to-cart-button" onclick="addToCart('puffer-item-img')">Add to Cart</button>
                 </div></div>
             </div>
             <div class="item">
                 <figure><img id="warmer-item-img" src="/body-warmers/black-gold-lw-emblem-body-warmer.jpg" alt="Lone Wolf Body Warmer"></figure>
                 <div class="details_container"><h3>Body Warmers</h3><div class="buy_container">
-                    <p class="price">R210</p>
+                    <p class="price">R799.95</p>
                     <div class="flex-space-between"><div class="input-holder"><label>Size:</label><select name="size" class="input-style"><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></div><div class="input-holder"><label>Quantity:</label><select name="quantity" class="input-style"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></div>
-                    <div class="design-selector-row"><label for="warmer-design">Design:</label><select id="warmer-design" name="design" class="input-style" onchange="changeImage('warmer-item-img', this.value)"><option value="/body-warmers/black-gold-lw-emblem-body-warmer.jpg">Lone Wolf Emblem</option><option value="/body-warmers/black-gold-lw-type-body-warmer.jpg">Lone Wolf Typography</option><option value="/body-warmers/black-gold-wolf-head-body-warmer.jpg">Wolf Head</option></select></div>
+                    <div class="color-row"><label>Color:</label><div class="colors outerwear-colors" data-outerwear-colors="body-warmer"><span class="color" data-color="Black" data-variants="/body-warmers/black-white-lw-emblem-body-warmer.jpg|/body-warmers/black-red-lw-emblem-body-warmer.jpg|/body-warmers/black-gold-lw-emblem-body-warmer.jpg"></span></div></div>
+                    <div class="design-selector-row"><label for="warmer-design">Design:</label><select id="warmer-design" name="design" class="input-style" onchange="updateOuterwearDesign(this)"><option value="emblem">Lone Wolf Emblem</option><option value="typography">Lone Wolf Typography</option><option value="wolf-head">Wolf Head</option></select></div>
                     <button type="button" class="add-to-cart-button" onclick="addToCart('warmer-item-img')">Add to Cart</button>
                 </div></div>
             </div>
@@ -66,7 +69,8 @@
     <footer class="footer"><div class="footer-container"><div class="unique-row">
         <div class="footer-col"><h4>company</h4><ul><li><a href="/company-pages/about.html">about us</a></li><li><a href="/company-pages/our_services.html">our services</a></li><li><a href="/company-pages/privacy_policy.html">privacy policy</a></li></ul></div>
         <div class="footer-col"><h4>get help</h4><ul><li><a href="/get-help-pages/contact.html">Contact Us</a></li><li><a href="/get-help-pages/shipping.html">shipping</a></li><li><a href="/get-help-pages/returns.html">returns</a></li><li><a href="/get-help-pages/payments_options.html">payment options</a></li></ul></div>
-        <div class="footer-col"><h4>online shop</h4><ul><li><a href="/clothing-pages/t-shirts_and_vests.html">T-Shirts & Vests</a></li><li><a href="/clothing-pages/golfers.html">Golfers</a></li><li><a href="/clothing-pages/crews_and_hoodies.html">Crews & Hoodies</a></li><li><a href="/clothing-pages/sweatpants_and_shorts.html">Sweatpants & Shorts</a></li><li><a href="/clothing-pages/puffer_jackets_and_body_warmers.html">Puffer Jackets & Body Warmers</a></li></ul></div>
+        <div class="footer-col"><h4>online shop</h4><ul><li><a href="/clothing-pages/t-shirts_and_vests.html">T-Shirts & Vests</a></li><li><a href="/clothing-pages/golfers.html">Golfers</a></li><li><a href="/clothing-pages/crews_and_hoodies.html">Crews & Hoodies</a></li><li><a href="/clothing-pages/sweatpants_and_shorts.html">Sweatpants & Shorts</a></li>
+          <li><a href="/clothing-pages/tracksuits.html">Tracksuits</a></li><li><a href="/clothing-pages/puffer_jackets_and_body_warmers.html">Puffer Jackets & Body Warmers</a></li></ul></div>
     </div></div><div class="copyright"><p>&copy; 2024 Lone Wolf Klothing Pty Ltd. All rights reserved.</p></div></footer>
 </body>
 </html>

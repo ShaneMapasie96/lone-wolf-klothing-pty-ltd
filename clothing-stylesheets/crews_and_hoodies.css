@@ -239,6 +239,11 @@ label {
 .color:nth-child(2) { background: grey; }
 .color:nth-child(1) { background: white; }
 
+.outerwear-colors .color[data-color="Black"] { background: #111111; }
+.outerwear-colors .color[data-color="Grey"] { background: #808080; }
+.outerwear-colors .color[data-color="Navy Blue"] { background: #1f3c68; }
+.outerwear-colors .color[data-color="Red"] { background: #da2231; }
+
 @media (max-width: 768px) {
     .crews-and-hoodies-container .product-title {
         font-size: 28px;
