@@ -106,13 +106,14 @@ function ensureDesignSelector(itemContainer) {
 
     const productImage = itemContainer.querySelector('img');
     const productType = getProductType(itemContainer, productImage);
+    const isOuterwear = Boolean(itemContainer.closest('.outerwear-container'));
     const designOptions = [
         'Lone Wolf Emblem - ' + productType,
         'Wolf Head - ' + productType,
         'Lone Wolf Typography - ' + productType
     ];
 
-    if (!['Golfers', 'Sweatpants', 'Shorts'].includes(productType)) {
+    if (!isOuterwear && !['Golfers', 'Sweatpants', 'Shorts'].includes(productType)) {
         designOptions.push('Isolation Breeds Growth - ' + productType);
     }
 
