@@ -118,7 +118,7 @@ function ensureDesignSelector(itemContainer) {
         'Lone Wolf Typography - ' + productType
     ];
 
-    if (!isOuterwear && !['Golfers', 'Sweatpants', 'Shorts'].includes(productType)) {
+    if (!isOuterwear && !['Golfers', 'Sweatpants', 'Shorts', 'Tracksuits'].includes(productType)) {
         designOptions.push('Isolation Breeds Growth - ' + productType);
     }
 
