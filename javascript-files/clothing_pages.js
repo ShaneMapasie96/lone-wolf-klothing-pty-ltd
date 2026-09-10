@@ -26,6 +26,11 @@ function handleColorSelection(colorElement, imgId) {
 // Show prev/next navigation when a swatch has multiple image variants
 function showVariantNav(item, variants) {
     removeVariantNav(item);
+    variants = variants.map(function (variant) {
+        return variant.trim();
+    }).filter(Boolean);
+    if (variants.length === 0) return;
+
     item._variantIndex = 0;
     item._variants = variants;
 
