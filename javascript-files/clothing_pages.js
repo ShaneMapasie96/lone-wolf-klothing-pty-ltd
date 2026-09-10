@@ -94,6 +94,103 @@ function removeVariantNav(item) {
     item._variants = undefined;
 }
 
+function updateTracksuitDesign(selectElement) {
+    var item = selectElement.closest('.item');
+    var palette = item ? item.querySelector('.colors') : null;
+    if (!item || !palette) return;
+
+    var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' :
+        /typography/i.test(selectElement.value) ? 'typography' :
+        /isolation breeds growth/i.test(selectElement.value) ? 'isolation-breeds-growth' : 'emblem';
+    var variants = {
+        emblem: {
+            White: ['/tracksuits/white-blk-a4-lw-emblem-tracksuit.jpg', '/tracksuits/white-red-a4-lw-emblem-tracksuit.jpg', '/tracksuits/white-blk-lw-emblem-tracksuit.jpg', '/tracksuits/white-red-lw-emblem-tracksuit.jpg'],
+            Black: ['/tracksuits/black-white-a4-lonewolf-emblem-tracksuit.jpg', '/tracksuits/black-red-a4-lw-emblem-tracksuit.jpg', '/tracksuits/black-gold-lw-emblem-tracksuit.jpg', '/tracksuits/black-red-lw-emblem-tracksuit.jpg', '/tracksuits/black-white-lw-emblem-tracksuit.jpg'],
+            Grey: ['/tracksuits/grey-blk-a4-lw-emblem-tracksuit.jpg', '/tracksuits/grey-red-a4-lw-emblem-tracksuit.jpg', '/tracksuits/grey-blk-lw-emblem-tracksuit.jpg', '/tracksuits/grey-red-lw-emblem-tracksuit.jpg'],
+            Pink: ['/tracksuits/pink-a4-lw-emblem-tracksuit.jpg', '/tracksuits/pink-lw-emblem-tracksuit.jpg'],
+            Red: ['/tracksuits/red-a4-white-lw-emblem-tracksuit.jpg', '/tracksuits/red-black-a4-lw-emblem-tracksuit.jpg', '/tracksuits/red-black-lw-emblem-tracksuit.jpg', '/tracksuits/red-white-lw-emblem-tracksuit.jpg'],
+            Yellow: ['/tracksuits/yellow-a4-lw-emblem-tracksuits.jpg', '/tracksuits/yellow-lw-emblem-tracksuit.jpg']
+        },
+        'wolf-head': {
+            White: ['/tracksuits/white-blk-wolf-head-tracksuit.jpg', '/tracksuits/white-red-wolf-head-tracksuit.jpg'],
+            Black: ['/tracksuits/black-white-wolf-head-tracksuit.jpg', '/tracksuits/black-red-wolf-head-tracksuit.jpg', '/tracksuits/black-gold-wolf-head-tracksuit.jpg'],
+            Grey: ['/tracksuits/grey-blk-wolf-head-tracksuit.jpg', '/tracksuits/grey-red-wolf-head-tracksuit.jpg'],
+            Pink: ['/tracksuits/pink-wolf-head-tracksuit.jpg'],
+            Red: ['/tracksuits/red-blk-wolf-head-tracksuit.jpg', '/tracksuits/red-white-wolf-head-tracksuit.jpg'],
+            Yellow: ['/tracksuits/yellow-wolf-head-tracksuit.jpg']
+        },
+        typography: {
+            White: ['/tracksuits/white-blk-wolf-head-sleeve-lw-type-tracksuit.png.jpg', '/tracksuits/white-red-wolf-head-sleeve-lw-type-tracksuit.png.jpg'],
+            Black: ['/tracksuits/black-gold-wolf-head-sleeve-lw-type-tracksuit.png.jpg', '/tracksuits/black-red-wolf-head-sleeve-lw-type-tracksuit.png.jpg', '/tracksuits/black-white-wolf-head-sleeve-lw-type-tracksuit.png.jpg'],
+            Grey: ['/tracksuits/grey-blk-lw-type-tracksuit.jpg', '/tracksuits/grey-red-wolf-head-sleeve-lw-type-tracksuit.png.jpg'],
+            Pink: ['/tracksuits/pink-blk-wolf-head-sleeve-lw-type-tracksuit.png.jpg'],
+            Red: ['/tracksuits/red-black-gold-wolf-head-sleeve-lw-type-tracksuit.png.jpg', '/tracksuits/red-white-wolf-head-sleeve-lw-type-tracksuit.png.jpg'],
+            Yellow: ['/tracksuits/yellow-lw-type-tracksuit.jpg']
+        },
+        'isolation-breeds-growth': {
+            White: ['/tracksuits/black-white-a4-lonewolf-emblem-tracksuit.jpg', '/tracksuits/white-red-a4-lw-emblem-tracksuit.jpg'],
+            Black: ['/tracksuits/black-gold-a4-lw-emblem-tracksuit.jpg', '/tracksuits/black-red-a4-lw-emblem-tracksuit.jpg'],
+            Grey: ['/tracksuits/grey-blk-a4-lw-emblem-tracksuit.jpg', '/tracksuits/grey-red-a4-lw-emblem-tracksuit.jpg'],
+            Pink: ['/tracksuits/pink-a4-lw-emblem-tracksuit.jpg'],
+            Red: ['/tracksuits/red-a4-white-lw-emblem-tracksuit.jpg', '/tracksuits/red-black-a4-lw-emblem-tracksuit.jpg'],
+            Yellow: ['/tracksuits/yellow-a4-lw-emblem-tracksuits.jpg']
+        }
+    };
+
+    var designVariants = variants[design];
+    palette.querySelectorAll('.color').forEach(function (swatch) {
+        var colorVariants = designVariants[swatch.getAttribute('data-color')];
+        swatch.setAttribute('data-variants', colorVariants ? colorVariants.join('|') : '');
+    });
+
+    var selectedColor = palette.querySelector('.selected-color') || palette.querySelector('.color');
+    if (selectedColor) selectedColor.click();
+}
+
+function updateOuterwearDesign(selectElement) {
+    var item = selectElement.closest('.item');
+    var palette = item ? item.querySelector('.outerwear-colors') : null;
+    var productType = palette ? palette.getAttribute('data-outerwear-colors') : null;
+    if (!item || !palette || !productType) return;
+
+    var variants = {
+        puffer: {
+            emblem: {
+                Black: ['/puffer-jackets/black-white-lw-emblem-puffer-jacket.jpg', '/puffer-jackets/black-red-lw-emblem-puffer-jacket.jpg', '/puffer-jackets/black-gold-lw-emblem-puffer-jacket.jpg'],
+                Grey: ['/puffer-jackets/grey-lw-emblem-alaskan-puffer-jacket.jpg'],
+                'Navy Blue': ['/puffer-jackets/navy-lw-emblem-puffee-jacket.jpg'],
+                Red: ['/puffer-jackets/red-white-lw-emblem-puffer-jacket.jpg', '/puffer-jackets/red-blk-lw-puffer-jacket.jpg']
+            },
+            typography: {
+                Black: ['/puffer-jackets/black-white-lw-type-puffer-jacket.jpg', '/puffer-jackets/black-gold-lw-tye-puffer-alaskan-jacket.jpg'],
+                Grey: ['/puffer-jackets/grey-lw-type-alaskan-puffer-jacket.jpg'],
+                'Navy Blue': ['/puffer-jackets/navy-lw-type-puffer-jacket.jpg'],
+                Red: ['/puffer-jackets/red-white-lw-type-puffer-jacket.jpg', '/puffer-jackets/red-blk-lw-type-puffer-jacket.jpg']
+            },
+            'wolf-head': {
+                Black: ['/puffer-jackets/black-wolf-head-puffer-jacket.jpg', '/puffer-jackets/black-red-wolf-head-puffer-jacket.jpg', '/puffer-jackets/black-gold-wolf-head-puffer-alaskan-jacket.jpg'],
+                Grey: ['/puffer-jackets/grey-wolf-head-alaskan-puffer-jacket.jpg'],
+                'Navy Blue': ['/puffer-jackets/navy-wolf-head-puffer-jacket.jpg'],
+                Red: ['/puffer-jackets/red-white-wolf-head-puffer-jacket.jpg', '/puffer-jackets/red-blk-wolf-head-puffer-jacket.jpg']
+            }
+        },
+        'body-warmer': {
+            emblem: { Black: ['/body-warmers/black-white-lw-emblem-body-warmer.jpg', '/body-warmers/black-red-lw-emblem-body-warmer.jpg', '/body-warmers/black-gold-lw-emblem-body-warmer.jpg'] },
+            typography: { Black: ['/body-warmers/black-white-lw-type-body-warmer.jpg', '/body-warmers/black-gold-lw-type-body-warmer.jpg'] },
+            'wolf-head': { Black: ['/body-warmers/black-white-wolf-head-body-warmer.jpg', '/body-warmers/black-red-wolf-head-body-warmer.jpg', '/body-warmers/black-gold-wolf-head-body-warmer.jpg'] }
+        }
+    };
+
+    var selectedVariants = variants[productType][selectElement.value];
+    if (!selectedVariants) return;
+    palette.querySelectorAll('.color').forEach(function (swatch) {
+        var color = swatch.getAttribute('data-color');
+        swatch.setAttribute('data-variants', (selectedVariants[color] || []).join('|'));
+    });
+    var firstSwatch = palette.querySelector('.color');
+    if (firstSwatch) firstSwatch.click();
+}
+
 // Add click event listeners to all color elements after DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
     // Add extra swatches to product palettes (selective by page)
@@ -107,8 +204,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const item = palette.closest('.item');
         const isCrewsHoodies = item && item.closest('.crews-and-hoodies-container');
         const isBeanies = item && item.closest('.beanies-container');
+        const isOuterwear = item && item.closest('.outerwear-container');
+        const isTracksuits = item && item.closest('.sweatpants_and_shorts-container');
         
         extraColors.forEach((color) => {
+            if (isOuterwear) {
+                return;
+            }
+
+            if (isTracksuits && (color.className === 'royal-blue' || color.className === 'orange' || color.className === 'beige')) {
+                return;
+            }
+
             // Skip Orange and Beige for Crews, Hoodies, and Beanies
             if ((isCrewsHoodies || isBeanies) && (color.className === 'orange' || color.className === 'beige')) {
                 return;

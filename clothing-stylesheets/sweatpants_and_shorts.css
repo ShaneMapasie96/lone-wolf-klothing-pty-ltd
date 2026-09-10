@@ -241,6 +241,13 @@ label {
 .color:nth-child(2) { background: grey; }
 .color:nth-child(1) { background: white; }
 
+.sweatpants_and_shorts-container .color[data-color="Black"] { background: #111111; }
+.sweatpants_and_shorts-container .color[data-color="Grey"] { background: #808080; }
+.sweatpants_and_shorts-container .color[data-color="White"] { background: #ffffff; }
+.sweatpants_and_shorts-container .color[data-color="Pink"] { background: #fc8eac; }
+.sweatpants_and_shorts-container .color[data-color="Red"] { background: #da2231; }
+.sweatpants_and_shorts-container .color[data-color="Yellow"] { background: #ffdb58; }
+
 @media (max-width: 768px) {
     .sweatpants_and_shorts-container .product-title {
         font-size: 28px;
