@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/home-stylesheet/home.css">
+    <link rel="stylesheet" href="/home-stylesheet/Footer.css">
+    <link rel="stylesheet" href="/clothing-stylesheets/crews_and_hoodies.css">
+    <title>Puffer Jackets & Body Warmers | Lone Wolf Klothing Pty Ltd</title>
+</head>
+<body>
+    <div class="navbar-container">
+        <div class="custom-navbar">
+            <a href="/home-page/home.html" class="custom-logo-link" aria-label="Go to home page"><img src="/images/logo.png" class="custom-logo" alt="Lone Wolf Klothing logo"></a>
+            <a href="/home-page/home.html">Home</a>
+            <div class="custom-dropdown">
+                <button class="custom-dropbtn">Clothing <i class="fa fa-caret-down"></i></button>
+                <div class="custom-dropdown-content">
+                    <a href="/clothing-pages/t-shirts_and_vests.html">T-Shirts & Vests</a>
+                    <a href="/clothing-pages/golfers.html">Golfers</a>
+                    <a href="/clothing-pages/crews_and_hoodies.html">Crews & Hoodies</a>
+                    <a href="/clothing-pages/sweatpants_and_shorts.html">Sweatpants & Shorts</a>
+                    <a class="active" href="/clothing-pages/puffer_jackets_and_body_warmers.html">Puffer Jackets & Body Warmers</a>
+                </div>
+            </div>
+            <div class="custom-dropdown">
+                <button class="custom-dropbtn">Accessories <i class="fa fa-caret-down"></i></button>
+                <div class="custom-dropdown-content">
+                    <a href="/accessories-pages/bucket_hats.html">Bucket Hats</a>
+                    <a href="/accessories-pages/beanies.html">Beanies</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="crews-and-hoodies-container">
+        <section class="product-heading">
+            <h1 class="product-title">Puffer Jackets & Body Warmers</h1>
+            <p class="product-description">Layered warmth for colder days, from full-coverage puffers to sleeveless body warmers.</p>
+        </section>
+
+        <section>
+            <h2 class="product-title">Puffer Jackets</h2>
+            <div class="items_container">
+                <div class="item">
+                    <figure><img id="puffer-item1-img" src="/puffer-jackets/black-gold-lw-emblem-puffer-jacket.jpg" alt="Black and gold Lone Wolf puffer jacket"></figure>
+                    <div class="details_container"><h3>Lone Wolf Puffer</h3><div class="buy_container">
+                        <p class="price">R290</p>
+                        <div class="flex-space-between"><div class="input-holder"><label>Size:</label><select name="size" class="input-style"><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></div><div class="input-holder"><label>Quantity:</label><select name="quantity" class="input-style"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></div>
+                        <div class="color-row"><label>Color:</label><div class="colors"><span class="color" data-color="Black" data-img="/puffer-jackets/black-gold-lw-emblem-puffer-jacket.jpg"></span><span class="color" data-color="Grey" data-img="/puffer-jackets/grey-lw-emblem-alaskan-puffer-jacket.jpg"></span><span class="color" data-color="Navy" data-img="/puffer-jackets/navy-lw-emblem-puffee-jacket.jpg"></span><span class="color" data-color="Red" data-img="/puffer-jackets/red-white-lw-emblem-puffer-jacket.jpg"></span></div></div>
+                        <button type="button" class="add-to-cart-button" onclick="addToCart('puffer-item1-img')">Add to Cart</button>
+                    </div></div>
+                </div>
+                <div class="item">
+                    <figure><img id="puffer-item2-img" src="/puffer-jackets/grey-wolf-head-alaskan-puffer-jacket.jpg" alt="Grey Lone Wolf puffer jacket"></figure>
+                    <div class="details_container"><h3>Alaskan Puffer</h3><div class="buy_container">
+                        <p class="price">R320</p>
+                        <div class="flex-space-between"><div class="input-holder"><label>Size:</label><select name="size" class="input-style"><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></div><div class="input-holder"><label>Quantity:</label><select name="quantity" class="input-style"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></div>
+                        <div class="color-row"><label>Color:</label><div class="colors"><span class="color" data-color="Grey" data-img="/puffer-jackets/grey-wolf-head-alaskan-puffer-jacket.jpg"></span><span class="color" data-color="Black" data-img="/puffer-jackets/blackk-wolf-head-puffer-jacket.jpg"></span><span class="color" data-color="Navy" data-img="/puffer-jackets/navy-wolf-head-puffer-jacket.jpg"></span></div></div>
+                        <button type="button" class="add-to-cart-button" onclick="addToCart('puffer-item2-img')">Add to Cart</button>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="product-title">Body Warmers</h2>
+            <div class="items_container">
+                <div class="item">
+                    <figure><img id="warmer-item1-img" src="/body-warmers/black-gold-lw-emblem-body-warmer.jpg" alt="Black and gold Lone Wolf body warmer"></figure>
+                    <div class="details_container"><h3>Signature Body Warmer</h3><div class="buy_container">
+                        <p class="price">R210</p>
+                        <div class="flex-space-between"><div class="input-holder"><label>Size:</label><select name="size" class="input-style"><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></div><div class="input-holder"><label>Quantity:</label><select name="quantity" class="input-style"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></div>
+                        <div class="color-row"><label>Color:</label><div class="colors"><span class="color" data-color="Black" data-img="/body-warmers/black-gold-lw-emblem-body-warmer.jpg"></span><span class="color" data-color="Grey" data-img="/body-warmers/black-white-lw-type-body-warmer.jpg"></span><span class="color" data-color="Red" data-img="/body-warmers/black-red-lw-emblem-body-warmer.jpg"></span></div></div>
+                        <button type="button" class="add-to-cart-button" onclick="addToCart('warmer-item1-img')">Add to Cart</button>
+                    </div></div>
+                </div>
+                <div class="item">
+                    <figure><img id="warmer-item2-img" src="/body-warmers/black-gold-lw-type-body-warmer.jpg" alt="Black and gold Lone Wolf body warmer with typography logo"></figure>
+                    <div class="details_container"><h3>Typography Body Warmer</h3><div class="buy_container">
+                        <p class="price">R245</p>
+                        <div class="flex-space-between"><div class="input-holder"><label>Size:</label><select name="size" class="input-style"><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></div><div class="input-holder"><label>Quantity:</label><select name="quantity" class="input-style"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></div>
+                        <div class="color-row"><label>Color:</label><div class="colors"><span class="color" data-color="Black" data-img="/body-warmers/black-gold-lw-type-body-warmer.jpg"></span><span class="color" data-color="White" data-img="/body-warmers/black-white-lw-type-body-warmer.jpg"></span><span class="color" data-color="Red" data-img="/body-warmers/black-red-wolf-head-body-warmer.jpg"></span></div></div>
+                        <button type="button" class="add-to-cart-button" onclick="addToCart('warmer-item2-img')">Add to Cart</button>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/javascript-files/clothing_pages.js"></script>
+    <script src="/javascript-files/addToCart.js"></script>
+    <footer class="footer"><div class="footer-container"><div class="unique-row">
+        <div class="footer-col"><h4>company</h4><ul><li><a href="/company-pages/about.html">about us</a></li><li><a href="/company-pages/our_services.html">our services</a></li><li><a href="/company-pages/privacy_policy.html">privacy policy</a></li></ul></div>
+        <div class="footer-col"><h4>get help</h4><ul><li><a href="/get-help-pages/contact.html">Contact Us</a></li><li><a href="/get-help-pages/shipping.html">shipping</a></li><li><a href="/get-help-pages/returns.html">returns</a></li><li><a href="/get-help-pages/payments_options.html">payment options</a></li></ul></div>
+        <div class="footer-col"><h4>online shop</h4><ul><li><a href="/clothing-pages/t-shirts_and_vests.html">T-Shirts & Vests</a></li><li><a href="/clothing-pages/golfers.html">Golfers</a></li><li><a href="/clothing-pages/crews_and_hoodies.html">Crews & Hoodies</a></li><li><a href="/clothing-pages/sweatpants_and_shorts.html">Sweatpants & Shorts</a></li><li><a href="/clothing-pages/puffer_jackets_and_body_warmers.html">Puffer Jackets & Body Warmers</a></li></ul></div>
+    </div></div><div class="copyright"><p>&copy; 2024 Lone Wolf Klothing Pty Ltd. All rights reserved.</p></div></footer>
+</body>
+</html>
