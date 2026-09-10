@@ -147,6 +147,32 @@ function updateTracksuitDesign(selectElement) {
     if (selectedColor) selectedColor.click();
 }
 
+function updateBeanieDesign(selectElement) {
+    var item = selectElement.closest('.item');
+    var palette = item ? item.querySelector('.colors') : null;
+    if (!item || !palette) return;
+
+    var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' : /typography/i.test(selectElement.value) ? 'typography' : 'emblem';
+    var variants = {
+        emblem: {
+            White: ['/beanies/white-blk-lw-emblem-beanie.png', '/beanies/white-red-lw-emblem-beanie.jpg'], Grey: ['/beanies/grey-blk-lw-emblem-beanie.png'], Black: ['/beanies/black-white-lw-emblem-beanie.png', '/beanies/black-red-lw-emblem-beanie.png'], Pink: ['/beanies/pink-blk-lw-emblem-beanie.png'], Red: ['/beanies/red-blk-lw-emblem-beanie.png'], Yellow: ['/beanies/yellow-blk-lw-emblem-beanie.png']
+        },
+        'wolf-head': {
+            White: ['/beanies/white-blk-wolf-head-beanie.jpg'], Grey: ['/beanies/grey-blk-wolf-head-beanie.jpg'], Black: ['/beanies/black-white-wolf-head.jpg', '/beanies/black-red-wolf-head.jpg'], Pink: ['/beanies/pink-blk-wolf-head-beanie.jpg'], Red: ['/beanies/red-blk-wolf-head-beanie.jpg'], Yellow: ['/beanies/yellow-blk-wolf-head-beanie.png']
+        },
+        typography: {
+            White: ['/beanies/white-blk-lw-type-beanie.png'], Grey: ['/beanies/grey-blk-lw-type-beanie.png'], Black: ['/beanies/black-white-lw-type-beanie.png'], Pink: ['/beanies/pink-lw-type-beanie.png'], Red: ['/beanies/red-blk-lw-type-beanie.png'], Yellow: ['/beanies/yellow-blk-lw-type-beanie.png']
+        }
+    };
+
+    palette.querySelectorAll('.color').forEach(function (swatch) {
+        var colorVariants = variants[design][swatch.getAttribute('data-color')];
+        swatch.setAttribute('data-variants', colorVariants ? colorVariants.join('|') : '');
+    });
+    var selectedColor = palette.querySelector('.selected-color') || palette.querySelector('.color');
+    if (selectedColor) selectedColor.click();
+}
+
 function updateOuterwearDesign(selectElement) {
     var item = selectElement.closest('.item');
     var palette = item ? item.querySelector('.outerwear-colors') : null;
