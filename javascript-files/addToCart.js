@@ -112,7 +112,7 @@ function ensureDesignSelector(itemContainer) {
         'Lone Wolf Typography - ' + productType
     ];
 
-    if (productType !== 'Golfers') {
+    if (!['Golfers', 'Sweatpants', 'Shorts'].includes(productType)) {
         designOptions.push('Isolation Breeds Growth - ' + productType);
     }
 
