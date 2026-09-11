@@ -73,6 +73,9 @@ function getProductType(itemContainer, productImage) {
     if (/bucket\s*hats?/i.test(headingText)) {
         return 'Bucket Hats';
     }
+    if (/6-panel\s*caps?/i.test(headingText)) {
+        return '6-Panel Caps';
+    }
 
     const src = productImage ? (productImage.getAttribute('src') || '') : '';
     if (/t-shirts/i.test(src)) {
@@ -99,6 +102,9 @@ function getProductType(itemContainer, productImage) {
     if (/bucket\s*hats?/i.test(src)) {
         return 'Bucket Hats';
     }
+    if (/6-panel[-\s]caps?/i.test(src)) {
+        return '6-Panel Caps';
+    }
 
     return 'Item';
 }
@@ -112,13 +118,17 @@ function ensureDesignSelector(itemContainer) {
     const productType = getProductType(itemContainer, productImage);
     const isOuterwear = Boolean(itemContainer.closest('.outerwear-container'));
     const isTracksuit = Boolean(itemContainer.closest('.tracksuits-container'));
+    const isCap = productType === '6-Panel Caps';
     const designOptions = [
-        'Lone Wolf Emblem - ' + productType,
         'Wolf Head - ' + productType,
         'Lone Wolf Typography - ' + productType
     ];
 
-    if (!isOuterwear && !['Golfers', 'Sweatpants', 'Shorts', 'Tracksuits', 'Beanies', 'Bucket Hats'].includes(productType)) {
+    if (!isCap) {
+        designOptions.unshift('Lone Wolf Emblem - ' + productType);
+    }
+
+    if (!isCap && !isOuterwear && !['Golfers', 'Sweatpants', 'Shorts', 'Tracksuits', 'Beanies', 'Bucket Hats'].includes(productType)) {
         designOptions.push('Isolation Breeds Growth - ' + productType);
     }
 
