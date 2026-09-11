@@ -108,6 +108,9 @@ function getProductType(itemContainer, productImage) {
     if (/6-panel[-\s]caps?/i.test(src)) {
         return '6-Panel Caps';
     }
+    if (/vests?/i.test(src)) {
+        return 'Vests';
+    }
 
     return 'Item';
 }
@@ -122,6 +125,7 @@ function ensureDesignSelector(itemContainer) {
     const isOuterwear = Boolean(itemContainer.closest('.outerwear-container'));
     const isTracksuit = Boolean(itemContainer.closest('.tracksuits-container'));
     const isCap = productType === '6-Panel Caps';
+    const isVest = productType === 'Vests';
     const designOptions = [
         'Wolf Head - ' + productType,
         'Lone Wolf Typography - ' + productType
@@ -181,7 +185,7 @@ function ensureDesignSelector(itemContainer) {
         });
     }
 
-    if (productType === 'Vests') {
+    if (isVest) {
         select.addEventListener('change', function () {
             if (typeof updateVestDesign === 'function') {
                 updateVestDesign(this);
@@ -210,6 +214,12 @@ function ensureDesignSelector(itemContainer) {
 
     if (isCap && typeof updateCapDesign === 'function') {
         updateCapDesign(select);
+    }
+
+    if (isVest && typeof updateVestDesign === 'function') {
+        window.setTimeout(function () {
+            updateVestDesign(select);
+        }, 0);
     }
 }
 

@@ -217,16 +217,16 @@ function updateVestDesign(selectElement) {
     var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' : /typography/i.test(selectElement.value) ? 'typography' : 'emblem';
     var variants = {
         emblem: {
-            White: ['/vests/white-blk-lw-emblem-vest.jpg', '/vests/white-red-lw-emblem-vest.jpg'],
-            Black: ['/vests/black-white-lw-emblem-vest.jpg', '/vests/black-red-lw-emblem-vest.jpg', '/vests/black-gold-lw-emblem-vest.jpg'],
-            Grey: ['/vests/grey-blk-lw-emblem-vest.jpg', '/vests/grey-red-lw-emblem-vest.jpg'],
-            Red: ['/vests/red-blk-lw-emblem-vest.jpg', '/vests/red-white-lw-emblem-vest.jpg']
+            White: ['../vests/white-blk-lw-emblem-vest.jpg', '../vests/white-red-lw-emblem-vest.jpg'],
+            Black: ['../vests/black-white-lw-emblem-vest.jpg', '../vests/black-red-lw-emblem-vest.jpg', '../vests/black-gold-lw-emblem-vest.jpg'],
+            Grey: ['../vests/grey-blk-lw-emblem-vest.jpg', '../vests/grey-red-lw-emblem-vest.jpg'],
+            Red: ['../vests/red-blk-lw-emblem-vest.jpg', '../vests/red-white-lw-emblem-vest.jpg']
         },
         'wolf-head': {
-            White: ['/vests/white-blk-wolf-head-vest.jpg', '/vests/white-red-wolf-head-vest.jpg'],
-            Black: ['/vests/black-white-wolf-head-vest.jpg', '/vests/black-red-wolf-head-vest.jpg', '/vests/black-gold-wolf-head-vest.jpg'],
-            Grey: ['/vests/grey-blk-wolf-head-vest.jpg', '/vests/white-red-wolf-head-vest.jpg'],
-            Red: ['/vests/red-blk-wolf-head-vest.png', '/vests/red-white-wolf-head-vest.png']
+            White: ['../vests/white-blk-wolf-head-vest.jpg', '../vests/white-red-wolf-head-vest.jpg'],
+            Black: ['../vests/black-white-wolf-head-vest.jpg', '../vests/black-red-wolf-head-vest.jpg', '../vests/black-gold-wolf-head-vest.jpg'],
+            Grey: ['../vests/grey-blk-wolf-head-vest.jpg', '../vests/white-red-wolf-head-vest.jpg'],
+            Red: ['../vests/red-blk-wolf-head-vest.png', '../vests/red-white-wolf-head-vest.png']
         }
     };
 
@@ -237,7 +237,12 @@ function updateVestDesign(selectElement) {
         swatch.setAttribute('data-variants', colorVariants ? colorVariants.join('|') : '');
     });
     var selectedColor = palette.querySelector('.selected-color') || palette.querySelector('.color');
-    if (selectedColor) selectedColor.click();
+    if (selectedColor) {
+        selectedColor.click();
+        var firstVariants = selectedColor.getAttribute('data-variants');
+        var image = item.querySelector('img');
+        if (firstVariants && image) image.src = firstVariants.split('|')[0];
+    }
 }
 
 function updateCapDesign(selectElement) {
@@ -330,6 +335,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const item = palette.closest('.item');
         const isCrewsHoodies = item && item.closest('.crews-and-hoodies-container');
         const isBeanies = item && item.closest('.beanies-container');
+        const isGolfers = item && item.querySelector('h3') && /golfers?/i.test(item.querySelector('h3').textContent);
+        const isVests = item && item.querySelector('h3') && /vests?/i.test(item.querySelector('h3').textContent);
         const isOuterwear = item && item.closest('.outerwear-container');
         const isTracksuits = item && item.closest('.sweatpants_and_shorts-container');
         const isBucketHat = item && item.closest('.bucket-hats-item');
@@ -344,6 +351,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             if (isBucketHat && color.className === 'royal-blue') {
+                return;
+            }
+
+            if (isGolfers && (color.className === 'orange' || color.className === 'beige')) {
+                return;
+            }
+
+            if (isVests) {
                 return;
             }
 
