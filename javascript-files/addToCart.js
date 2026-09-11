@@ -49,6 +49,9 @@ function getProductType(itemContainer, productImage) {
     if (/t-?shirts?/i.test(headingText)) {
         return 'T-Shirts';
     }
+    if (/vests?/i.test(headingText)) {
+        return 'Vests';
+    }
     if (/golfers?/i.test(headingText)) {
         return 'Golfers';
     }
@@ -128,7 +131,7 @@ function ensureDesignSelector(itemContainer) {
         designOptions.unshift('Lone Wolf Emblem - ' + productType);
     }
 
-    if (!isCap && !isOuterwear && !['Golfers', 'Sweatpants', 'Shorts', 'Tracksuits', 'Beanies', 'Bucket Hats'].includes(productType)) {
+    if (!isCap && !isOuterwear && !['Golfers', 'Sweatpants', 'Shorts', 'Tracksuits', 'Beanies', 'Bucket Hats', 'Vests'].includes(productType)) {
         designOptions.push('Isolation Breeds Growth - ' + productType);
     }
 
@@ -178,6 +181,22 @@ function ensureDesignSelector(itemContainer) {
         });
     }
 
+    if (productType === 'Vests') {
+        select.addEventListener('change', function () {
+            if (typeof updateVestDesign === 'function') {
+                updateVestDesign(this);
+            }
+        });
+    }
+
+    if (isCap) {
+        select.addEventListener('change', function () {
+            if (typeof updateCapDesign === 'function') {
+                updateCapDesign(this);
+            }
+        });
+    }
+
     designOptions.forEach(function (optionValue) {
         const option = document.createElement('option');
         option.value = optionValue;
@@ -188,6 +207,10 @@ function ensureDesignSelector(itemContainer) {
     selectorRow.appendChild(label);
     selectorRow.appendChild(select);
     buyContainer.insertBefore(selectorRow, actionButton);
+
+    if (isCap && typeof updateCapDesign === 'function') {
+        updateCapDesign(select);
+    }
 }
 
 // Keep a selected swatch state per product card for cart lookups
