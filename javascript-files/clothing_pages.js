@@ -155,18 +155,54 @@ function updateBeanieDesign(selectElement) {
     var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' : /typography/i.test(selectElement.value) ? 'typography' : 'emblem';
     var variants = {
         emblem: {
-            White: ['/beanies/white-blk-lw-emblem-beanie.png', '/beanies/white-red-lw-emblem-beanie.jpg'], Grey: ['/beanies/grey-blk-lw-emblem-beanie.png'], Black: ['/beanies/black-white-lw-emblem-beanie.png', '/beanies/black-red-lw-emblem-beanie.png'], Pink: ['/beanies/pink-blk-lw-emblem-beanie.png'], Red: ['/beanies/red-blk-lw-emblem-beanie.png'], Yellow: ['/beanies/yellow-blk-lw-emblem-beanie.png']
+            White: ['/beanies/white-blk-lw-emblem-beanie.jpg', '/beanies/white-red-lw-emblem-beanie.jpg'], Grey: ['/beanies/grey-blk-lw-emblem-beanie.png'], Black: ['/beanies/black-gold-lw-emblem-beanie.jpg', '/beanies/black-white-lw-emblem-beanie.jpg', '/beanies/black-red-lw-emblem-beanie.jpg'], Pink: ['/beanies/pink-blk-lw-emblem-beanie.png'], Red: ['/beanies/red-blk-lw-emblem-beanie.jpg', '/beanies/red-white-lw-emblem-beanie.jpg'], 'Royal Blue': ['/beanies/royal-blue-lw-emblem-beanie.jpg'], Yellow: ['/beanies/yellow-blk-lw-emblem-beanie.jpg']
         },
         'wolf-head': {
-            White: ['/beanies/white-blk-wolf-head-beanie.jpg'], Grey: ['/beanies/grey-blk-wolf-head-beanie.jpg'], Black: ['/beanies/black-white-wolf-head.jpg', '/beanies/black-red-wolf-head.jpg'], Pink: ['/beanies/pink-blk-wolf-head-beanie.jpg'], Red: ['/beanies/red-blk-wolf-head-beanie.jpg'], Yellow: ['/beanies/yellow-blk-wolf-head-beanie.png']
+            White: ['/beanies/white-blk-wolf-head-beanie.jpg', '/beanies/white-red-wolf-head-beanie.jpg'], Grey: ['/beanies/grey-blk-wolf-head-beanie.jpg'], Black: ['/beanies/black-white-wolf-head-beanie.jpg', '/beanies/black-red-wolf-head.jpg', '/beanies/black-gold-wolf-head-beanie.jpg'], Pink: ['/beanies/pink-blk-wolf-head-beanie.jpg'], Red: ['/beanies/red-blk-wolf-head-beanie.jpg', '/beanies/red-white-wolf-head-beanie.jpg'], 'Royal Blue': ['/beanies/royal-blue-wolf-head-beanie.jpg'], Yellow: ['/beanies/yellow-blk-wolf-head-beanie.jpg']
         },
         typography: {
-            White: ['/beanies/white-blk-lw-type-beanie.png'], Grey: ['/beanies/grey-blk-lw-type-beanie.png'], Black: ['/beanies/black-white-lw-type-beanie.png'], Pink: ['/beanies/pink-lw-type-beanie.png'], Red: ['/beanies/red-blk-lw-type-beanie.png'], Yellow: ['/beanies/yellow-blk-lw-type-beanie.png']
+            White: ['/beanies/white-blk-lw-type-beanie.jpg'], Grey: ['/beanies/grey-blk-lw-type-beanie.png'], Black: ['/beanies/black-white-lw-type-beanie.jpg', '/beanies/black-gold-lw-type-beanie.jpg'], Pink: ['/beanies/pink-lw-type-beanie.png'], Red: ['/beanies/red-blk-lw-type-beanie.jpg', '/beanies/red-white-lw-type-beanie.jpg'], 'Royal Blue': ['/beanies/royal-blue-lw-type-beanie.jpg'], Yellow: ['/beanies/yellow-blk-lw-type-beanie.jpg']
         }
     };
 
     palette.querySelectorAll('.color').forEach(function (swatch) {
         var colorVariants = variants[design][swatch.getAttribute('data-color')];
+        swatch.setAttribute('data-variants', colorVariants ? colorVariants.join('|') : '');
+    });
+    var selectedColor = palette.querySelector('.selected-color') || palette.querySelector('.color');
+    if (selectedColor) selectedColor.click();
+}
+
+function updateBucketHatDesign(selectElement) {
+    var item = selectElement.closest('.bucket-hats-item');
+    var palette = item ? item.querySelector('.colors') : null;
+    if (!item || !palette) return;
+
+    var isWolfHead = /wolf head/i.test(selectElement.value);
+    var isTypography = /typography/i.test(selectElement.value);
+    var variants = isWolfHead ? {
+        White: ['/bucket-hats/white-blk-wolf-head-logo.jpg', '/bucket-hats/white-red-wolf-head-bucket-hat.jpg'],
+        Black: ['/bucket-hats/black-white-wolf-head-logo.png', '/bucket-hats/black-red-wolf-head-bucket-hat.png', '/bucket-hats/black-gold-wolf-head-bucket-hat.png'],
+        Pink: ['/bucket-hats/pink-lw-wolf-head-bucket-hat.png'],
+        Red: ['/bucket-hats/red-blk-wolf-bucket-hat.png', '/bucket-hats/red-white-wolf-head-bucket-hat.png'],
+        Yellow: ['/bucket-hats/yellow-blk-wolf-head-bucket-hat.png']
+    } : isTypography ? {
+        White: ['/bucket-hats/white-blk-lw-type-bucket-hat.png'],
+        Black: ['/bucket-hats/black-white-lw-type-bucket-hat.jpg', '/bucket-hats/black-gold-lw-type-bucket-hat.jpg'],
+        Pink: ['/bucket-hats/pink-blk-lw-type-bucket-hat.png'],
+        Red: ['/bucket-hats/red-blk-lw-type-bucket-hat.jpg', '/bucket-hats/red-white-lw-type-bucket-hat.jpg'],
+        Yellow: ['/bucket-hats/yellow-blk-lw-type-logo-bucket-hat.jpg']
+    } : {
+        White: ['/bucket-hats/white-blk-lw-emblem-bucket-hat.jpg', '/bucket-hats/white-red-lw-emblem-bucket-hat.jpg'],
+        Black: ['/bucket-hats/black-white-lw-emblem-bucket-hat.png', '/bucket-hats/black-red-lw-emblem-bucket-hat.png', '/bucket-hats/black-gold-lw-emblem-bucket-hat.png'],
+        Pink: ['/bucket-hats/pink-lw-emblem-bucket-hat.png'],
+        Red: ['/bucket-hats/red-blk-lw-emblem-bucket-hat.jpg', '/bucket-hats/red-white-lw-emblem-bucket-hat.jpg'],
+        Yellow: ['/bucket-hats/yellow-blk-lw-emblem-bucket-hat.png']
+    };
+
+    if (!variants) return;
+    palette.querySelectorAll('.color').forEach(function (swatch) {
+        var colorVariants = variants[swatch.getAttribute('data-color')];
         swatch.setAttribute('data-variants', colorVariants ? colorVariants.join('|') : '');
     });
     var selectedColor = palette.querySelector('.selected-color') || palette.querySelector('.color');
@@ -232,6 +268,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const isBeanies = item && item.closest('.beanies-container');
         const isOuterwear = item && item.closest('.outerwear-container');
         const isTracksuits = item && item.closest('.sweatpants_and_shorts-container');
+        const isBucketHat = item && item.closest('.bucket-hats-item');
         
         extraColors.forEach((color) => {
             if (isOuterwear) {
@@ -239,6 +276,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             if (isTracksuits && (color.className === 'royal-blue' || color.className === 'orange' || color.className === 'beige')) {
+                return;
+            }
+
+            if (isBucketHat && color.className === 'royal-blue') {
                 return;
             }
 

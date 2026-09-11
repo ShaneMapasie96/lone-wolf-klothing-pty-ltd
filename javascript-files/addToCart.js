@@ -118,7 +118,7 @@ function ensureDesignSelector(itemContainer) {
         'Lone Wolf Typography - ' + productType
     ];
 
-    if (!isOuterwear && !['Golfers', 'Sweatpants', 'Shorts', 'Tracksuits', 'Beanies'].includes(productType)) {
+    if (!isOuterwear && !['Golfers', 'Sweatpants', 'Shorts', 'Tracksuits', 'Beanies', 'Bucket Hats'].includes(productType)) {
         designOptions.push('Isolation Breeds Growth - ' + productType);
     }
 
@@ -156,6 +156,14 @@ function ensureDesignSelector(itemContainer) {
         select.addEventListener('change', function () {
             if (typeof updateBeanieDesign === 'function') {
                 updateBeanieDesign(this);
+            }
+        });
+    }
+
+    if (itemContainer.closest('.bucket-hats-item')) {
+        select.addEventListener('change', function () {
+            if (typeof updateBucketHatDesign === 'function') {
+                updateBucketHatDesign(this);
             }
         });
     }
