@@ -258,6 +258,20 @@ label {
     background: white;
 }
 
+.beanies-container .color[data-color="White"] { background: #ffffff; }
+.beanies-container .color[data-color="Grey"] { background: #808080; }
+.beanies-container .color[data-color="Black"] { background: #111111; }
+.beanies-container .color[data-color="Pink"] { background: #fc8eac; }
+.beanies-container .color[data-color="Red"] { background: #da2231; }
+.beanies-container .color[data-color="Royal Blue"] { background: #4169e1; }
+.beanies-container .color[data-color="Yellow"] { background: #ffdb58; }
+
+.bucket-hats-item .color[data-color="White"] { background: #ffffff; }
+.bucket-hats-item .color[data-color="Black"] { background: #111111; }
+.bucket-hats-item .color[data-color="Pink"] { background: #fc8eac; }
+.bucket-hats-item .color[data-color="Red"] { background: #da2231; }
+.bucket-hats-item .color[data-color="Yellow"] { background: #ffdb58; }
+
 @media (max-width: 768px) {
     .beanies-container .product-title {
         font-size: 28px;

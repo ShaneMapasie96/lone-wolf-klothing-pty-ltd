@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/home-stylesheet/home.css">
+    <link rel="stylesheet" href="/home-stylesheet/Footer.css">
+    <link rel="stylesheet" href="/clothing-stylesheets/crews_and_hoodies.css">
+    <style>
+        .beanies-container .items_container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+            gap: 20px;
+        }
+
+        .beanies-container .items_container > .item {
+            display: flex;
+            flex: 1 1 260px;
+            flex-direction: column;
+            width: min(100%, 300px);
+            max-width: 300px;
+        }
+
+        .beanies-container .items_container > .item .details_container {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+        }
+    </style>
+    <title>Bucket Hats & Beanies | Lone Wolf Klothing Pty Ltd</title>
+</head>
+<body>
+    <div class="navbar-container"><div class="custom-navbar">
+        <a href="/home-page/home.html" class="custom-logo-link" aria-label="Go to home page"><img src="/images/newBG.png" class="custom-logo" alt="Lone Wolf Klothing logo"></a>
+        <a href="/home-page/home.html">Home</a>
+        <div class="custom-dropdown"><button class="custom-dropbtn">Clothing <i class="fa fa-caret-down"></i></button><div class="custom-dropdown-content">
+            <a href="/clothing-pages/t-shirts_and_vests.html">T-Shirts & Vests</a><a href="/clothing-pages/golfers.html">Golfers</a><a href="/clothing-pages/crews_and_hoodies.html">Crews & Hoodies</a><a href="/clothing-pages/sweatpants_and_shorts.html">Sweatpants & Shorts</a><a href="/clothing-pages/tracksuits.html">Tracksuits</a><a href="/clothing-pages/puffer_jackets_and_body_warmers.html">Puffer Jackets & Body Warmers</a>
+            <div class="nav-tools">
+            <button type="button" class="nav-search" aria-label="Search"><i class="fa fa-search"></i><span>Search</span></button>
+            <button type="button" class="nav-icon-button" aria-label="Wishlist"><i class="fa fa-heart"></i></button>
+            <button type="button" class="nav-icon-button" aria-label="Shopping cart"><i class="fa fa-shopping-cart"></i></button>
+            <button type="button" class="nav-icon-button" aria-label="Account"><i class="fa fa-user"></i></button>
+        </div>
+    </div></div>
+        <div class="custom-dropdown"><button class="custom-dropbtn">Accessories <i class="fa fa-caret-down"></i></button><div class="custom-dropdown-content">
+            <a class="active" href="/accessories-pages/bucket-hats-and-beanies.html">Bucket Hats & Beanies</a>
+        </div></div>
+    </div></div>
+
+    <main class="crews-and-hoodies-container beanies-container">
+        <section class="product-heading">
+            <h1 class="product-title">Bucket Hats & Beanies</h1>
+            <p class="product-description">Everyday headwear and bold accessories in Lone Wolf styles.</p>
+        </section>
+        <div class="items_container">
+            <div class="item bucket-hats-item">
+                <figure><img id="bucket-item-img" src="/bucket-hats/white-blk-lw-emblem-bucket-hat.jpg" alt="Lone Wolf Bucket Hat"></figure>
+                <div class="details_container"><h3>Lone Wolf Bucket Hats</h3><div class="buy_container">
+                    <p class="price">R299.95</p>
+                    <div class="flex-space-between"><div class="input-holder"><label>Size:</label><select name="size" class="input-style"><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></div><div class="input-holder"><label>Quantity:</label><select name="quantity" class="input-style"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></div>
+                    <div class="color-row"><label>Color:</label><div class="colors"><span class="color" data-color="White" data-variants="/bucket-hats/white-blk-lw-emblem-bucket-hat.jpg|/bucket-hats/white-red-lw-emblem-bucket-hat.jpg"></span><span class="color" data-color="Black" style="background-color:#111111" data-variants="/bucket-hats/black-white-lw-emblem-bucket-hat.png|/bucket-hats/black-red-lw-emblem-bucket-hat.png|/bucket-hats/black-gold-lw-emblem-bucket-hat.png"></span><span class="color" data-color="Pink" style="background-color:#fc8eac" data-variants="/bucket-hats/pink-lw-emblem-bucket-hat.png"></span><span class="color" data-color="Red" style="background-color:#da2231" data-variants="/bucket-hats/red-blk-lw-emblem-bucket-hat.jpg|/bucket-hats/red-white-lw-emblem-bucket-hat.jpg"></span><span class="color" data-color="Yellow" style="background-color:#ffdb58" data-variants="/bucket-hats/yellow-blk-lw-emblem-bucket-hat.png"></span></div></div>
+                    <button type="button" class="add-to-cart-button" onclick="addToCart('bucket-item-img')">Add to Cart</button>
+                </div></div>
+            </div>
+            <div class="item">
+                <figure><img id="beanie-item-img" src="/beanies/white-blk-lw-emblem-beanie.jpg" alt="White Lone Wolf Emblem Beanie"></figure>
+                <div class="details_container"><h3>Lone Wolf Beanies</h3><div class="buy_container">
+                    <p class="price">R189.95</p>
+                    <div class="flex-space-between"><div class="input-holder"><label>Size:</label><select name="size" class="input-style"><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></div><div class="input-holder"><label>Quantity:</label><select name="quantity" class="input-style"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></div>
+                    <div class="color-row"><label>Color:</label><div class="colors"><span class="color" data-color="White" data-variants="/beanies/white-blk-lw-emblem-beanie.jpg|/beanies/white-red-lw-emblem-beanie.jpg"></span><span class="color" data-color="Grey" data-variants="/beanies/grey-blk-lw-emblem-beanie.png"></span><span class="color" data-color="Black" data-variants="/beanies/black-gold-lw-emblem-beanie.jpg|/beanies/black-white-lw-emblem-beanie.jpg|/beanies/black-red-lw-emblem-beanie.jpg"></span><span class="color" data-color="Pink" data-variants="/beanies/pink-blk-lw-emblem-beanie.png"></span><span class="color" data-color="Red" data-variants="/beanies/red-blk-lw-emblem-beanie.jpg|/beanies/red-white-lw-emblem-beanie.jpg"></span><span class="color" data-color="Royal Blue" style="background-color:#4169e1" data-variants="/beanies/royal-blue-lw-emblem-beanie.jpg"></span><span class="color" data-color="Yellow" style="background-color:#ffdb58" data-variants="/beanies/yellow-blk-lw-emblem-beanie.jpg"></span></div></div>
+                    <button type="button" class="add-to-cart-button" onclick="addToCart('beanie-item-img')">Add to Cart</button>
+                </div></div>
+
+
+            </div>
+        </div>
+    </main>
+
+    <script src="/javascript-files/clothing_pages.js"></script><script src="/javascript-files/addToCart.js"></script>
+    <footer class="footer"><div class="footer-container"><div class="unique-row"><div class="footer-col"><h4>company</h4><ul><li><a href="/company-pages/about.html">about us</a></li><li><a href="/company-pages/our_services.html">our services</a></li><li><a href="/company-pages/privacy_policy.html">privacy policy</a></li></ul></div><div class="footer-col"><h4>get help</h4><ul><li><a href="/get-help-pages/contact.html">Contact Us</a></li><li><a href="/get-help-pages/shipping.html">shipping</a></li><li><a href="/get-help-pages/returns.html">returns</a></li><li><a href="/get-help-pages/payments_options.html">payment options</a></li></ul></div><div class="footer-col"><h4>online shop</h4><ul><li><a href="/clothing-pages/t-shirts_and_vests.html">T-Shirts & Vests</a></li><li><a href="/clothing-pages/golfers.html">Golfers</a></li><li><a href="/clothing-pages/crews_and_hoodies.html">Crews & Hoodies</a></li><li><a href="/clothing-pages/sweatpants_and_shorts.html">Sweatpants & Shorts</a></li><li><a href="/clothing-pages/tracksuits.html">Tracksuits</a></li><li><a href="/clothing-pages/puffer_jackets_and_body_warmers.html">Puffer Jackets & Body Warmers</a></li></ul></div></div></div><div class="copyright"><p>&copy; 2024 Lone Wolf Klothing Pty Ltd. All rights reserved.</p></div></footer>
+</body>
+</html>
