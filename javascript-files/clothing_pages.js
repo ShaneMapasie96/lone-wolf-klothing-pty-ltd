@@ -209,6 +209,75 @@ function updateBucketHatDesign(selectElement) {
     if (selectedColor) selectedColor.click();
 }
 
+function updateVestDesign(selectElement) {
+    var item = selectElement.closest('.item');
+    var palette = item ? item.querySelector('.colors') : null;
+    if (!item || !palette) return;
+
+    var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' : /typography/i.test(selectElement.value) ? 'typography' : 'emblem';
+    var variants = {
+        emblem: {
+            White: ['../vests/white-blk-lw-emblem-vest.jpg', '../vests/white-red-lw-emblem-vest.jpg'],
+            Black: ['../vests/black-white-lw-emblem-vest.jpg', '../vests/black-red-lw-emblem-vest.jpg', '../vests/black-gold-lw-emblem-vest.jpg'],
+            Grey: ['../vests/grey-blk-lw-emblem-vest.jpg', '../vests/grey-red-lw-emblem-vest.jpg'],
+            Red: ['../vests/red-blk-lw-emblem-vest.jpg', '../vests/red-white-lw-emblem-vest.jpg']
+        },
+        'wolf-head': {
+            White: ['../vests/white-blk-wolf-head-vest.jpg', '../vests/white-red-wolf-head-vest.jpg'],
+            Black: ['../vests/black-white-wolf-head-vest.jpg', '../vests/black-red-wolf-head-vest.jpg', '../vests/black-gold-wolf-head-vest.jpg'],
+            Grey: ['../vests/grey-blk-wolf-head-vest.jpg', '../vests/white-red-wolf-head-vest.jpg'],
+            Red: ['../vests/red-blk-wolf-head-vest.png', '../vests/red-white-wolf-head-vest.png']
+        }
+    };
+
+    var designVariants = variants[design];
+    if (!designVariants) return;
+    palette.querySelectorAll('.color').forEach(function (swatch) {
+        var colorVariants = designVariants[swatch.getAttribute('data-color')];
+        swatch.setAttribute('data-variants', colorVariants ? colorVariants.join('|') : '');
+    });
+    var selectedColor = palette.querySelector('.selected-color') || palette.querySelector('.color');
+    if (selectedColor) {
+        selectedColor.click();
+        var firstVariants = selectedColor.getAttribute('data-variants');
+        var image = item.querySelector('img');
+        if (firstVariants && image) image.src = firstVariants.split('|')[0];
+    }
+}
+
+function updateCapDesign(selectElement) {
+    var item = selectElement.closest('.item');
+    var palette = item ? item.querySelector('.colors') : null;
+    if (!item || !palette) return;
+
+    var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' : 'typography';
+    var variants = {
+        'wolf-head': {
+            Black: ['/6-panel-caps/black-white-wolf-head-front-cap.jpg', '/6-panel-caps/black-red-wolf-head-front-cap.jpg', '/6-panel-caps/black-white-lw-type-side-cap.jpg', '/6-panel-caps/black-gold-wolf-head-front-cap.jpg', '/6-panel-caps/black-gold-lw-type-side-cap.jpg'],
+            Khaki: ['/6-panel-caps/beige-blk-wolf-head-front-cap.png', '/6-panel-caps/beige-blk-lw-type-side-cap.jpg'],
+            'Royal Blue': ['/6-panel-caps/royal-blue-wolf-head-front-cap.jpg', '/6-panel-caps/royal-blue-white-lw-type-side-cap.png'],
+            Red: ['/6-panel-caps/red-blk-wolf-head-front-cap.jpg', '/6-panel-caps/red-blk-lw-type-side-cap.jpg', '/6-panel-caps/red-white-wolf-head-front-cap.jpg', '/6-panel-caps/red-white-lw-type-side-cap.jpg'],
+            White: ['/6-panel-caps/white-red-wolf-head-front-cap.jpg', '/6-panel-caps/white-blk-wolf-head-front-cap.jpg', '/6-panel-caps/white-blk-lw-type-side-cap.jpg'],
+            Yellow: ['/6-panel-caps/yellow-blk-wolf-head-front-cap.jpg', '/6-panel-caps/yellow-blk-lw-type-side-cap.jpg', '/6-panel-caps/yellow-white-wolf-head-front-cap.jpg', '/6-panel-caps/yellow-white-lw-type-side-cap.jpg']
+        },
+        typography: {
+            Black: ['/6-panel-caps/black-white-lw-type-front-cap.jpg', '/6-panel-caps/black-white-wolf-head-side-cap.jpg', '/6-panel-caps/black-red-wolf-head-side-cap.jpg', '/6-panel-caps/black-gold-lw-type-front-cap.jpg', '/6-panel-caps/black-gold-wolf-head-side-cap.jpg'],
+            Khaki: ['/6-panel-caps/beige-blk-lw-type-front-cap.png', '/6-panel-caps/beige-blk-lw-type-side-cap.jpg'],
+            'Royal Blue': ['/6-panel-caps/royal-blue-lw-type-front-cap.jpg', '/6-panel-caps/royal-blue-white-lw-type-side-cap.png'],
+            Red: ['/6-panel-caps/red-blk-lw-type-front-cap.jpg', '/6-panel-caps/red-blk-wolf-head-side-cap.jpg', '/6-panel-caps/red-white-lw-type-front-cap.jpg', '/6-panel-caps/red-white-wolf-head-side-cap.jpg'],
+            White: ['/6-panel-caps/white-blk-lw-type-front-cap.png', '/6-panel-caps/white-blk-wolf-head-side-cap.jpg', '/6-panel-caps/white-red-wolf-head-side-cap.jpg'],
+            Yellow: ['/6-panel-caps/yellow-blk-lw-type-front-cap.jpg', '/6-panel-caps/yellow-blk-lw-type-side-cap.jpg']
+        }
+    };
+
+    palette.querySelectorAll('.color').forEach(function (swatch) {
+        var colorVariants = variants[design][swatch.getAttribute('data-color')];
+        swatch.setAttribute('data-variants', colorVariants ? colorVariants.join('|') : '');
+    });
+    var selectedColor = palette.querySelector('.selected-color') || palette.querySelector('.color');
+    if (selectedColor) selectedColor.click();
+}
+
 function updateOuterwearDesign(selectElement) {
     var item = selectElement.closest('.item');
     var palette = item ? item.querySelector('.outerwear-colors') : null;
@@ -259,13 +328,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const extraColors = [
         { name: 'Royal Blue', value: '#4169E1', className: 'royal-blue' },
         { name: 'Orange', value: '#FF8C00', className: 'orange' },
-        { name: 'Beige', value: '#F5F5DC', className: 'beige' }
+        { name: 'Beige', value: '#F0E68C', className: 'beige' }
     ];
 
     document.querySelectorAll('.colors').forEach((palette) => {
         const item = palette.closest('.item');
         const isCrewsHoodies = item && item.closest('.crews-and-hoodies-container');
         const isBeanies = item && item.closest('.beanies-container');
+        const isGolfers = item && item.querySelector('h3') && /golfers?/i.test(item.querySelector('h3').textContent);
+        const isVests = item && item.querySelector('h3') && /vests?/i.test(item.querySelector('h3').textContent);
         const isOuterwear = item && item.closest('.outerwear-container');
         const isTracksuits = item && item.closest('.sweatpants_and_shorts-container');
         const isBucketHat = item && item.closest('.bucket-hats-item');
@@ -280,6 +351,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             if (isBucketHat && color.className === 'royal-blue') {
+                return;
+            }
+
+            if (isGolfers && (color.className === 'orange' || color.className === 'beige')) {
+                return;
+            }
+
+            if (isVests) {
                 return;
             }
 
@@ -381,10 +460,31 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     var colorMap = {
-        'White': '#FFFFFF', 'Grey': '#808080', 'Black': '#000000',
-        'Pink': '#FFB6C1', 'Red': '#FF0000', 'Mustard Yellow': '#E1AD01',
-        'Royal Blue': '#4169E1', 'Orange': '#FF8C00', 'Beige': '#F5F5DC'
+        'White': '#FFFFFF', 'Black': '#111111', 'Grey': '#808080',
+        'Khaki': '#F0E68C', 'Beige': '#F0E68C', 'Pink': '#FFB6C1',
+        'Red': '#FF0000', 'Royal Blue': '#4169E1', 'Yellow': '#FFDB58',
+        'Mustard Yellow': '#E1AD01', 'Orange': '#FF8C00', 'Navy Blue': '#1F3C68'
     };
+
+    var colorOrder = ['White', 'Black', 'Grey', 'Navy Blue', 'Khaki', 'Beige', 'Pink', 'Red', 'Royal Blue', 'Yellow', 'Mustard Yellow', 'Orange'];
+
+    function sortColorSwatches(palette) {
+        var swatches = Array.from(palette.querySelectorAll('.color'));
+        swatches.sort(function (first, second) {
+            var firstIndex = colorOrder.indexOf(first.getAttribute('data-color'));
+            var secondIndex = colorOrder.indexOf(second.getAttribute('data-color'));
+            return (firstIndex < 0 ? colorOrder.length : firstIndex) - (secondIndex < 0 ? colorOrder.length : secondIndex);
+        });
+        swatches.forEach(function (swatch) {
+            var colorName = swatch.getAttribute('data-color');
+            if (colorMap[colorName]) {
+                swatch.style.backgroundColor = colorMap[colorName];
+            }
+            palette.appendChild(swatch);
+        });
+    }
+
+    document.querySelectorAll('.colors').forEach(sortColorSwatches);
 
     // Hook into dynamically created design dropdowns for T-Shirts
     function attachDesignSwitch() {
@@ -449,6 +549,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     palette.appendChild(swatch);
                 });
+
+                sortColorSwatches(palette);
 
                 // Select first swatch
                 if (palette.children.length > 0) {

@@ -49,17 +49,18 @@
 
 /* Styles for items container */
 .t-shirts_and_tops-container .items_container {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 300px));
+    grid-auto-rows: auto;
     justify-content: center;
     gap: 20px;
-    flex-wrap: wrap;
     align-items: stretch;
 }
 
 /* Styles for each item */
 .t-shirts_and_tops-container .item {
     width: min(100%, 300px);
-    flex: 1 1 260px;
+    width: 100%;
     max-width: 300px;
     border-radius: 20px;
     overflow: hidden;
@@ -68,6 +69,14 @@
     margin-bottom: 40px;
     display: flex;
     flex-direction: column;
+}
+
+.t-shirts_and_tops-container .items_container.equal-height-products {
+    grid-auto-rows: 640px;
+}
+
+.t-shirts_and_tops-container .items_container.single-product {
+    grid-template-columns: minmax(0, 300px);
 }
 
 /* Hover effect for item images within figure */
@@ -80,6 +89,7 @@
 .t-shirts_and_tops-container .details_container {
     padding: 1rem;
     flex: 1;
+    min-height: 0;
     display: flex;
     flex-direction: column;
 }
@@ -132,6 +142,7 @@
     padding: 1rem;
     box-shadow: 0 0 5px #cccccc;
     flex: 1;
+    min-height: 0;
     display: flex;
     flex-direction: column;
 }
@@ -207,7 +218,7 @@ label {
 }
 
 .t-shirts_and_tops-container .design-selector-row {
-    margin: 0.75em 0 0;
+    margin: 0.75em 0 0.75em;
 }
 
 .t-shirts_and_tops-container .design-selector-row .input-style {
@@ -278,7 +289,7 @@ label {
     }
 
     .t-shirts_and_tops-container .item {
-        flex-basis: calc(50% - 20px);
+        width: 100%;
         max-width: none;
     }
 }
@@ -289,7 +300,20 @@ label {
     }
 
     .t-shirts_and_tops-container .item {
-        flex-basis: 100%;
+        width: 100%;
+    }
+
+    .t-shirts_and_tops-container .items_container {
+        grid-template-columns: minmax(0, 1fr);
+        grid-auto-rows: auto;
+    }
+
+    .t-shirts_and_tops-container .items_container.equal-height-products {
+        grid-auto-rows: auto;
+    }
+
+    .t-shirts_and_tops-container .items_container.single-product {
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .t-shirts_and_tops-container .flex-space-between,

@@ -49,6 +49,9 @@ function getProductType(itemContainer, productImage) {
     if (/t-?shirts?/i.test(headingText)) {
         return 'T-Shirts';
     }
+    if (/vests?/i.test(headingText)) {
+        return 'Vests';
+    }
     if (/golfers?/i.test(headingText)) {
         return 'Golfers';
     }
@@ -72,6 +75,9 @@ function getProductType(itemContainer, productImage) {
     }
     if (/bucket\s*hats?/i.test(headingText)) {
         return 'Bucket Hats';
+    }
+    if (/6-panel\s*caps?/i.test(headingText)) {
+        return '6-Panel Caps';
     }
 
     const src = productImage ? (productImage.getAttribute('src') || '') : '';
@@ -99,6 +105,12 @@ function getProductType(itemContainer, productImage) {
     if (/bucket\s*hats?/i.test(src)) {
         return 'Bucket Hats';
     }
+    if (/6-panel[-\s]caps?/i.test(src)) {
+        return '6-Panel Caps';
+    }
+    if (/vests?/i.test(src)) {
+        return 'Vests';
+    }
 
     return 'Item';
 }
@@ -112,13 +124,18 @@ function ensureDesignSelector(itemContainer) {
     const productType = getProductType(itemContainer, productImage);
     const isOuterwear = Boolean(itemContainer.closest('.outerwear-container'));
     const isTracksuit = Boolean(itemContainer.closest('.tracksuits-container'));
+    const isCap = productType === '6-Panel Caps';
+    const isVest = productType === 'Vests';
     const designOptions = [
-        'Lone Wolf Emblem - ' + productType,
         'Wolf Head - ' + productType,
         'Lone Wolf Typography - ' + productType
     ];
 
-    if (!isOuterwear && !['Golfers', 'Sweatpants', 'Shorts', 'Tracksuits', 'Beanies', 'Bucket Hats'].includes(productType)) {
+    if (!isCap) {
+        designOptions.unshift('Lone Wolf Emblem - ' + productType);
+    }
+
+    if (!isCap && !isOuterwear && !['Golfers', 'Sweatpants', 'Shorts', 'Tracksuits', 'Beanies', 'Bucket Hats', 'Vests'].includes(productType)) {
         designOptions.push('Isolation Breeds Growth - ' + productType);
     }
 
@@ -168,6 +185,22 @@ function ensureDesignSelector(itemContainer) {
         });
     }
 
+    if (isVest) {
+        select.addEventListener('change', function () {
+            if (typeof updateVestDesign === 'function') {
+                updateVestDesign(this);
+            }
+        });
+    }
+
+    if (isCap) {
+        select.addEventListener('change', function () {
+            if (typeof updateCapDesign === 'function') {
+                updateCapDesign(this);
+            }
+        });
+    }
+
     designOptions.forEach(function (optionValue) {
         const option = document.createElement('option');
         option.value = optionValue;
@@ -178,6 +211,16 @@ function ensureDesignSelector(itemContainer) {
     selectorRow.appendChild(label);
     selectorRow.appendChild(select);
     buyContainer.insertBefore(selectorRow, actionButton);
+
+    if (isCap && typeof updateCapDesign === 'function') {
+        updateCapDesign(select);
+    }
+
+    if (isVest && typeof updateVestDesign === 'function') {
+        window.setTimeout(function () {
+            updateVestDesign(select);
+        }, 0);
+    }
 }
 
 // Keep a selected swatch state per product card for cart lookups
