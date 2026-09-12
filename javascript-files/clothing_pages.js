@@ -214,7 +214,7 @@ function updateVestDesign(selectElement) {
     var palette = item ? item.querySelector('.colors') : null;
     if (!item || !palette) return;
 
-    var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' : /typography/i.test(selectElement.value) ? 'typography' : 'emblem';
+    var design = /wolf[-\s]head/i.test(selectElement.value) ? 'wolf-head' : /typography/i.test(selectElement.value) ? 'typography' : 'emblem';
     var variants = {
         emblem: {
             White: ['../vests/white-blk-lw-emblem-vest.jpg', '../vests/white-red-lw-emblem-vest.jpg'],
@@ -227,11 +227,16 @@ function updateVestDesign(selectElement) {
             Black: ['../vests/black-white-wolf-head-vest.jpg', '../vests/black-red-wolf-head-vest.jpg', '../vests/black-gold-wolf-head-vest.jpg'],
             Grey: ['../vests/grey-blk-wolf-head-vest.jpg', '../vests/white-red-wolf-head-vest.jpg'],
             Red: ['../vests/red-blk-wolf-head-vest.png', '../vests/red-white-wolf-head-vest.png']
+        },
+        typography: {
+            White: ['../vests/white-blk-lw-type-vest.jpg'],
+            Black: ['../vests/black-whte-lw-type-vest.jpg', '../vests/black-gold-lw-type-vest.jpg'],
+            Grey: ['../vests/grey-blk-lw-type-vest.jpg', '../vests/grey-red-lw-type-vest.jpg'],
+            Red: ['../vests/red-blk-lw-type-vest.png', '../vests/red-white-lw-type-vest.png']
         }
     };
 
     var designVariants = variants[design];
-    if (!designVariants) return;
     palette.querySelectorAll('.color').forEach(function (swatch) {
         var colorVariants = designVariants[swatch.getAttribute('data-color')];
         swatch.setAttribute('data-variants', colorVariants ? colorVariants.join('|') : '');
@@ -239,9 +244,11 @@ function updateVestDesign(selectElement) {
     var selectedColor = palette.querySelector('.selected-color') || palette.querySelector('.color');
     if (selectedColor) {
         selectedColor.click();
-        var firstVariants = selectedColor.getAttribute('data-variants');
+        var variantsAttribute = selectedColor.getAttribute('data-variants');
         var image = item.querySelector('img');
-        if (firstVariants && image) image.src = firstVariants.split('|')[0];
+        if (variantsAttribute && image) {
+            image.src = variantsAttribute.split('|')[0];
+        }
     }
 }
 
@@ -404,17 +411,17 @@ document.addEventListener('DOMContentLoaded', function () {
     var designData = {
         'lone-wolf-emblem': {
             colors: [
-                { name: 'White', img: null, variants: '/T-Shirts Images/White Pocket Size LW T-Shirt.png|/T-Shirts Images/White Pocket Size LW Emblem RMBD.png' },
-                { name: 'Grey', img: '/T-Shirts Images/Grey Pocket Size LW T-Shirt.png', variants: null },
-                { name: 'Black', img: null, variants: '/T-Shirts Images/BLK Pocket Size White LW T-Shirt.png|/T-Shirts Images/Black RMD Full LW Emblem.jpg|/T-Shirts Images/Black Full GLW Emblem T-Shirt.png' },
-                { name: 'Pink', img: '/T-Shirts Images/Pink Full LW Emblem.png', variants: null },
-                { name: 'Red', img: null, variants: '/T-Shirts Images/Red Pocket Size LW T-Shirt.png|/T-Shirts Images/Red White PS LW T-Shirt.png' },
-                { name: 'Mustard Yellow', img: '/T-Shirts Images/Mustard Yellow Pocket Size LW T-Shirt.png', variants: null },
-                { name: 'Royal Blue', img: '/T-Shirts Images/Royal Blue - Lone Wolf Emblem-T-Shirt.png', variants: null },
-                { name: 'Orange', img: '/T-Shirts Images/Orange Lone Wolf Emblem-T-Shirt.png', variants: null },
-                { name: 'Beige', img: '/T-Shirts Images/Beige Lone Wolf Emblem-T-Shirts.png', variants: null }
+                { name: 'White', img: null, variants: '../t-shirts/white-a4-red-lw-emblem-t-shirt.jpg|../t-shirts/white-black-a4-lw-emblem-t-shirt.jpg|../t-shirts/white-blk-lw-emblem-t-shirt.jpg|../t-shirts/white-red-lw-emblem-t-shirt.jpg' },
+                { name: 'Black', img: null, variants: '../t-shirts/black-a4-white-lw-emblem-t-shirt.png|../t-shirts/black-a4-red-lw-emblem-t-shirt.png|../t-shirts/black-a4-gold-lw-emblem-t-shirt.png|../t-shirts/black-white-lw-emblem-t-shirt.png|../t-shirts/black-red-lw-emblem-t-shirt.jpg|../t-shirts/black-gold-lw-emblem-t-shirt.png' },
+                { name: 'Grey', img: null, variants: '../t-shirts/grey-a4-lw-emblem-t-shirt.png|../t-shirts/grey-lw-emblem-t-shirt.png' },
+                { name: 'Red', img: null, variants: '../t-shirts/red-blk-a4-lw-emblem-t-shirt.png|../t-shirts/red-white-a4-lw-emblem-t-shirt.png|../t-shirts/red-blk-lw-emblem.png|../t-shirts/red-white-lw-emblem-t-shirt.png' },
+                { name: 'Beige', img: null, variants: '../t-shirts/beige-a4-lw-emblem-t-shirt.png|../t-shirts/beige-lw-emblem-t-shirt.png' },
+                { name: 'Yellow', img: null, variants: '../t-shirts/yellow-a4-lw-emblem-t-shirt.png|../t-shirts/yellow-lw-emblem-t-shirt.png' },
+                { name: 'Orange', img: null, variants: '../t-shirts/orange-a4-lw-emblem-t-shirt.png|../t-shirts/orange-lw-emblem-t-shirt.png' },
+                { name: 'Royal Blue', img: null, variants: '../t-shirts/royal-blue-a4-lw-emblem-t-shirt.png|../t-shirts/royal-blue-lw-emblem-t-shirt.png' },
+                { name: 'Pink', img: null, variants: '../t-shirts/pink-a4-lw-emblem-t-shirt.png|../t-shirts/pink-lw-emblem-t-shirt.png' }
             ],
-            defaultImg: '/T-Shirts Images/White Pocket Size LW T-Shirt.png'
+            defaultImg: '../t-shirts/white-a4-red-lw-emblem-t-shirt.jpg'
         },
         'wolf-head': {
             colors: [

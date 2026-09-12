@@ -139,10 +139,6 @@ function ensureDesignSelector(itemContainer) {
         designOptions.push('Isolation Breeds Growth - ' + productType);
     }
 
-    if (['T-Shirts', 'Hoodies', 'Sweaters'].includes(productType)) {
-        designOptions.push('A4 Lone Wolf Emblem - ' + productType);
-    }
-
     const buyContainer = itemContainer.querySelector('.buy_container');
     const actionButton = itemContainer.querySelector('.add-to-cart-button');
     if (!buyContainer || !actionButton) {
@@ -204,7 +200,10 @@ function ensureDesignSelector(itemContainer) {
     designOptions.forEach(function (optionValue) {
         const option = document.createElement('option');
         option.value = optionValue;
-        option.textContent = optionValue;
+        const categorySuffix = ' - ' + productType;
+        option.textContent = optionValue.endsWith(categorySuffix)
+            ? optionValue.slice(0, -categorySuffix.length)
+            : optionValue;
         select.appendChild(option);
     });
 
@@ -242,5 +241,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 color.classList.add('selected-color');
             });
         });
+
+        const vestDesign = item.querySelector('select#vest-design');
+        if (vestDesign && typeof updateVestDesign === 'function') {
+            vestDesign.addEventListener('change', function () {
+                updateVestDesign(this);
+            });
+            updateVestDesign(vestDesign);
+        }
     });
 });
