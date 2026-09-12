@@ -126,21 +126,27 @@ function ensureDesignSelector(itemContainer) {
     const isTracksuit = Boolean(itemContainer.closest('.tracksuits-container'));
     const isCap = productType === '6-Panel Caps';
     const isVest = productType === 'Vests';
-    const designOptions = [
-        'Wolf Head - ' + productType,
-        'Lone Wolf Typography - ' + productType
-    ];
+    const isTShirtOrHoodie = ['T-Shirts', 'Hoodies', 'Crewnecks'].includes(productType);
+    const isHoodie = productType === 'Hoodies';
+    const designOptions = [];
+    
+    // Add design options based on product type
+    if (!isHoodie) {
+        designOptions.push('Wolf Head - ' + productType);
+        designOptions.push('Lone Wolf Typography - ' + productType);
+    }
 
     if (!isCap) {
-        designOptions.unshift('Lone Wolf Emblem - ' + productType);
+        if (isTShirtOrHoodie) {
+            designOptions.unshift('Lone Wolf Emblem - Pocket Size - ' + productType);
+            designOptions.unshift('Lone Wolf Emblem - Large Print - ' + productType);
+        } else {
+            designOptions.unshift('Lone Wolf Emblem - ' + productType);
+        }
     }
 
-    if (!isCap && !isOuterwear && !['Golfers', 'Sweatpants', 'Shorts', 'Tracksuits', 'Beanies', 'Bucket Hats', 'Vests'].includes(productType)) {
+    if (!isCap && !isOuterwear && !['Golfers', 'Sweatpants', 'Shorts', 'Tracksuits', 'Beanies', 'Bucket Hats', 'Vests', 'Hoodies', 'Crewnecks'].includes(productType)) {
         designOptions.push('Isolation Breeds Growth - ' + productType);
-    }
-
-    if (['T-Shirts', 'Hoodies', 'Sweaters'].includes(productType)) {
-        designOptions.push('A4 Lone Wolf Emblem - ' + productType);
     }
 
     const buyContainer = itemContainer.querySelector('.buy_container');
@@ -201,16 +207,55 @@ function ensureDesignSelector(itemContainer) {
         });
     }
 
+    // Add hoodie design handler
+    if (isHoodie) {
+        select.addEventListener('change', function () {
+            if (typeof updateHoodieDesign === 'function') {
+                updateHoodieDesign(this);
+            }
+        });
+    }
+
+    // Add price update logic for T-Shirts only (Hoodies handle their own via updateHoodieDesign)
+    if (productType === 'T-Shirts') {
+        select.addEventListener('change', function () {
+            const priceElement = itemContainer.querySelector('.price');
+            if (priceElement) {
+                if (/large print|isolation breeds growth/i.test(this.value)) {
+                    priceElement.textContent = 'R299.95';
+                } else if (/pocket size|wolf head|typography/i.test(this.value)) {
+                    priceElement.textContent = 'R249.95';
+                }
+            }
+        });
+    }
+
     designOptions.forEach(function (optionValue) {
         const option = document.createElement('option');
         option.value = optionValue;
-        option.textContent = optionValue;
+        const categorySuffix = ' - ' + productType;
+        option.textContent = optionValue.endsWith(categorySuffix)
+            ? optionValue.slice(0, -categorySuffix.length)
+            : optionValue;
         select.appendChild(option);
     });
 
     selectorRow.appendChild(label);
     selectorRow.appendChild(select);
     buyContainer.insertBefore(selectorRow, actionButton);
+
+    // Set initial price based on first selected design option
+    if (isTShirtOrHoodie && select.options.length > 0) {
+        const firstOption = select.options[0].value;
+        const priceElement = itemContainer.querySelector('.price');
+        if (priceElement) {
+            if (/large print|isolation breeds growth/i.test(firstOption)) {
+                priceElement.textContent = 'R299.95';
+            } else if (/pocket size|wolf head|typography/i.test(firstOption)) {
+                priceElement.textContent = 'R249.95';
+            }
+        }
+    }
 
     if (isCap && typeof updateCapDesign === 'function') {
         updateCapDesign(select);
@@ -219,6 +264,12 @@ function ensureDesignSelector(itemContainer) {
     if (isVest && typeof updateVestDesign === 'function') {
         window.setTimeout(function () {
             updateVestDesign(select);
+        }, 0);
+    }
+
+    if (isHoodie && typeof updateHoodieDesign === 'function') {
+        window.setTimeout(function () {
+            updateHoodieDesign(select);
         }, 0);
     }
 }
@@ -242,5 +293,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 color.classList.add('selected-color');
             });
         });
+
+        const vestDesign = item.querySelector('select#vest-design');
+        if (vestDesign && typeof updateVestDesign === 'function') {
+            vestDesign.addEventListener('change', function () {
+                updateVestDesign(this);
+            });
+            updateVestDesign(vestDesign);
+        }
     });
 });
