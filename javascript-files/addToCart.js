@@ -129,24 +129,32 @@ function ensureDesignSelector(itemContainer) {
     const isTShirtOrHoodie = ['T-Shirts', 'Hoodies', 'Crewnecks'].includes(productType);
     const isHoodie = productType === 'Hoodies';
     const designOptions = [];
-    
+
     // Add design options based on product type
-    if (!isHoodie) {
+    if (productType === 'Hoodies' || productType === 'Crewnecks') {
+        designOptions.push('Lone Wolf Emblem - Large Print - ' + productType);
+        designOptions.push('Lone Wolf Emblem - Pocket Size - ' + productType);
         designOptions.push('Wolf Head - ' + productType);
         designOptions.push('Lone Wolf Typography - ' + productType);
-    }
-
-    if (!isCap) {
-        if (isTShirtOrHoodie) {
-            designOptions.unshift('Lone Wolf Emblem - Pocket Size - ' + productType);
-            designOptions.unshift('Lone Wolf Emblem - Large Print - ' + productType);
-        } else {
-            designOptions.unshift('Lone Wolf Emblem - ' + productType);
-        }
-    }
-
-    if (!isCap && !isOuterwear && !['Golfers', 'Sweatpants', 'Shorts', 'Tracksuits', 'Beanies', 'Bucket Hats', 'Vests', 'Hoodies', 'Crewnecks'].includes(productType)) {
         designOptions.push('Isolation Breeds Growth - ' + productType);
+    } else {
+        if (!isHoodie) {
+            designOptions.push('Wolf Head - ' + productType);
+            designOptions.push('Lone Wolf Typography - ' + productType);
+        }
+
+        if (!isCap) {
+            if (isTShirtOrHoodie) {
+                designOptions.unshift('Lone Wolf Emblem - Pocket Size - ' + productType);
+                designOptions.unshift('Lone Wolf Emblem - Large Print - ' + productType);
+            } else {
+                designOptions.unshift('Lone Wolf Emblem - ' + productType);
+            }
+        }
+
+        if (!isCap && !isOuterwear && !['Golfers', 'Sweatpants', 'Shorts', 'Tracksuits', 'Beanies', 'Bucket Hats', 'Vests', 'Hoodies', 'Crewnecks'].includes(productType)) {
+            designOptions.push('Isolation Breeds Growth - ' + productType);
+        }
     }
 
     const buyContainer = itemContainer.querySelector('.buy_container');
