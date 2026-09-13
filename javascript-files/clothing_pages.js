@@ -419,7 +419,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            if (isGolfers && (color.className === 'orange' || color.className === 'beige')) {
+            if (isGolfers && (color.className === 'royal-blue' || color.className === 'orange' || color.className === 'beige')) {
                 return;
             }
 
@@ -534,6 +534,42 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    var golfer_designData = {
+        'lone-wolf-emblem': {
+            colors: [
+                { name: 'White', img: null, variants: '../golfers/white-blk-lw-emblem-golfer.png|../golfers/white-red-lw-emblem-golfer.png' },
+                { name: 'Grey', img: '../golfers/grey-lw-emblem-golfer.jpg', variants: null },
+                { name: 'Black', img: null, variants: '../golfers/black-white-lw-emblem-golfer.png|../golfers/black-red-lw-emblem-golfer.png|../golfers/black-gold-lw-emblem-golfer.png' },
+                { name: 'Pink', img: '../golfers/pink-lw-emblem-golfer.png', variants: null },
+                { name: 'Red', img: null, variants: '../golfers/red-blk-lw-emblem-golfer.jpg|../golfers/red-white-lw-emblem-golfer.jpg' },
+                { name: 'Yellow', img: '../golfers/yellow-blk-lw-emblem-golfer.jpg', variants: null }
+            ],
+            defaultImg: '../golfers/white-blk-lw-emblem-golfer.png'
+        },
+        'wolf-head': {
+            colors: [
+                { name: 'White', img: null, variants: '../golfers/white-blk-wolf-head-golfer.png|../golfers/white-red-wolf-head-golfer.png' },
+                { name: 'Grey', img: '../golfers/grey-wolf-head-golfer.jpg', variants: null },
+                { name: 'Black', img: null, variants: '../golfers/black-white-wolf-head-golfer.jpg|../golfers/black-red-wolf-head-golfer.jpg|../golfers/black-gold-wolf-head-golfer.jpg' },
+                { name: 'Pink', img: '../golfers/pink-wolf-head-golfer.jpg', variants: null },
+                { name: 'Red', img: null, variants: '../golfers/red-blk-wolf-head-golfer.jpg|../golfers/red-white-wolf-head-golfer.jpg' },
+                { name: 'Yellow', img: '../golfers/yellow-blk-wolf-head-golfer.jpg', variants: null }
+            ],
+            defaultImg: '../golfers/white-blk-wolf-head-golfer.png'
+        },
+        'lone-wolf-typography': {
+            colors: [
+                { name: 'White', img: '../golfers/white-blk-lw-type-golfer.png', variants: null },
+                { name: 'Grey', img: '../golfers/grey-lw-type-golfer.jpg', variants: null },
+                { name: 'Black', img: null, variants: '../golfers/black-white-lw-type-golfer.jpg|../golfers/black-gold-lw-type-golfer.jpg' },
+                { name: 'Pink', img: '../golfers/pink-lw-type-golfer.jpg', variants: null },
+                { name: 'Red', img: null, variants: '../golfers/red-blk-lw-type-golfer.jpg|../golfers/red-white-lw-type-golfer.jpg' },
+                { name: 'Yellow', img: '../golfers/yellow-blk-lw-type-golfer.jpg', variants: null }
+            ],
+            defaultImg: '../golfers/white-blk-lw-type-golfer.png'
+        }
+    };
+
     var hoodie_designData = {
         'lone-wolf-emblem-large-print': {
             colors: [
@@ -588,9 +624,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.colors').forEach(sortColorSwatches);
 
-    // Hook into dynamically created design dropdowns for T-Shirts
+    // Hook into dynamically created design dropdowns for T-Shirts and Golfers
     function attachDesignSwitch() {
-        document.querySelectorAll('.t-shirts_and_tops-container .item').forEach(function (item) {
+        document.querySelectorAll('.item').forEach(function (item) {
             var designSelect = item.querySelector('select[name="design"]');
             if (!designSelect || designSelect._designSwitchAttached) return;
             designSelect._designSwitchAttached = true;
@@ -598,6 +634,9 @@ document.addEventListener('DOMContentLoaded', function () {
             designSelect.addEventListener('change', function () {
                 var selected = this.value;
                 var key = null;
+                var itemHeading = item.querySelector('h3');
+                var isGolferItem = itemHeading && /golfers?/i.test(itemHeading.textContent);
+
                 if (/isolation breeds growth/i.test(selected)) {
                     key = 'isolation-breeds-growth';
                 } else if (/lone wolf typography/i.test(selected)) {
@@ -609,11 +648,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else if (/pocket size/i.test(selected)) {
                     key = 'lone-wolf-emblem-pocket-size';
                 } else if (/lone wolf emblem/i.test(selected)) {
-                    key = 'lone-wolf-emblem-large-print';
+                    key = isGolferItem ? 'lone-wolf-emblem' : 'lone-wolf-emblem-large-print';
                 }
                 if (!key) return;
 
-                var data = designData[key];
+                var data = isGolferItem ? golfer_designData[key] : designData[key];
+                if (!data && isGolferItem && key === 'lone-wolf-emblem') {
+                    data = golfer_designData['lone-wolf-emblem'];
+                }
                 if (!data) return;
 
                 var imgEl = item.querySelector('img');
