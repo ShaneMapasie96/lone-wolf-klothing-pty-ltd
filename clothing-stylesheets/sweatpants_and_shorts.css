@@ -56,6 +56,66 @@
     align-items: stretch;
 }
 
+.sweatpants_and_shorts-container .items_container.tracksuits-product-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 300px) minmax(0, 300px) minmax(0, 300px);
+    align-items: start;
+}
+
+.sweatpants_and_shorts-container .tracksuits-image-placeholder {
+    width: 100%;
+}
+
+.sweatpants_and_shorts-container .tracksuits-gallery-frame {
+    padding: 10px;
+    border: 1px solid rgba(190, 200, 220, 0.55);
+    border-radius: 16px;
+    background: rgba(20, 28, 42, 0.32);
+}
+
+.sweatpants_and_shorts-container .tracksuits-gallery-frame figure {
+    margin: 0;
+    padding-top: 0;
+}
+
+.sweatpants_and_shorts-container .tracksuits-gallery-main {
+    height: 390px;
+    border-radius: 13px;
+}
+
+.sweatpants_and_shorts-container .tracksuits-gallery-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.sweatpants_and_shorts-container .tracksuits-gallery-thumbnails figure {
+    height: 78px;
+    border-radius: 8px;
+}
+
+.sweatpants_and_shorts-container .tracksuits-gallery-right {
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.sweatpants_and_shorts-container .tracksuits-gallery-right figure {
+    height: 540px;
+    border-radius: 16px;
+}
+
+.sweatpants_and_shorts-container .tracksuits-gallery-frame img {
+    object-fit: cover;
+}
+
+@media (max-width: 1000px) and (min-width: 561px) {
+    .sweatpants_and_shorts-container .items_container.tracksuits-product-layout {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 /* Each item */
 .sweatpants_and_shorts-container .item {
     width: min(100%, 300px);
@@ -282,6 +342,10 @@ label {
 @media (max-width: 560px) {
     .sweatpants_and_shorts-container {
         width: calc(100% - 20px);
+    }
+
+    .sweatpants_and_shorts-container .items_container.tracksuits-product-layout {
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .sweatpants_and_shorts-container .item {
