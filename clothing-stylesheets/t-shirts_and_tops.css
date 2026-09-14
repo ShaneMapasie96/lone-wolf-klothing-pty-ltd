@@ -79,6 +79,65 @@
     grid-template-columns: minmax(0, 300px);
 }
 
+.t-shirts_and_tops-container .items_container.golfers-product-layout {
+    grid-template-columns: minmax(0, 300px) minmax(0, 300px) minmax(0, 300px);
+    align-items: start;
+}
+
+.t-shirts_and_tops-container .golfers-image-placeholder {
+    width: 100%;
+}
+
+.t-shirts_and_tops-container .golfers-gallery-frame {
+    padding: 10px;
+    border: 1px solid rgba(190, 200, 220, 0.55);
+    border-radius: 16px;
+    background: rgba(20, 28, 42, 0.32);
+}
+
+.t-shirts_and_tops-container .golfers-gallery-frame figure {
+    margin: 0;
+    padding-top: 0;
+}
+
+.t-shirts_and_tops-container .golfers-gallery-main {
+    height: 390px;
+    border-radius: 13px;
+}
+
+.t-shirts_and_tops-container .golfers-gallery-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.t-shirts_and_tops-container .golfers-gallery-thumbnails figure {
+    height: 78px;
+    border-radius: 8px;
+}
+
+.t-shirts_and_tops-container .golfers-gallery-right {
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.t-shirts_and_tops-container .golfers-gallery-right figure {
+    height: 540px;
+    border-radius: 16px;
+}
+
+.t-shirts_and_tops-container .golfers-gallery-frame img {
+    object-fit: cover;
+}
+
+@media (max-width: 1000px) and (min-width: 561px) {
+    .t-shirts_and_tops-container .items_container.golfers-product-layout {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 /* Hover effect for item images within figure */
 .t-shirts_and_tops-container .item:hover figure > img {
     transform: scale(1.05);/* Scale down the image by 5% on hover */
@@ -250,6 +309,20 @@ label {
     border-radius: 50%;
     margin-right: 4px;
     cursor: pointer;
+    border: 2px solid rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.color:hover {
+    transform: scale(1.12);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.75), 0 0 0 4px rgba(255, 255, 255, 0.35);
+}
+
+.color.selected,
+.color.selected-color {
+    border-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.85), 0 0 0 4px rgba(255, 255, 255, 0.9);
+    transform: scale(1.08);
 }
 
 /* Specific color adjustments for each color */

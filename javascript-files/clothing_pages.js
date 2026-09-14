@@ -17,10 +17,12 @@ function handleColorSelection(colorElement, imgId) {
     const allColorElements = colorElement.parentElement.children;
     Array.from(allColorElements).forEach((element) => {
         element.classList.remove('selected-color');
+        element.classList.remove('selected');
     });
 
     // Select the clicked color
     colorElement.classList.add('selected-color');
+    colorElement.classList.add('selected');
 }
 
 // Show prev/next navigation when a swatch has multiple image variants
@@ -294,8 +296,10 @@ function updateHoodieDesign(selectElement) {
             if (varAttr) {
                 Array.from(palette.children).forEach(function (el) {
                     el.classList.remove('selected-color');
+                    el.classList.remove('selected');
                 });
                 swatch.classList.add('selected-color');
+                swatch.classList.add('selected');
                 showVariantNav(item, varAttr.split('|'));
             } else {
                 removeVariantNav(item);
@@ -455,14 +459,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Deselect all swatches in this palette then mark this one active
                 Array.from(colorElement.parentElement.children).forEach(function (el) {
                     el.classList.remove('selected-color');
+                    el.classList.remove('selected');
                 });
                 colorElement.classList.add('selected-color');
+                colorElement.classList.add('selected');
                 showVariantNav(item, variantsAttr.split('|'));
             } else {
                 removeVariantNav(item);
                 handleColorSelection(colorElement, imgId);
             }
         });
+    });
+
+    document.querySelectorAll('.colors').forEach(function (palette) {
+        if (!palette.querySelector('.selected-color, .selected')) {
+            var firstSwatch = palette.querySelector('.color');
+            if (firstSwatch) firstSwatch.click();
+        }
     });
 
     // Design dropdown data for T-Shirts color switching
@@ -686,8 +699,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (varAttr) {
                             Array.from(palette.children).forEach(function (el) {
                                 el.classList.remove('selected-color');
+                                el.classList.remove('selected');
                             });
                             swatch.classList.add('selected-color');
+                            swatch.classList.add('selected');
                             showVariantNav(item, varAttr.split('|'));
                         } else {
                             removeVariantNav(item);
@@ -703,6 +718,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Select first swatch
                 if (palette.children.length > 0) {
                     palette.children[0].classList.add('selected-color');
+                    palette.children[0].classList.add('selected');
                 }
 
                 // Set default image

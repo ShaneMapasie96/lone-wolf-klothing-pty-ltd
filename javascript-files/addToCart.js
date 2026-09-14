@@ -290,6 +290,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const colors = item.querySelectorAll('.colors .color');
         if (colors.length > 0) {
             colors[0].classList.add('selected-color');
+            colors[0].classList.add('selected');
         }
 
         colors.forEach(function (color) {
@@ -299,6 +300,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     c.classList.remove('selected');
                 });
                 color.classList.add('selected-color');
+                color.classList.add('selected');
             });
         });
 
