@@ -343,20 +343,20 @@ function updateCapDesign(selectElement) {
     var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' : 'typography';
     var variants = {
         'wolf-head': {
-            Black: ['/6-panel-caps/black-white-wolf-head-front-cap.jpg', '/6-panel-caps/black-white-wolf-head-side-cap.jpg', '/6-panel-caps/black-red-wolf-head-front-cap.jpg', '/6-panel-caps/black-gold-wolf-head-front-cap.jpg', '/6-panel-caps/black-gold-wolf-head-side-cap.jpg'],
-            Khaki: ['/6-panel-caps/beige-blk-wolf-head-front-cap.png', '/6-panel-caps/beige-blk-wolf-head-side-cap.jpg'],
-            'Royal Blue': ['/6-panel-caps/royal-blue-wolf-head-front-cap.jpg', '/6-panel-caps/royal-blue-white-wolf-head-side-cap.jpg'],
-            Red: ['/6-panel-caps/red-blk-wolf-head-front-cap.jpg', '/6-panel-caps/red-blk-wolf-head-side-cap.jpg', '/6-panel-caps/red-white-wolf-head-front-cap.jpg', '/6-panel-caps/red-white-wolf-head-side-cap.jpg'],
-            White: ['/6-panel-caps/white-blk-wolf-head-front-cap.jpg', '/6-panel-caps/white-blk-wolf-head-side-cap.jpg', '/6-panel-caps/white-red-wolf-head-front-cap.jpg'],
-            Yellow: ['/6-panel-caps/yellow-blk-wolf-head-front-cap.jpg', '/6-panel-caps/yellow-blk-wolf-head-side-cap.jpg', '/6-panel-caps/yellow-white-wolf-head-front-cap.jpg', '/6-panel-caps/yellow-white-wolf-head-side-cap.jpg']
+            Black: ['/6-panel-caps/black-white-wolf-head-front-cap.jpg', '/6-panel-caps/black-white-lw-type-side-cap.jpg', '/6-panel-caps/black-red-wolf-head-front-cap.jpg', '/6-panel-caps/black-gold-wolf-head-front-cap.jpg', '/6-panel-caps/black-gold-lw-type-side-cap.jpg'],
+            Khaki: ['/6-panel-caps/beige-blk-wolf-head-front-cap.png', '/6-panel-caps/beige-blk-lw-type-side-cap.jpg'],
+            'Royal Blue': ['/6-panel-caps/royal-blue-wolf-head-front-cap.jpg', '/6-panel-caps/royal-blue-white-lw-type-side-cap.png'],
+            Red: ['/6-panel-caps/red-blk-wolf-head-front-cap.jpg', '/6-panel-caps/red-blk-lw-type-side-cap.jpg', '/6-panel-caps/red-white-wolf-head-front-cap.jpg', '/6-panel-caps/red-white-lw-type-side-cap.jpg'],
+            White: ['/6-panel-caps/white-blk-wolf-head-front-cap.jpg', '/6-panel-caps/white-blk-lw-type-side-cap.jpg', '/6-panel-caps/white-red-wolf-head-front-cap.jpg'],
+            Yellow: ['/6-panel-caps/yellow-blk-wolf-head-front-cap.jpg', '/6-panel-caps/yellow-blk-lw-type-side-cap.jpg', '/6-panel-caps/yellow-white-wolf-head-front-cap.jpg', '/6-panel-caps/yellow-white-lw-type-side-cap.jpg']
         },
         typography: {
-            Black: ['/6-panel-caps/black-white-lw-type-front-cap.jpg', '/6-panel-caps/black-white-lw-type-side-cap.jpg', '/6-panel-caps/black-gold-lw-type-front-cap.jpg', '/6-panel-caps/black-gold-lw-type-side-cap.jpg'],
-            Khaki: ['/6-panel-caps/beige-blk-lw-type-front-cap.png', '/6-panel-caps/beige-blk-lw-type-side-cap.jpg'],
-            'Royal Blue': ['/6-panel-caps/royal-blue-lw-type-front-cap.jpg', '/6-panel-caps/royal-blue-white-lw-type-side-cap.png'],
-            Red: ['/6-panel-caps/red-blk-lw-type-front-cap.jpg', '/6-panel-caps/red-blk-lw-type-side-cap.jpg', '/6-panel-caps/red-white-lw-type-front-cap.jpg', '/6-panel-caps/red-white-lw-type-side-cap.jpg'],
-            White: ['/6-panel-caps/white-blk-lw-type-front-cap.png', '/6-panel-caps/white-blk-lw-type-side-cap.jpg'],
-            Yellow: ['/6-panel-caps/yellow-blk-lw-type-front-cap.jpg', '/6-panel-caps/yellow-blk-lw-type-side-cap.jpg', '/6-panel-caps/yellow-white-lw-type-front-cap.jpg', '/6-panel-caps/yellow-white-lw-type-side-cap.jpg']
+            Black: ['/6-panel-caps/black-white-lw-type-front-cap.jpg', '/6-panel-caps/black-white-wolf-head-side-cap.jpg', '/6-panel-caps/black-gold-lw-type-front-cap.jpg', '/6-panel-caps/black-gold-wolf-head-side-cap.jpg'],
+            Khaki: ['/6-panel-caps/beige-blk-lw-type-front-cap.png', '/6-panel-caps/beige-blk-wolf-head-side-cap.jpg'],
+            'Royal Blue': ['/6-panel-caps/royal-blue-lw-type-front-cap.jpg', '/6-panel-caps/royal-blue-white-wolf-head-side-cap.jpg'],
+            Red: ['/6-panel-caps/red-blk-lw-type-front-cap.jpg', '/6-panel-caps/red-blk-wolf-head-side-cap.jpg', '/6-panel-caps/red-white-lw-type-front-cap.jpg', '/6-panel-caps/red-white-wolf-head-side-cap.jpg'],
+            White: ['/6-panel-caps/white-blk-lw-type-front-cap.png', '/6-panel-caps/white-blk-wolf-head-side-cap.jpg'],
+            Yellow: ['/6-panel-caps/yellow-blk-lw-type-front-cap.jpg', '/6-panel-caps/yellow-blk-wolf-head-side-cap.jpg', '/6-panel-caps/yellow-white-lw-type-front-cap.jpg', '/6-panel-caps/yellow-white-wolf-head-side-cap.jpg']
         }
     };
 
@@ -570,23 +570,23 @@ document.addEventListener('DOMContentLoaded', function () {
     var cap_designData = {
         'wolf-head': {
             colors: [
-                { name: 'Black', img: null, variants: '/6-panel-caps/black-white-wolf-head-front-cap.jpg|/6-panel-caps/black-red-wolf-head-front-cap.jpg|/6-panel-caps/black-gold-wolf-head-front-cap.jpg' },
-                { name: 'Khaki', img: '/6-panel-caps/beige-blk-wolf-head-front-cap.png', variants: null },
-                { name: 'Royal Blue', img: '/6-panel-caps/royal-blue-wolf-head-front-cap.jpg', variants: null },
-                { name: 'Red', img: null, variants: '/6-panel-caps/red-blk-wolf-head-front-cap.jpg|/6-panel-caps/red-white-wolf-head-front-cap.jpg' },
-                { name: 'White', img: null, variants: '/6-panel-caps/white-blk-wolf-head-front-cap.jpg|/6-panel-caps/white-red-wolf-head-front-cap.jpg' },
-                { name: 'Yellow', img: null, variants: '/6-panel-caps/yellow-blk-wolf-head-front-cap.jpg|/6-panel-caps/yellow-white-wolf-head-front-cap.jpg' }
+                { name: 'Black', img: null, variants: '/6-panel-caps/black-white-wolf-head-front-cap.jpg|/6-panel-caps/black-white-lw-type-side-cap.jpg|/6-panel-caps/black-red-wolf-head-front-cap.jpg|/6-panel-caps/black-gold-wolf-head-front-cap.jpg|/6-panel-caps/black-gold-lw-type-side-cap.jpg' },
+                { name: 'Khaki', img: null, variants: '/6-panel-caps/beige-blk-wolf-head-front-cap.png|/6-panel-caps/beige-blk-lw-type-side-cap.jpg' },
+                { name: 'Royal Blue', img: null, variants: '/6-panel-caps/royal-blue-wolf-head-front-cap.jpg|/6-panel-caps/royal-blue-white-lw-type-side-cap.png' },
+                { name: 'Red', img: null, variants: '/6-panel-caps/red-blk-wolf-head-front-cap.jpg|/6-panel-caps/red-blk-lw-type-side-cap.jpg|/6-panel-caps/red-white-wolf-head-front-cap.jpg|/6-panel-caps/red-white-lw-type-side-cap.jpg' },
+                { name: 'White', img: null, variants: '/6-panel-caps/white-blk-wolf-head-front-cap.jpg|/6-panel-caps/white-blk-lw-type-side-cap.jpg|/6-panel-caps/white-red-wolf-head-front-cap.jpg' },
+                { name: 'Yellow', img: null, variants: '/6-panel-caps/yellow-blk-wolf-head-front-cap.jpg|/6-panel-caps/yellow-blk-lw-type-side-cap.jpg|/6-panel-caps/yellow-white-wolf-head-front-cap.jpg|/6-panel-caps/yellow-white-lw-type-side-cap.jpg' }
             ],
             defaultImg: '/6-panel-caps/white-blk-wolf-head-front-cap.jpg'
         },
         'lone-wolf-typography': {
             colors: [
-                { name: 'Black', img: null, variants: '/6-panel-caps/black-white-lw-type-front-cap.jpg|/6-panel-caps/black-white-lw-type-side-cap.jpg|/6-panel-caps/black-gold-lw-type-front-cap.jpg|/6-panel-caps/black-gold-lw-type-side-cap.jpg' },
-                { name: 'Khaki', img: null, variants: '/6-panel-caps/beige-blk-lw-type-front-cap.png|/6-panel-caps/beige-blk-lw-type-side-cap.jpg' },
-                { name: 'Royal Blue', img: null, variants: '/6-panel-caps/royal-blue-lw-type-front-cap.jpg|/6-panel-caps/royal-blue-white-lw-type-side-cap.png' },
-                { name: 'Red', img: null, variants: '/6-panel-caps/red-blk-lw-type-front-cap.jpg|/6-panel-caps/red-blk-lw-type-side-cap.jpg|/6-panel-caps/red-white-lw-type-front-cap.jpg|/6-panel-caps/red-white-lw-type-side-cap.jpg' },
-                { name: 'White', img: null, variants: '/6-panel-caps/white-blk-lw-type-front-cap.png|/6-panel-caps/white-blk-lw-type-side-cap.jpg' },
-                { name: 'Yellow', img: null, variants: '/6-panel-caps/yellow-blk-lw-type-front-cap.jpg|/6-panel-caps/yellow-blk-lw-type-side-cap.jpg|/6-panel-caps/yellow-white-lw-type-front-cap.jpg|/6-panel-caps/yellow-white-lw-type-side-cap.jpg' }
+                { name: 'Black', img: null, variants: '/6-panel-caps/black-white-lw-type-front-cap.jpg|/6-panel-caps/black-white-wolf-head-side-cap.jpg|/6-panel-caps/black-gold-lw-type-front-cap.jpg|/6-panel-caps/black-gold-wolf-head-side-cap.jpg' },
+                { name: 'Khaki', img: null, variants: '/6-panel-caps/beige-blk-lw-type-front-cap.png|/6-panel-caps/beige-blk-wolf-head-side-cap.jpg' },
+                { name: 'Royal Blue', img: null, variants: '/6-panel-caps/royal-blue-lw-type-front-cap.jpg|/6-panel-caps/royal-blue-white-wolf-head-side-cap.jpg' },
+                { name: 'Red', img: null, variants: '/6-panel-caps/red-blk-lw-type-front-cap.jpg|/6-panel-caps/red-blk-wolf-head-side-cap.jpg|/6-panel-caps/red-white-lw-type-front-cap.jpg|/6-panel-caps/red-white-wolf-head-side-cap.jpg' },
+                { name: 'White', img: null, variants: '/6-panel-caps/white-blk-lw-type-front-cap.png|/6-panel-caps/white-blk-wolf-head-side-cap.jpg' },
+                { name: 'Yellow', img: null, variants: '/6-panel-caps/yellow-blk-lw-type-front-cap.jpg|/6-panel-caps/yellow-blk-wolf-head-side-cap.jpg|/6-panel-caps/yellow-white-lw-type-front-cap.jpg|/6-panel-caps/yellow-white-wolf-head-side-cap.jpg' }
             ],
             defaultImg: '/6-panel-caps/white-blk-lw-type-front-cap.png'
         }
@@ -687,14 +687,21 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.item').forEach(function (item) {
             var designSelect = item.querySelector('select[name="design"]');
             if (!designSelect || designSelect._designSwitchAttached) return;
+            var itemHeading = item.querySelector('h3');
+            var isCapItem = itemHeading && /6-panel caps?/i.test(itemHeading.textContent);
+
+            // Caps use updateCapDesign(), attached when their selector is created.
+            // Do not add this second handler: it rebuilds the swatches while the
+            // cap handler is also changing them, which can leave the side-view
+            // gallery out of sync with the selected colour.
+            if (isCapItem) return;
+
             designSelect._designSwitchAttached = true;
 
             designSelect.addEventListener('change', function () {
                 var selected = this.value;
                 var key = null;
-                var itemHeading = item.querySelector('h3');
                 var isGolferItem = itemHeading && /golfers?/i.test(itemHeading.textContent);
-                var isCapItem = itemHeading && /6-panel caps?/i.test(itemHeading.textContent);
 
                 if (/isolation breeds growth/i.test(selected)) {
                     key = 'isolation-breeds-growth';
