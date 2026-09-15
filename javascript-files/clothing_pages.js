@@ -157,18 +157,37 @@ function updateBeanieDesign(selectElement) {
     var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' : /typography/i.test(selectElement.value) ? 'typography' : 'emblem';
     var variants = {
         emblem: {
-            White: ['/beanies/white-blk-lw-emblem-beanie.jpg', '/beanies/white-red-lw-emblem-beanie.jpg'], Grey: ['/beanies/grey-blk-lw-emblem-beanie.png'], Black: ['/beanies/black-gold-lw-emblem-beanie.jpg', '/beanies/black-white-lw-emblem-beanie.jpg', '/beanies/black-red-lw-emblem-beanie.jpg'], Pink: ['/beanies/pink-blk-lw-emblem-beanie.png'], Red: ['/beanies/red-blk-lw-emblem-beanie.jpg', '/beanies/red-white-lw-emblem-beanie.jpg'], 'Royal Blue': ['/beanies/royal-blue-lw-emblem-beanie.jpg'], Yellow: ['/beanies/yellow-blk-lw-emblem-beanie.jpg']
+            White: ['/beanies/white-blk-lw-emblem-beanie.jpg', '/beanies/white-red-lw-emblem-beanie.jpg'],
+            Grey: ['/beanies/grey-blk-lw-emblem-beanie.png'],
+            Black: ['/beanies/black-gold-lw-emblem-beanie.jpg', '/beanies/black-white-lw-emblem-beanie.jpg', '/beanies/black-red-lw-emblem-beanie.jpg'],
+            Pink: ['/beanies/pink-blk-lw-emblem-beanie.png'],
+            Red: ['/beanies/red-blk-lw-emblem-beanie.jpg', '/beanies/red-white-lw-emblem-beanie.jpg'],
+            'Royal Blue': ['/beanies/royal-blue-lw-emblem-beanie.jpg'],
+            Yellow: ['/beanies/yellow-blk-lw-emblem-beanie.jpg']
         },
         'wolf-head': {
-            White: ['/beanies/white-blk-wolf-head-beanie.jpg', '/beanies/white-red-wolf-head-beanie.jpg'], Grey: ['/beanies/grey-blk-wolf-head-beanie.jpg'], Black: ['/beanies/black-white-wolf-head-beanie.jpg', '/beanies/black-red-wolf-head.jpg', '/beanies/black-gold-wolf-head-beanie.jpg'], Pink: ['/beanies/pink-blk-wolf-head-beanie.jpg'], Red: ['/beanies/red-blk-wolf-head-beanie.jpg', '/beanies/red-white-wolf-head-beanie.jpg'], 'Royal Blue': ['/beanies/royal-blue-wolf-head-beanie.jpg'], Yellow: ['/beanies/yellow-blk-wolf-head-beanie.jpg']
+            White: ['/beanies/white-blk-wolf-head-beanie.jpg', '/beanies/white-red-wolf-head-beanie.jpg'],
+            Grey: ['/beanies/grey-blk-wolf-head-beanie.jpg'],
+            Black: ['/beanies/black-white-wolf-head-beanie.jpg', '/beanies/black-red-wolf-head.jpg', '/beanies/black-gold-wolf-head-beanie.jpg'],
+            Pink: ['/beanies/pink-blk-wolf-head-beanie.jpg'],
+            Red: ['/beanies/red-blk-wolf-head-beanie.jpg', '/beanies/red-white-wolf-head-beanie.jpg'],
+            'Royal Blue': ['/beanies/royal-blue-wolf-head-beanie.jpg'],
+            Yellow: ['/beanies/yellow-blk-wolf-head-beanie.jpg']
         },
         typography: {
-            White: ['/beanies/white-blk-lw-type-beanie.jpg'], Grey: ['/beanies/grey-blk-lw-type-beanie.png'], Black: ['/beanies/black-white-lw-type-beanie.jpg', '/beanies/black-gold-lw-type-beanie.jpg'], Pink: ['/beanies/pink-lw-type-beanie.png'], Red: ['/beanies/red-blk-lw-type-beanie.jpg', '/beanies/red-white-lw-type-beanie.jpg'], 'Royal Blue': ['/beanies/royal-blue-lw-type-beanie.jpg'], Yellow: ['/beanies/yellow-blk-lw-type-beanie.jpg']
+            White: ['/beanies/white-blk-lw-type-beanie.jpg'],
+            Grey: ['/beanies/grey-blk-lw-type-beanie.png'],
+            Black: ['/beanies/black-white-lw-type-beanie.jpg', '/beanies/black-gold-lw-type-beanie.jpg'],
+            Pink: ['/beanies/pink-lw-type-beanie.png'],
+            Red: ['/beanies/red-blk-lw-type-beanie.jpg', '/beanies/red-white-lw-type-beanie.jpg'],
+            'Royal Blue': ['/beanies/royal-blue-lw-type-beanie.jpg'],
+            Yellow: ['/beanies/yellow-blk-lw-type-beanie.jpg']
         }
     };
 
     palette.querySelectorAll('.color').forEach(function (swatch) {
-        var colorVariants = variants[design][swatch.getAttribute('data-color')];
+        var colorName = swatch.getAttribute('data-color');
+        var colorVariants = variants[design][colorName];
         swatch.setAttribute('data-variants', colorVariants ? colorVariants.join('|') : '');
     });
     var selectedColor = palette.querySelector('.selected-color') || palette.querySelector('.color');
@@ -204,7 +223,8 @@ function updateBucketHatDesign(selectElement) {
 
     if (!variants) return;
     palette.querySelectorAll('.color').forEach(function (swatch) {
-        var colorVariants = variants[swatch.getAttribute('data-color')];
+        var colorName = swatch.getAttribute('data-color');
+        var colorVariants = variants[colorName];
         swatch.setAttribute('data-variants', colorVariants ? colorVariants.join('|') : '');
     });
     var selectedColor = palette.querySelector('.selected-color') || palette.querySelector('.color');
@@ -323,20 +343,20 @@ function updateCapDesign(selectElement) {
     var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' : 'typography';
     var variants = {
         'wolf-head': {
-            Black: ['/6-panel-caps/black-white-wolf-head-front-cap.jpg', '/6-panel-caps/black-red-wolf-head-front-cap.jpg', '/6-panel-caps/black-white-lw-type-side-cap.jpg', '/6-panel-caps/black-gold-wolf-head-front-cap.jpg', '/6-panel-caps/black-gold-lw-type-side-cap.jpg'],
-            Khaki: ['/6-panel-caps/beige-blk-wolf-head-front-cap.png', '/6-panel-caps/beige-blk-lw-type-side-cap.jpg'],
-            'Royal Blue': ['/6-panel-caps/royal-blue-wolf-head-front-cap.jpg', '/6-panel-caps/royal-blue-white-lw-type-side-cap.png'],
-            Red: ['/6-panel-caps/red-blk-wolf-head-front-cap.jpg', '/6-panel-caps/red-blk-lw-type-side-cap.jpg', '/6-panel-caps/red-white-wolf-head-front-cap.jpg', '/6-panel-caps/red-white-lw-type-side-cap.jpg'],
-            White: ['/6-panel-caps/white-red-wolf-head-front-cap.jpg', '/6-panel-caps/white-blk-wolf-head-front-cap.jpg', '/6-panel-caps/white-blk-lw-type-side-cap.jpg'],
-            Yellow: ['/6-panel-caps/yellow-blk-wolf-head-front-cap.jpg', '/6-panel-caps/yellow-blk-lw-type-side-cap.jpg', '/6-panel-caps/yellow-white-wolf-head-front-cap.jpg', '/6-panel-caps/yellow-white-lw-type-side-cap.jpg']
+            Black: ['/6-panel-caps/black-white-wolf-head-front-cap.jpg', '/6-panel-caps/black-white-wolf-head-side-cap.jpg', '/6-panel-caps/black-red-wolf-head-front-cap.jpg', '/6-panel-caps/black-gold-wolf-head-front-cap.jpg', '/6-panel-caps/black-gold-wolf-head-side-cap.jpg'],
+            Khaki: ['/6-panel-caps/beige-blk-wolf-head-front-cap.png', '/6-panel-caps/beige-blk-wolf-head-side-cap.jpg'],
+            'Royal Blue': ['/6-panel-caps/royal-blue-wolf-head-front-cap.jpg', '/6-panel-caps/royal-blue-white-wolf-head-side-cap.jpg'],
+            Red: ['/6-panel-caps/red-blk-wolf-head-front-cap.jpg', '/6-panel-caps/red-blk-wolf-head-side-cap.jpg', '/6-panel-caps/red-white-wolf-head-front-cap.jpg', '/6-panel-caps/red-white-wolf-head-side-cap.jpg'],
+            White: ['/6-panel-caps/white-blk-wolf-head-front-cap.jpg', '/6-panel-caps/white-blk-wolf-head-side-cap.jpg', '/6-panel-caps/white-red-wolf-head-front-cap.jpg'],
+            Yellow: ['/6-panel-caps/yellow-blk-wolf-head-front-cap.jpg', '/6-panel-caps/yellow-blk-wolf-head-side-cap.jpg', '/6-panel-caps/yellow-white-wolf-head-front-cap.jpg', '/6-panel-caps/yellow-white-wolf-head-side-cap.jpg']
         },
         typography: {
-            Black: ['/6-panel-caps/black-white-lw-type-front-cap.jpg', '/6-panel-caps/black-white-wolf-head-side-cap.jpg', '/6-panel-caps/black-red-wolf-head-side-cap.jpg', '/6-panel-caps/black-gold-lw-type-front-cap.jpg', '/6-panel-caps/black-gold-wolf-head-side-cap.jpg'],
+            Black: ['/6-panel-caps/black-white-lw-type-front-cap.jpg', '/6-panel-caps/black-white-lw-type-side-cap.jpg', '/6-panel-caps/black-gold-lw-type-front-cap.jpg', '/6-panel-caps/black-gold-lw-type-side-cap.jpg'],
             Khaki: ['/6-panel-caps/beige-blk-lw-type-front-cap.png', '/6-panel-caps/beige-blk-lw-type-side-cap.jpg'],
             'Royal Blue': ['/6-panel-caps/royal-blue-lw-type-front-cap.jpg', '/6-panel-caps/royal-blue-white-lw-type-side-cap.png'],
-            Red: ['/6-panel-caps/red-blk-lw-type-front-cap.jpg', '/6-panel-caps/red-blk-wolf-head-side-cap.jpg', '/6-panel-caps/red-white-lw-type-front-cap.jpg', '/6-panel-caps/red-white-wolf-head-side-cap.jpg'],
-            White: ['/6-panel-caps/white-blk-lw-type-front-cap.png', '/6-panel-caps/white-blk-wolf-head-side-cap.jpg', '/6-panel-caps/white-red-wolf-head-side-cap.jpg'],
-            Yellow: ['/6-panel-caps/yellow-blk-lw-type-front-cap.jpg', '/6-panel-caps/yellow-blk-lw-type-side-cap.jpg']
+            Red: ['/6-panel-caps/red-blk-lw-type-front-cap.jpg', '/6-panel-caps/red-blk-lw-type-side-cap.jpg', '/6-panel-caps/red-white-lw-type-front-cap.jpg', '/6-panel-caps/red-white-lw-type-side-cap.jpg'],
+            White: ['/6-panel-caps/white-blk-lw-type-front-cap.png', '/6-panel-caps/white-blk-lw-type-side-cap.jpg'],
+            Yellow: ['/6-panel-caps/yellow-blk-lw-type-front-cap.jpg', '/6-panel-caps/yellow-blk-lw-type-side-cap.jpg', '/6-panel-caps/yellow-white-lw-type-front-cap.jpg', '/6-panel-caps/yellow-white-lw-type-side-cap.jpg']
         }
     };
 
@@ -547,6 +567,31 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    var cap_designData = {
+        'wolf-head': {
+            colors: [
+                { name: 'Black', img: null, variants: '/6-panel-caps/black-white-wolf-head-front-cap.jpg|/6-panel-caps/black-red-wolf-head-front-cap.jpg|/6-panel-caps/black-gold-wolf-head-front-cap.jpg' },
+                { name: 'Khaki', img: '/6-panel-caps/beige-blk-wolf-head-front-cap.png', variants: null },
+                { name: 'Royal Blue', img: '/6-panel-caps/royal-blue-wolf-head-front-cap.jpg', variants: null },
+                { name: 'Red', img: null, variants: '/6-panel-caps/red-blk-wolf-head-front-cap.jpg|/6-panel-caps/red-white-wolf-head-front-cap.jpg' },
+                { name: 'White', img: null, variants: '/6-panel-caps/white-blk-wolf-head-front-cap.jpg|/6-panel-caps/white-red-wolf-head-front-cap.jpg' },
+                { name: 'Yellow', img: null, variants: '/6-panel-caps/yellow-blk-wolf-head-front-cap.jpg|/6-panel-caps/yellow-white-wolf-head-front-cap.jpg' }
+            ],
+            defaultImg: '/6-panel-caps/white-blk-wolf-head-front-cap.jpg'
+        },
+        'lone-wolf-typography': {
+            colors: [
+                { name: 'Black', img: null, variants: '/6-panel-caps/black-white-lw-type-front-cap.jpg|/6-panel-caps/black-white-lw-type-side-cap.jpg|/6-panel-caps/black-gold-lw-type-front-cap.jpg|/6-panel-caps/black-gold-lw-type-side-cap.jpg' },
+                { name: 'Khaki', img: null, variants: '/6-panel-caps/beige-blk-lw-type-front-cap.png|/6-panel-caps/beige-blk-lw-type-side-cap.jpg' },
+                { name: 'Royal Blue', img: null, variants: '/6-panel-caps/royal-blue-lw-type-front-cap.jpg|/6-panel-caps/royal-blue-white-lw-type-side-cap.png' },
+                { name: 'Red', img: null, variants: '/6-panel-caps/red-blk-lw-type-front-cap.jpg|/6-panel-caps/red-blk-lw-type-side-cap.jpg|/6-panel-caps/red-white-lw-type-front-cap.jpg|/6-panel-caps/red-white-lw-type-side-cap.jpg' },
+                { name: 'White', img: null, variants: '/6-panel-caps/white-blk-lw-type-front-cap.png|/6-panel-caps/white-blk-lw-type-side-cap.jpg' },
+                { name: 'Yellow', img: null, variants: '/6-panel-caps/yellow-blk-lw-type-front-cap.jpg|/6-panel-caps/yellow-blk-lw-type-side-cap.jpg|/6-panel-caps/yellow-white-lw-type-front-cap.jpg|/6-panel-caps/yellow-white-lw-type-side-cap.jpg' }
+            ],
+            defaultImg: '/6-panel-caps/white-blk-lw-type-front-cap.png'
+        }
+    };
+
     var golfer_designData = {
         'lone-wolf-emblem': {
             colors: [
@@ -649,6 +694,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 var key = null;
                 var itemHeading = item.querySelector('h3');
                 var isGolferItem = itemHeading && /golfers?/i.test(itemHeading.textContent);
+                var isCapItem = itemHeading && /6-panel caps?/i.test(itemHeading.textContent);
 
                 if (/isolation breeds growth/i.test(selected)) {
                     key = 'isolation-breeds-growth';
@@ -665,7 +711,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 if (!key) return;
 
-                var data = isGolferItem ? golfer_designData[key] : designData[key];
+                var data = isCapItem ? cap_designData[key] : isGolferItem ? golfer_designData[key] : designData[key];
                 if (!data && isGolferItem && key === 'lone-wolf-emblem') {
                     data = golfer_designData['lone-wolf-emblem'];
                 }
