@@ -158,9 +158,9 @@ function updateBeanieDesign(selectElement) {
     var variants = {
         emblem: {
             White: ['/beanies/white-blk-lw-emblem-beanie.jpg', '/beanies/white-red-lw-emblem-beanie.jpg'],
-            Grey: ['/beanies/grey-blk-lw-emblem-beanie.png'],
+            Grey: ['/beanies/grey-blk-lw-emblem-beanie.jpg'],
             Black: ['/beanies/black-gold-lw-emblem-beanie.jpg', '/beanies/black-white-lw-emblem-beanie.jpg', '/beanies/black-red-lw-emblem-beanie.jpg'],
-            Pink: ['/beanies/pink-blk-lw-emblem-beanie.png'],
+            Pink: ['/beanies/pink-blk-lw-emblem-beanie.jpg'],
             Red: ['/beanies/red-blk-lw-emblem-beanie.jpg', '/beanies/red-white-lw-emblem-beanie.jpg'],
             'Royal Blue': ['/beanies/royal-blue-lw-emblem-beanie.jpg'],
             Yellow: ['/beanies/yellow-blk-lw-emblem-beanie.jpg']
@@ -682,19 +682,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.colors').forEach(sortColorSwatches);
 
-    // Hook into dynamically created design dropdowns for T-Shirts and Golfers
+    // Hook into dynamically created design dropdowns for T-Shirts and Golfers.
+    // Headwear uses its own design handlers and image datasets above.
     function attachDesignSwitch() {
         document.querySelectorAll('.item').forEach(function (item) {
             var designSelect = item.querySelector('select[name="design"]');
             if (!designSelect || designSelect._designSwitchAttached) return;
             var itemHeading = item.querySelector('h3');
             var isCapItem = itemHeading && /6-panel caps?/i.test(itemHeading.textContent);
+            var isBucketHatItem = item.classList.contains('bucket-hats-item');
+            var isBeanieItem = itemHeading && /beanies?/i.test(itemHeading.textContent);
 
-            // Caps use updateCapDesign(), attached when their selector is created.
-            // Do not add this second handler: it rebuilds the swatches while the
-            // cap handler is also changing them, which can leave the side-view
-            // gallery out of sync with the selected colour.
-            if (isCapItem) return;
+            // These products use dedicated handlers attached when their selector
+            // is created. A second generic handler would replace their mappings
+            // with the T-shirt dataset.
+            if (isCapItem || isBucketHatItem || isBeanieItem) return;
 
             designSelect._designSwitchAttached = true;
 
