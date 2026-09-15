@@ -1,0 +1,280 @@
+# Lone Wolf Klothing Website Backlog
+
+This backlog reflects the current static HTML/CSS/JavaScript website. Status values are `Done`, `In Progress`, or `To Do`.
+
+## Epic 1: Product Catalogue and Navigation
+
+### US-101: Browse clothing categories
+- **Status:** Done
+- **Priority:** High
+- **User story:** As a shopper, I want to browse clothing categories so that I can find the product type I want.
+- **Acceptance criteria:**
+  - Navigation links are available for T-Shirts & Vests, Golfers, Crews & Hoodies, Sweatpants & Shorts, Tracksuits, and Puffer Jackets & Body Warmers.
+  - Category pages load from the navigation links.
+  - The navigation label uses "Klothing" instead of "Clothing".
+- **Tasks:**
+  - Verify every category link resolves correctly.
+  - Verify active navigation styling on each category page.
+  - Check navigation at desktop, tablet, and mobile widths.
+
+### US-102: Browse accessories categories
+- **Status:** Done
+- **Priority:** Medium
+- **User story:** As a shopper, I want to browse accessories so that I can find caps, bucket hats, and beanies.
+- **Acceptance criteria:**
+  - Accessories navigation includes Bucket Hats & Beanies and 6-Panel Caps.
+  - Both accessory pages load correctly.
+- **Tasks:**
+  - Verify accessory links and active states.
+  - Check accessory pages for missing images and layout overflow.
+
+### US-103: View company and help information
+- **Status:** Done
+- **Priority:** Medium
+- **User story:** As a shopper, I want access to company, shipping, returns, payment, and contact information before ordering.
+- **Acceptance criteria:**
+  - Footer links load the relevant pages.
+  - Contact, shipping, returns, payment, about, services, and privacy pages are reachable.
+- **Tasks:**
+  - Verify all footer URLs.
+  - Review copy for current business details and policies.
+  - Add a clear contact submission success/error state.
+
+## Epic 2: Product Images and Variant Mapping
+
+### US-201: Display correct product images by color
+- **Status:** Done for reviewed products; broader verification remains
+- **Priority:** High
+- **User story:** As a shopper, I want the product image to change to the selected color so that I can see what I am buying.
+- **Acceptance criteria:**
+  - T-shirt, golfer, hoodie, crewneck, and tracksuit color mappings use existing asset filenames.
+  - The default golfer image loads without a broken-image state.
+  - Royal Blue is removed from the golfer color selector.
+- **Tasks:**
+  - Audit every `data-img` and `data-variants` path against the filesystem.
+  - Replace remaining stale filenames or incorrect extensions.
+  - Test every color/design combination on each product page.
+
+### US-202: Support multiple image variants for a color
+- **Status:** Done
+- **Priority:** High
+- **User story:** As a shopper, I want to view multiple product angles for a color so that I can inspect the item before ordering.
+- **Acceptance criteria:**
+  - Products with multiple assets show previous/next controls.
+  - Variant navigation updates the displayed image.
+  - Variant indicators identify the current image.
+  - Switching color resets the variant navigation to the selected color's first image.
+- **Tasks:**
+  - Test previous and next controls on all multi-image products.
+  - Confirm controls do not trigger product-card or swatch clicks.
+  - Confirm all variant images exist.
+
+### US-203: Add visual product galleries
+- **Status:** In Progress
+- **Priority:** Medium
+- **User story:** As a shopper, I want a product gallery beside the purchase card so that the catalogue feels easier to inspect.
+- **Acceptance criteria:**
+  - Golfers use a left framed gallery with thumbnails, a center product card, and a right portrait frame.
+  - Tracksuits use the same composition.
+  - Existing product controls remain functional.
+- **Tasks:**
+  - Validate the golfers gallery against the approved reference screenshot.
+  - Validate the tracksuits gallery against the approved reference screenshot.
+  - Decide whether the same gallery treatment is required for other product categories.
+  - Add thumbnail click behavior if thumbnails are intended to control the main image.
+
+## Epic 3: Design Type and Pricing Selection
+
+### US-301: Select design type on apparel products
+- **Status:** Done for implemented apparel categories
+- **Priority:** High
+- **User story:** As a shopper, I want to choose a design type so that I can order the artwork style I prefer.
+- **Acceptance criteria:**
+  - T-shirts support Large Print and Pocket Size emblem options plus the other supported designs.
+  - Hoodies and crewnecks support Large Print and Pocket Size emblem options plus the other supported designs.
+  - Golfers support the available emblem/design options.
+  - Design selectors update the corresponding color/image mappings.
+- **Tasks:**
+  - Verify selector labels exactly match the product requirements.
+  - Test changing design after changing color.
+  - Confirm the selected design never leaves stale image variants in the palette.
+
+### US-302: Calculate price from design selection
+- **Status:** Done for implemented selectors; needs regression coverage
+- **Priority:** High
+- **User story:** As a shopper, I want the price to update when I select a different design type so that I know the correct total before adding to cart.
+- **Acceptance criteria:**
+  - Large Print and Pocket Size selections show their configured prices.
+  - Price changes immediately after selection.
+  - The selected price is the price sent to the cart flow.
+- **Tasks:**
+  - Confirm prices for every product category with the business owner.
+  - Test price changes after repeated design and color changes.
+  - Add automated checks for selector-to-price behavior.
+
+### US-303: Keep color selectors synchronized with design type
+- **Status:** Done
+- **Priority:** High
+- **User story:** As a shopper, I want only valid colors and images for the selected design type so that I cannot select an invalid combination.
+- **Acceptance criteria:**
+  - Changing design rebuilds or updates the correct color palette.
+  - The first valid color is selected after a design change.
+  - The product image updates to the selected design and color.
+- **Tasks:**
+  - Test all design selectors on T-shirts, hoodies, crewnecks, golfers, beanies, bucket hats, caps, and tracksuits.
+  - Verify no stale swatches remain after a design change.
+  - Verify missing mappings fail gracefully.
+
+## Epic 4: Swatch Interaction and Product Controls
+
+### US-401: Show active color selection
+- **Status:** Done
+- **Priority:** High
+- **User story:** As a shopper, I want to see which color is selected so that I understand the current product configuration.
+- **Acceptance criteria:**
+  - The initial color swatch is visibly selected.
+  - Clicking a swatch removes the active state from sibling swatches.
+  - The selected state works on clothing and accessory pages.
+- **Tasks:**
+  - Regression-test static and dynamically-created palettes.
+  - Confirm both `selected` and `selected-color` class paths remain synchronized.
+
+### US-402: Show hover feedback on color swatches
+- **Status:** Done
+- **Priority:** Medium
+- **User story:** As a shopper, I want hover feedback on swatches so that I know they are interactive.
+- **Acceptance criteria:**
+  - Hovering a swatch changes its scale and visual ring.
+  - Hover feedback is visible against light and dark swatches.
+  - Styling is applied on T-shirts, golfers, crewnecks, hoodies, sweatpants, shorts, beanies, bucket hats, and 6-panel caps.
+- **Tasks:**
+  - Check hover behavior with a mouse on desktop.
+  - Check focus behavior with a keyboard.
+  - Ensure the ring does not cause layout shifts or overlap neighboring controls.
+
+### US-403: Configure size and quantity
+- **Status:** Done
+- **Priority:** High
+- **User story:** As a shopper, I want to choose size and quantity so that I can order the correct item.
+- **Acceptance criteria:**
+  - Product cards expose the supported sizes.
+  - Quantity supports the configured range.
+  - Selected size and quantity are included in the cart payload.
+- **Tasks:**
+  - Verify size options per product category.
+  - Verify quantity validation and cart output.
+  - Add a user-visible message for invalid or missing selections.
+
+## Epic 5: Cart and Ordering
+
+### US-501: Add a configured product to cart
+- **Status:** In Progress
+- **Priority:** Critical
+- **User story:** As a shopper, I want to add my configured product to the cart so that I can place an order.
+- **Acceptance criteria:**
+  - Add to Cart captures product, design, color, size, quantity, image, and price.
+  - The cart action works for every product category.
+  - The shopper receives confirmation after adding an item.
+- **Tasks:**
+  - Audit `addToCart.js` for every product type.
+  - Test cart payloads after changing design, color, size, and quantity.
+  - Add cart item count and cart summary UI.
+  - Prevent adding products with invalid or missing data.
+
+### US-502: Complete the WhatsApp ordering flow
+- **Status:** In Progress
+- **Priority:** Critical
+- **User story:** As a shopper, I want to send my cart through the configured ordering channel so that I can complete my purchase.
+- **Acceptance criteria:**
+  - The generated message contains all selected product details.
+  - Prices and quantities are correct.
+  - The ordering link works on desktop and mobile.
+- **Tasks:**
+  - Confirm the destination number or ordering endpoint.
+  - Encode product data safely in the outgoing message.
+  - Test the flow on supported browsers and mobile devices.
+  - Add an error state when the ordering action cannot open.
+
+### US-503: Persist cart items between page visits
+- **Status:** To Do
+- **Priority:** High
+- **User story:** As a shopper, I want my cart to persist while I browse so that I do not lose selected items.
+- **Acceptance criteria:**
+  - Cart data survives navigation and page refresh.
+  - Items can be removed and quantities can be changed.
+  - Cart data is cleared after a successful order or explicit clear action.
+- **Tasks:**
+  - Choose localStorage or another persistence approach.
+  - Define the cart data schema.
+  - Build cart summary and removal controls.
+  - Handle stale or malformed stored cart data.
+
+## Epic 6: Quality, Accessibility, and Release Readiness
+
+### US-601: Verify responsive layouts
+- **Status:** In Progress
+- **Priority:** High
+- **User story:** As a shopper, I want the website to work on desktop, tablet, and mobile screens so that I can shop from any device.
+- **Acceptance criteria:**
+  - No horizontal overflow at supported viewport sizes.
+  - Product cards and galleries remain usable on mobile.
+  - Navigation, selectors, and buttons remain accessible at touch sizes.
+- **Tasks:**
+  - Test all pages at desktop, tablet, and mobile viewport sizes.
+  - Fix layout overflow and overlapping text.
+  - Confirm golfer and tracksuit galleries collapse appropriately on mobile.
+  - Capture regression screenshots for key pages.
+
+### US-602: Improve semantic accessibility
+- **Status:** To Do
+- **Priority:** High
+- **User story:** As a keyboard or assistive-technology user, I want product controls to be understandable and operable.
+- **Acceptance criteria:**
+  - All interactive controls have accessible names.
+  - Color choices have accessible labels or text alternatives.
+  - Keyboard focus is visible.
+  - Heading hierarchy is logical on every page.
+- **Tasks:**
+  - Add `aria-label` or visible labels to swatches and thumbnail controls.
+  - Replace non-semantic clickable spans where appropriate.
+  - Test keyboard navigation and focus order.
+  - Run an accessibility audit.
+
+### US-603: Establish automated regression tests
+- **Status:** To Do
+- **Priority:** High
+- **User story:** As a maintainer, I want automated checks so that image mappings, selectors, and cart behavior do not regress.
+- **Acceptance criteria:**
+  - Tests cover page loading and missing assets.
+  - Tests cover design, color, price, size, and quantity changes.
+  - Tests cover add-to-cart output.
+  - Tests run from a documented command.
+- **Tasks:**
+  - Add npm scripts for Playwright tests.
+  - Create page smoke tests for all catalogue pages.
+  - Add product configuration matrix tests.
+  - Add screenshot tests for golfers and tracksuits.
+  - Document test setup and execution.
+
+### US-604: Prepare the site for deployment
+- **Status:** To Do
+- **Priority:** Medium
+- **User story:** As the site owner, I want a repeatable deployment process so that updates can be released reliably.
+- **Acceptance criteria:**
+  - All asset paths work from the production hosting root.
+  - External font/icon dependencies are documented or bundled.
+  - A deployment target and process are documented.
+  - Broken links and missing assets are checked before release.
+- **Tasks:**
+  - Decide on hosting and base-path strategy.
+  - Normalize absolute and relative asset paths.
+  - Add a pre-release link and asset check.
+  - Document deployment steps in `README.md`.
+
+## Suggested First Sprint
+
+1. Complete US-501 and US-502 by verifying the cart and ordering flow end to end.
+2. Complete the asset audit in US-201 across every product category.
+3. Add the Playwright smoke-test foundation in US-603.
+4. Finish responsive validation for the golfers and tracksuits galleries in US-601.
+5. Add accessible labels and keyboard focus behavior from US-602.
