@@ -43,14 +43,18 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
 ## Epic 2: Product Images and Variant Mapping
 
 ### US-201: Display correct product images by color
-- **Status:** Done for reviewed products; broader verification remains
+- **Status:** In Progress
 - **Priority:** High
 - **User story:** As a shopper, I want the product image to change to the selected color so that I can see what I am buying.
 - **Acceptance criteria:**
-  - T-shirt, golfer, hoodie, crewneck, and tracksuit color mappings use existing asset filenames.
+  - T-shirt, golfer, hoodie, crewneck, tracksuit, beanie, bucket-hat, and cap color mappings use existing asset filenames.
   - The default golfer image loads without a broken-image state.
   - Royal Blue is removed from the golfer color selector.
+  - Beanie mappings use the current `.jpg` assets for Grey and Pink Lone Wolf Emblem variants.
+  - Bucket hats and beanies retain their dedicated image datasets when a design changes.
 - **Tasks:**
+  - Completed: Correct stale Grey and Pink Lone Wolf Emblem beanie paths in the page and design mapping.
+  - Completed: Prevent the generic T-shirt/Golfer design handler from overwriting bucket-hat and beanie mappings.
   - Audit every `data-img` and `data-variants` path against the filesystem.
   - Replace remaining stale filenames or incorrect extensions.
   - Test every color/design combination on each product page.
@@ -64,7 +68,9 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
   - Variant navigation updates the displayed image.
   - Variant indicators identify the current image.
   - Switching color resets the variant navigation to the selected color's first image.
+  - 6-Panel Cap Typography variants pair Typography front views with Wolf Head side views; Wolf Head variants use the inverse pairing where matching assets exist.
 - **Tasks:**
+  - Completed: Remove the duplicate cap design handler so cap variant navigation is not overwritten after a design switch.
   - Test previous and next controls on all multi-image products.
   - Confirm controls do not trigger product-card or swatch clicks.
   - Confirm all variant images exist.
@@ -74,12 +80,14 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
 - **Priority:** Medium
 - **User story:** As a shopper, I want a product gallery beside the purchase card so that the catalogue feels easier to inspect.
 - **Acceptance criteria:**
-  - Golfers use a left framed gallery with thumbnails, a center product card, and a right portrait frame.
-  - Tracksuits use the same composition.
+  - Golfers use matching left and right portrait frames around the center product card.
+  - The Golfer frames use the Lone Wolf Typography and Lone Wolf Emblem model images.
+  - Tracksuits retain the left gallery, center product card, and right portrait frame composition.
+  - The Tracksuits right frame uses the Lone Wolf Emblem model image.
   - Existing product controls remain functional.
 - **Tasks:**
-  - Validate the golfers gallery against the approved reference screenshot.
-  - Validate the tracksuits gallery against the approved reference screenshot.
+  - Completed: Replace the Golfer left thumbnail gallery with a matching single portrait frame.
+  - Validate the golfers and tracksuits galleries against the approved reference screenshot.
   - Decide whether the same gallery treatment is required for other product categories.
   - Add thumbnail click behavior if thumbnails are intended to control the main image.
 
@@ -94,7 +102,9 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
   - Hoodies and crewnecks support Large Print and Pocket Size emblem options plus the other supported designs.
   - Golfers support the available emblem/design options.
   - Design selectors update the corresponding color/image mappings.
+  - Visible selector labels use `Select Design:`.
 - **Tasks:**
+  - Completed: Update static and dynamically created visible labels from `Design:` to `Select Design:`.
   - Verify selector labels exactly match the product requirements.
   - Test changing design after changing color.
   - Confirm the selected design never leaves stale image variants in the palette.
@@ -120,7 +130,9 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
   - Changing design rebuilds or updates the correct color palette.
   - The first valid color is selected after a design change.
   - The product image updates to the selected design and color.
+  - Headwear design changes retain bucket-hat, beanie, or cap image mappings rather than falling back to the T-shirt dataset.
 - **Tasks:**
+  - Completed: Isolate the dedicated bucket-hat, beanie, and cap design handlers from the generic T-shirt/Golfer handler.
   - Test all design selectors on T-shirts, hoodies, crewnecks, golfers, beanies, bucket hats, caps, and tracksuits.
   - Verify no stale swatches remain after a design change.
   - Verify missing mappings fail gracefully.
