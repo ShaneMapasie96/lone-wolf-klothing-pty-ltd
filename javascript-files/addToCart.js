@@ -125,13 +125,14 @@ function ensureDesignSelector(itemContainer) {
     const isOuterwear = Boolean(itemContainer.closest('.outerwear-container'));
     const isTracksuit = Boolean(itemContainer.closest('.tracksuits-container'));
     const isCap = productType === '6-Panel Caps';
+    const isCrewneck = productType === 'Crews';
     const isVest = productType === 'Vests';
     const isTShirtOrHoodie = ['T-Shirts', 'Hoodies', 'Crewnecks'].includes(productType);
     const isHoodie = productType === 'Hoodies';
     const designOptions = [];
 
     // Add design options based on product type
-    if (productType === 'Hoodies' || productType === 'Crewnecks') {
+    if (productType === 'Hoodies' || isCrewneck) {
         designOptions.push('Lone Wolf Emblem - Large Print - ' + productType);
         designOptions.push('Lone Wolf Emblem - Pocket Size - ' + productType);
         designOptions.push('Wolf Head - ' + productType);
@@ -168,7 +169,7 @@ function ensureDesignSelector(itemContainer) {
 
     const label = document.createElement('label');
     label.setAttribute('for', 'design-select-' + Math.random().toString(36).slice(2, 9));
-    label.textContent = 'Design:';
+    label.textContent = 'Select Design:';
 
     const select = document.createElement('select');
     select.name = 'design';
@@ -220,6 +221,14 @@ function ensureDesignSelector(itemContainer) {
         select.addEventListener('change', function () {
             if (typeof updateHoodieDesign === 'function') {
                 updateHoodieDesign(this);
+            }
+        });
+    }
+
+    if (isCrewneck) {
+        select.addEventListener('change', function () {
+            if (typeof updateCrewneckDesign === 'function') {
+                updateCrewneckDesign(this);
             }
         });
     }
@@ -278,6 +287,12 @@ function ensureDesignSelector(itemContainer) {
     if (isHoodie && typeof updateHoodieDesign === 'function') {
         window.setTimeout(function () {
             updateHoodieDesign(select);
+        }, 0);
+    }
+
+    if (isCrewneck && typeof updateCrewneckDesign === 'function') {
+        window.setTimeout(function () {
+            updateCrewneckDesign(select);
         }, 0);
     }
 }

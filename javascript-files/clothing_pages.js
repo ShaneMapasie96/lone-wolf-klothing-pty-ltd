@@ -158,9 +158,9 @@ function updateBeanieDesign(selectElement) {
     var variants = {
         emblem: {
             White: ['/beanies/white-blk-lw-emblem-beanie.jpg', '/beanies/white-red-lw-emblem-beanie.jpg'],
-            Grey: ['/beanies/grey-blk-lw-emblem-beanie.png'],
+            Grey: ['/beanies/grey-blk-lw-emblem-beanie.jpg'],
             Black: ['/beanies/black-gold-lw-emblem-beanie.jpg', '/beanies/black-white-lw-emblem-beanie.jpg', '/beanies/black-red-lw-emblem-beanie.jpg'],
-            Pink: ['/beanies/pink-blk-lw-emblem-beanie.png'],
+            Pink: ['/beanies/pink-blk-lw-emblem-beanie.jpg'],
             Red: ['/beanies/red-blk-lw-emblem-beanie.jpg', '/beanies/red-white-lw-emblem-beanie.jpg'],
             'Royal Blue': ['/beanies/royal-blue-lw-emblem-beanie.jpg'],
             Yellow: ['/beanies/yellow-blk-lw-emblem-beanie.jpg']
@@ -284,18 +284,27 @@ function updateHoodieDesign(selectElement) {
     
     var selected = selectElement.value;
     var key = null;
+    var isPremiumDesign = /large print|isolation breeds growth/i.test(selected);
+
+    if (priceElement) {
+        priceElement.textContent = isPremiumDesign ? 'R549.95' : 'R499.95';
+    }
     
     if (/large print/i.test(selected)) {
         key = 'lone-wolf-emblem-large-print';
-        if (priceElement) priceElement.textContent = 'R299.95';
     } else if (/pocket size/i.test(selected)) {
         key = 'lone-wolf-emblem-pocket-size';
-        if (priceElement) priceElement.textContent = 'R249.95';
+    } else if (/wolf head/i.test(selected)) {
+        key = 'wolf-head';
+    } else if (/typography/i.test(selected)) {
+        key = 'lone-wolf-typography';
+    } else if (/isolation breeds growth/i.test(selected)) {
+        key = 'isolation-breeds-growth';
     }
     
-    if (!key || !hoodie_designData[key]) return;
+    if (!key || !window.hoodieDesignData || !window.hoodieDesignData[key]) return;
     
-    var data = hoodie_designData[key];
+    var data = window.hoodieDesignData[key];
     
     palette.innerHTML = '';
     data.colors.forEach(function (c) {
@@ -331,6 +340,51 @@ function updateHoodieDesign(selectElement) {
     });
     
     // Click first color to set image
+    var firstSwatch = palette.querySelector('.color');
+    if (firstSwatch) firstSwatch.click();
+}
+
+function updateCrewneckDesign(selectElement) {
+    var item = selectElement.closest('.item');
+    var palette = item ? item.querySelector('.colors') : null;
+    var imgEl = item ? item.querySelector('img') : null;
+    var priceElement = item ? item.querySelector('.price') : null;
+    if (!item || !palette || !imgEl) return;
+
+    var selected = selectElement.value;
+    var isPremiumDesign = /large print|isolation breeds growth/i.test(selected);
+    if (priceElement) {
+        priceElement.textContent = isPremiumDesign ? 'R499.95' : 'R449.95';
+    }
+    var design = /isolation breeds growth/i.test(selected) ? 'isolation-breeds-growth' :
+        /large print/i.test(selected) ? 'lone-wolf-emblem-large-print' :
+        /pocket size/i.test(selected) ? 'lone-wolf-emblem-pocket-size' :
+        /wolf head/i.test(selected) ? 'wolf-head' :
+        /typography/i.test(selected) ? 'lone-wolf-typography' : 'lone-wolf-emblem-pocket-size';
+    var data = window.crewneckDesignData && window.crewneckDesignData[design];
+    if (!data) return;
+
+    var swatchColors = {
+        White: '#FFFFFF', Black: '#111111', Grey: '#808080', Pink: '#FFB6C1',
+        Red: '#FF0000', 'Royal Blue': '#4169E1', Yellow: '#FFDB58'
+    };
+    removeVariantNav(item);
+    palette.innerHTML = '';
+    data.colors.forEach(function (color) {
+        var swatch = document.createElement('span');
+        swatch.className = 'color';
+        swatch.setAttribute('data-color', color.name);
+        swatch.style.backgroundColor = swatchColors[color.name] || '';
+        swatch.setAttribute('data-variants', color.variants);
+        swatch.addEventListener('click', function () {
+            Array.from(palette.children).forEach(function (element) {
+                element.classList.remove('selected-color', 'selected');
+            });
+            swatch.classList.add('selected-color', 'selected');
+            showVariantNav(item, color.variants.split('|'));
+        });
+        palette.appendChild(swatch);
+    });
     var firstSwatch = palette.querySelector('.color');
     if (firstSwatch) firstSwatch.click();
 }
@@ -628,7 +682,65 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    var hoodie_designData = {
+    window.crewneckDesignData = {
+        'lone-wolf-emblem-large-print': {
+            colors: [
+                { name: 'White', variants: '/crewnecks/white-blk-a4-lw-emblem-crewneck.png|/crewnecks/white-red-a4-lw-emblem-crewneck.png' },
+                { name: 'Black', variants: '/crewnecks/black-white-a4-lw-emblem-crewneck.png|/crewnecks/black-red-a4-lw-emblem-crewneck.png' },
+                { name: 'Grey', variants: '/crewnecks/grey-a4-lw-emblem-crewneck.png' },
+                { name: 'Pink', variants: '/crewnecks/pink-a4-lw-emblem-crewneck.png' },
+                { name: 'Red', variants: '/crewnecks/red-blk-a4-lw-emblem-crewneck.png|/crewnecks/red-white-a4-lw-emblem-crewneck.png' },
+                { name: 'Royal Blue', variants: '/crewnecks/royal-blue-a4-lw-emblem-crewneck.png' },
+                { name: 'Yellow', variants: '/crewnecks/yellow-a4-lw-emblem-crewneck.png' }
+            ]
+        },
+        'lone-wolf-emblem-pocket-size': {
+            colors: [
+                { name: 'White', variants: '/crewnecks/white-blk-lw-emblem-crewneck.jpg|/crewnecks/white-red-lw-emblem-crewneck.png' },
+                { name: 'Black', variants: '/crewnecks/black-white-lw-emblem-crewneck.png|/crewnecks/black-gold-lw-emblem-crewneck.jpg|/crewnecks/black-red-lw-emblem-crewneck.jpg' },
+                { name: 'Grey', variants: '/crewnecks/grey-lw-emblem-crewneck.jpg' },
+                { name: 'Pink', variants: '/crewnecks/pink-lw-emblem-crewneck.jpg' },
+                { name: 'Red', variants: '/crewnecks/red-blk-lw-emblem-crewneck.jpg|/crewnecks/red-white-lw-crewneck.png' },
+                { name: 'Royal Blue', variants: '/crewnecks/royal-blue-lw-emblem-crewneck.png' },
+                { name: 'Yellow', variants: '/crewnecks/yellow-lw-emblem-crewneck.jpg' }
+            ]
+        },
+        'wolf-head': {
+            colors: [
+                { name: 'White', variants: '/crewnecks/white-blk-wolf-head-crewneck.jpg|/crewnecks/white-red-wolf-head-emblem-crewneck.jpg' },
+                { name: 'Black', variants: '/crewnecks/black-white-wolf-head-crewneck.jpg|/crewnecks/black-gold-wolf-head-crewneck.jpg|/crewnecks/black-red-wolf-head-crewneck.jpg' },
+                { name: 'Grey', variants: '/crewnecks/grey-wolf-head-crewneck.png' },
+                { name: 'Pink', variants: '/crewnecks/pink-blk-wolf-head-crewneck.jpg' },
+                { name: 'Red', variants: '/crewnecks/red-white-wolf-wead-crewneck.jpg' },
+                { name: 'Royal Blue', variants: '/crewnecks/royal-blue-wolf-head-crewneck.jpg' },
+                { name: 'Yellow', variants: '/crewnecks/yellow-wolf-head-crewneck.png' }
+            ]
+        },
+        'lone-wolf-typography': {
+            colors: [
+                { name: 'White', variants: '/crewnecks/white-black-wolf-head-sleeve-lw-type-crewneck.png|/crewnecks/white-red-wolf-head-sleeve-lw-type-crewneck.png' },
+                { name: 'Black', variants: '/crewnecks/black-white-wolf-head-sleeve-lw-type-crewneck.png|/crewnecks/black-gold-wolf-head-sleeve-lw-type-crewneck.jpg|/crewnecks/black-red-wolf-head-sleeve-lw-type-crewneck.png' },
+                { name: 'Grey', variants: '/crewnecks/grey-lw-type-crewneck.png' },
+                { name: 'Pink', variants: '/crewnecks/pink-lw-type-crewneck.png' },
+                { name: 'Red', variants: '/crewnecks/red-black-wolf-head-sleeve-lw-type-crewneck.png|/crewnecks/red-white-wolf-head-sleeve-lw-type-crewneck.png' },
+                { name: 'Royal Blue', variants: '/crewnecks/royal-blue-lw-type-crewneck.png' },
+                { name: 'Yellow', variants: '/crewnecks/yellow-blk-lw-type-crewneck.png' }
+            ]
+        },
+        'isolation-breeds-growth': {
+            colors: [
+                { name: 'White', variants: '/crewnecks/white-a4-ibg-crewneck.png|/crewnecks/white-red-ibg-crewneck.png' },
+                { name: 'Black', variants: '/crewnecks/black-white-ibg-crewneck.png|/crewnecks/black-red-ibg-crewneck.png' },
+                { name: 'Grey', variants: '/crewnecks/grey-a4-ibg-crewneck.png' },
+                { name: 'Pink', variants: '/crewnecks/pink-ibg-crewneck.png' },
+                { name: 'Red', variants: '/crewnecks/red-a4-ibg-crewneck.png|/crewnecks/red-white-ibg-crewneck.jpg' },
+                { name: 'Royal Blue', variants: '/crewnecks/royalr-blue-ibg-crewneck.png' },
+                { name: 'Yellow', variants: '/crewnecks/yellow-blk-ibg-crewneck.png' }
+            ]
+        }
+    };
+
+    window.hoodieDesignData = {
         'lone-wolf-emblem-large-print': {
             colors: [
                 { name: 'White', img: null, variants: '../hoodies/white-red-a4-lw-emblem-hoodie.jpg|../hoodies/white-blk-a4-lw-emblem-hoodie.jpg' },
@@ -652,6 +764,39 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Royal Blue', img: '../hoodies/Royal-Blue-LW-Emblem-Hoodie.jpg', variants: null }
             ],
             defaultImg: '../hoodies/white-blk-lw-emblem-hoodie.png'
+        },
+        'wolf-head': {
+            colors: [
+                { name: 'White', img: null, variants: '/hoodies/white-blk-wolf-head-hoodie.jpg|/hoodies/white-red-wolf-head-hoodie.jpg' },
+                { name: 'Black', img: null, variants: '/hoodies/black-white-wolf-head-hoodie.jpg|/hoodies/black-gold-wolf-head-hoodie.jpg|/hoodies/black-red-wolf-head-hoodie.jpg' },
+                { name: 'Grey', img: '/hoodies/grey-wolf-head-hoodie.jpg', variants: null },
+                { name: 'Pink', img: '/hoodies/pink-blk-wolf-head-hoodie.png', variants: null },
+                { name: 'Red', img: null, variants: '/hoodies/red-blk-wolf-head-hoodie.png|/hoodies/red-white-wolf-head-hoodie.png' },
+                { name: 'Royal Blue', img: '/hoodies/Royal-Blue-Wolf-Head-Hoodie.jpg', variants: null },
+                { name: 'Yellow', img: '/hoodies/yellow-wolf-head-hoodie.jpg', variants: null }
+            ]
+        },
+        'lone-wolf-typography': {
+            colors: [
+                { name: 'White', img: null, variants: '/hoodies/white-blk-wolf-head-sleeve-lw-type-hoodie.jpg|/hoodies/white-red-wolf-head-sleeve-lw-type-hoodie.jpg' },
+                { name: 'Black', img: null, variants: '/hoodies/black-white-lw-type-white-wolf-head-sleeve-hoodie.jpg|/hoodies/black-gold-wolf-head-sleeve-lw-type-hoodie.jpg|/hoodies/black-red-wolf-head-sleeve-lw-type-hoodie.jpg' },
+                { name: 'Grey', img: '/hoodies/grey-lw-type-hoodie.jpg', variants: null },
+                { name: 'Pink', img: '/hoodies/pink-lw-type-blk-wolf-head-sleeve-hoodie.png', variants: null },
+                { name: 'Red', img: null, variants: '/hoodies/red-blk-wolf-head-sleeve-lw-type-hoodie.png|/hoodies/red-white-wolf-head-sleeve-lw-type-hoodie.png' },
+                { name: 'Royal Blue', img: '/hoodies/Royal-Blue-LW-Type-Hoodie.jpg', variants: null },
+                { name: 'Yellow', img: '/hoodies/yellow-lw-type-hoodie.jpg', variants: null }
+            ]
+        },
+        'isolation-breeds-growth': {
+            colors: [
+                { name: 'White', img: null, variants: '/hoodies/white-blk-ibg-hoodie.jpg|/hoodies/white-red-ibg-hoodie.jpg' },
+                { name: 'Black', img: null, variants: '/hoodies/black-white-a4-ibg-hoodie.jpg|/hoodies/black-gold-ibg-hoodie.jpg|/hoodies/black-red-ibg-hoodie.jpg' },
+                { name: 'Grey', img: '/hoodies/grey-ibg-hoodie.jpg', variants: null },
+                { name: 'Pink', img: '/hoodies/pink-a4-ibg-hoodie.png', variants: null },
+                { name: 'Red', img: null, variants: '/hoodies/red-blk-igb-hoodie.png|/hoodies/red-white-ibg-hoodie.png' },
+                { name: 'Royal Blue', img: '/hoodies/Royal-Blue-IBG-Hoodie.jpg', variants: null },
+                { name: 'Yellow', img: '/hoodies/yellow-ibg-hoodie.jpg', variants: null }
+            ]
         }
     };
 
@@ -682,19 +827,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.colors').forEach(sortColorSwatches);
 
-    // Hook into dynamically created design dropdowns for T-Shirts and Golfers
+    // Hook into dynamically created design dropdowns for T-Shirts and Golfers.
+    // Headwear uses its own design handlers and image datasets above.
     function attachDesignSwitch() {
         document.querySelectorAll('.item').forEach(function (item) {
             var designSelect = item.querySelector('select[name="design"]');
             if (!designSelect || designSelect._designSwitchAttached) return;
             var itemHeading = item.querySelector('h3');
             var isCapItem = itemHeading && /6-panel caps?/i.test(itemHeading.textContent);
+            var isBucketHatItem = item.classList.contains('bucket-hats-item');
+            var isBeanieItem = itemHeading && /beanies?/i.test(itemHeading.textContent);
+            var isHoodieItem = itemHeading && /hoodies?/i.test(itemHeading.textContent);
+            var isCrewneckItem = itemHeading && /crewnecks?/i.test(itemHeading.textContent);
 
-            // Caps use updateCapDesign(), attached when their selector is created.
-            // Do not add this second handler: it rebuilds the swatches while the
-            // cap handler is also changing them, which can leave the side-view
-            // gallery out of sync with the selected colour.
-            if (isCapItem) return;
+            // These products use dedicated handlers attached when their selector
+            // is created. A second generic handler would replace their mappings
+            // with the T-shirt dataset.
+            if (isCapItem || isBucketHatItem || isBeanieItem || isHoodieItem || isCrewneckItem) return;
 
             designSelect._designSwitchAttached = true;
 
