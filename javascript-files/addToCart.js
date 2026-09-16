@@ -169,7 +169,7 @@ function ensureDesignSelector(itemContainer) {
 
     const label = document.createElement('label');
     label.setAttribute('for', 'design-select-' + Math.random().toString(36).slice(2, 9));
-    label.textContent = 'Select Design:';
+    label.textContent = 'Design:';
 
     const select = document.createElement('select');
     select.name = 'design';

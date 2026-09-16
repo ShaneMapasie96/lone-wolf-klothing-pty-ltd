@@ -1,0 +1,63 @@
+.product-filters {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 960px;
+    align-self: center;
+    margin: 0 auto 24px;
+    padding: 16px;
+    border: 1px solid #78788c;
+    border-radius: 10px;
+    background: rgba(17, 24, 32, .88);
+    color: #fff;
+    font: 13px 'Poppins', sans-serif;
+}
+.product-filter-header { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+.product-filter-header h2 { font-size: 16px; margin: 0; color: #fff; }
+.product-filter-count { margin-left: auto; white-space: nowrap; }
+.product-filter-controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px; }
+.product-filter-field { display: flex; flex-direction: column; gap: 6px; font-size: inherit; flex: 0 1 140px; min-width: 0; line-height: 20px; }
+.product-filter-field:has([data-filter="size"]) { flex-basis: 76px; }
+.product-filter-field:last-child { flex: 0 1 228px; }
+.product-filter-field.product-filter-field-long-design { flex-basis: 280px; max-width: 100%; }
+.product-filters select, .product-filters button { color: #fff; font: inherit; cursor: pointer; }
+.product-filters select, .product-filter-all, .product-filter-clear, .product-filter-tag, .product-filter-toggle {
+    background: #1f2b3a; border: 1px solid #78788c; border-radius: 6px; padding: 8px 10px; min-height: 40px;
+}
+.product-filters select { box-sizing: border-box; width: 100%; height: 40px; border-color: #78788c; }
+.product-filter-colours { border: 0; padding: 0; margin: 0; min-width: 0; flex: 0 1 330px; line-height: 20px; }
+.product-filter-colours legend { padding: 0; margin-bottom: 6px; }
+.product-filter-palette { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-height: 40px; }
+.product-filter-swatch { position: relative; width: 28px; height: 28px; border: 1px solid #9ba4b3; border-radius: 50%; padding: 0; flex-shrink: 0; }
+.product-filter-palette [aria-pressed="true"] { outline: 2px solid #fff; outline-offset: 3px; }
+.product-filters :is(select, button):focus:not(:focus-visible) { outline: none; }
+.product-filters :focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.product-filter-palette [aria-pressed="true"]:focus:not(:focus-visible) { outline: 2px solid #fff; outline-offset: 3px; }
+.product-filter-tooltip { display: none; position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); padding: 5px 8px; border-radius: 4px; background: #fff; color: #111; white-space: nowrap; z-index: 2; pointer-events: none; }
+.product-filter-swatch:hover .product-filter-tooltip, .product-filter-swatch:focus-visible .product-filter-tooltip { display: block; }
+.product-filter-active, .product-filter-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.product-filter-active:has(.product-filter-tag) { margin-top: 14px; }
+.product-filter-clear { margin-left: auto; }
+.product-filter-tag { border-radius: 20px; }
+.product-filter-toggle { display: none; }
+.product-filter-empty { color: #fff; text-align: center; padding: 24px 12px; }
+.items_container[hidden], .items_container [hidden], .product-filters [hidden], .product-filter-empty[hidden] { display: none !important; }
+/* Dropdowns overlay the page without changing its layout. */
+body:has(.product-filters) .navbar-container { position: relative; top: auto; }
+body:has(.product-filters) .custom-navbar { position: relative; }
+body:has(.product-filters) .custom-dropdown { position: relative; }
+body:has(.product-filters) .custom-dropdown-content { top: 100%; z-index: 1001; max-width: 100%; }
+body:has(.product-filters) .product-title { margin-top: 28px !important; }
+.items_container .item .product-display-name { display: block; color: #fff; font-size: 16px; line-height: 1.4; margin: 0 0 12px; text-align: center; }
+@media (max-width: 640px) {
+    body:has(.product-filters) .custom-dropdown { position: static; }
+}
+@media (max-width: 900px) {
+    .product-filter-header { margin-bottom: 0; }
+    .product-filter-header h2 { display: none; }
+    .product-filter-toggle { display: inline-block; }
+    .product-filter-panel { display: none; }
+    .product-filters.is-open .product-filter-panel { display: block; margin-top: 20px; }
+    .product-filter-controls { gap: 16px; }
+    .product-filter-colours { flex-basis: 100%; }
+    .product-filter-swatch { width: 32px; height: 32px; }
+}

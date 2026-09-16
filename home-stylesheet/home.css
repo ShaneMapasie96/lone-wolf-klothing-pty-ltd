@@ -436,6 +436,7 @@ body {
 
     .custom-navbar {
         flex-direction: column;
+        position: relative;
         align-items: stretch;
         gap: 8px;
         width: calc(100% - 16px);
@@ -467,11 +468,15 @@ body {
         max-width: 220px;
     }
 
-    .custom-dropdown-content {
+    .custom-dropdown {
         position: static;
+    }
+
+    .custom-dropdown-content {
+        position: absolute;
         min-width: 100%;
         box-shadow: none;
-        margin-top: 6px;
+        margin-top: 0;
     }
 
     .custom-dropdown-content a {

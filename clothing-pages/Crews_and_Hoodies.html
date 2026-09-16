@@ -10,6 +10,7 @@
 
         <title>Lone Wolf Klothing Pty Ltd</title>
 
+    <link rel="stylesheet" href="/clothing-stylesheets/product-filters.css">
 </head>
 <body>
     <div class="navbar-container">
@@ -63,7 +64,7 @@
   <div class="items_container">
       <div class="item">
           <figure>
-              <img id="item1-img" src="/crewnecks/white-blk-a4-lw-emblem-crewneck.png" alt="Lone Wolf Emblem Crewnecks" />
+              <img id="item1-img" src="../crewnecks/white-blk-a4-lw-emblem-crewneck.jpg" alt="Lone Wolf Emblem Crewnecks" />
           </figure>
           <div class="details_container">
               <h3>Lone Wolf Crewnecks</h3>
@@ -94,12 +95,13 @@
                   <div class="color-row" id="color-row-1">
                       <label for="color-select">Color:</label>
                       <div class="colors">
-                          <span class="color" data-img="/crewnecks/white-red-a4-lw-emblem-crewneck.png"></span>
-                          <span class="color" data-img="/crewnecks/grey-lw-emblem-crewneck.jpg"></span>
-                          <span class="color" data-img="/crewnecks/black-white-lw-emblem-crewneck.png"></span>
-                          <span class="color" data-img="/crewnecks/pink-lw-emblem-crewneck.jpg"></span>
-                          <span class="color" data-img="/crewnecks/red-blk-lw-emblem-crewneck.jpg"></span>
-                          <span class="color" data-img="/crewnecks/yellow-lw-emblem-crewneck.jpg"></span>
+                          <span class="color" data-color="White" data-variants="../crewnecks/white-blk-a4-lw-emblem-crewneck.jpg|../crewnecks/white-red-a4-lw-emblem-crewneck.jpg"></span>
+                          <span class="color" data-color="Black" data-variants="../crewnecks/black-white-a4-lw-emblem-crewneck.png|../crewnecks/black-red-a4-lw-emblem-crewneck.png|../crewnecks/black-gold-a4-lw-emblem-crewneck.png"></span>
+                          <span class="color" data-color="Grey" data-img="../crewnecks/grey-a4-lw-emblem-crewneck.png"></span>
+                          <span class="color" data-color="Pink" data-img="../crewnecks/pink-a4-lw-emblem-crewneck.png"></span>
+                          <span class="color" data-color="Red" data-variants="../crewnecks/red-blk-a4-lw-emblem-crewneck.png|../crewnecks/red-white-a4-lw-emblem-crewneck.png"></span>
+                          <span class="color" data-color="Royal Blue" data-img="../crewnecks/royal-blue-a4-lw-emblem-crewneck.png"></span>
+                          <span class="color" data-color="Yellow" data-img="../crewnecks/yellow-a4-lw-emblem-crewneck.png"></span>
                       </div>
                   </div>
                   <button type="button" class="add-to-cart-button" onclick="addToCart('item1-img')">Add to Cart</button>
@@ -211,5 +213,6 @@
 </footer>
 
 
+<script src="/javascript-files/product-filters.js"></script>
 </body>
 </html>

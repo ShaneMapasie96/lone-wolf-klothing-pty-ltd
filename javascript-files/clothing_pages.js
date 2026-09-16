@@ -1,3 +1,11 @@
+// Shared by the initial palettes and the product design handlers.
+var colorMap = {
+    'White': '#FFFFFF', 'Black': '#111111', 'Grey': '#808080',
+    'Khaki': '#F0E68C', 'Beige': '#F0E68C', 'Pink': '#FFB6C1',
+    'Red': '#FF0000', 'Royal Blue': '#4169E1', 'Yellow': '#FFDB58',
+    'Mustard Yellow': '#E1AD01', 'Orange': '#FF8C00', 'Navy Blue': '#1F3C68'
+};
+
 // Function to change the image source based on selected color
 function changeImage(imgId, newSrc) {
     const imgElement = document.getElementById(imgId);
@@ -685,57 +693,57 @@ document.addEventListener('DOMContentLoaded', function () {
     window.crewneckDesignData = {
         'lone-wolf-emblem-large-print': {
             colors: [
-                { name: 'White', variants: '/crewnecks/white-blk-a4-lw-emblem-crewneck.png|/crewnecks/white-red-a4-lw-emblem-crewneck.png' },
-                { name: 'Black', variants: '/crewnecks/black-white-a4-lw-emblem-crewneck.png|/crewnecks/black-red-a4-lw-emblem-crewneck.png' },
-                { name: 'Grey', variants: '/crewnecks/grey-a4-lw-emblem-crewneck.png' },
-                { name: 'Pink', variants: '/crewnecks/pink-a4-lw-emblem-crewneck.png' },
-                { name: 'Red', variants: '/crewnecks/red-blk-a4-lw-emblem-crewneck.png|/crewnecks/red-white-a4-lw-emblem-crewneck.png' },
-                { name: 'Royal Blue', variants: '/crewnecks/royal-blue-a4-lw-emblem-crewneck.png' },
-                { name: 'Yellow', variants: '/crewnecks/yellow-a4-lw-emblem-crewneck.png' }
+                { name: 'White', variants: '../crewnecks/white-blk-a4-lw-emblem-crewneck.jpg|../crewnecks/white-red-a4-lw-emblem-crewneck.jpg' },
+                { name: 'Black', variants: '../crewnecks/black-white-a4-lw-emblem-crewneck.png|../crewnecks/black-red-a4-lw-emblem-crewneck.png|../crewnecks/black-gold-a4-lw-emblem-crewneck.png' },
+                { name: 'Grey', variants: '../crewnecks/grey-a4-lw-emblem-crewneck.png' },
+                { name: 'Pink', variants: '../crewnecks/pink-a4-lw-emblem-crewneck.png' },
+                { name: 'Red', variants: '../crewnecks/red-blk-a4-lw-emblem-crewneck.png|../crewnecks/red-white-a4-lw-emblem-crewneck.png' },
+                { name: 'Royal Blue', variants: '../crewnecks/royal-blue-a4-lw-emblem-crewneck.png' },
+                { name: 'Yellow', variants: '../crewnecks/yellow-a4-lw-emblem-crewneck.png' }
             ]
         },
         'lone-wolf-emblem-pocket-size': {
             colors: [
-                { name: 'White', variants: '/crewnecks/white-blk-lw-emblem-crewneck.jpg|/crewnecks/white-red-lw-emblem-crewneck.png' },
-                { name: 'Black', variants: '/crewnecks/black-white-lw-emblem-crewneck.png|/crewnecks/black-gold-lw-emblem-crewneck.jpg|/crewnecks/black-red-lw-emblem-crewneck.jpg' },
-                { name: 'Grey', variants: '/crewnecks/grey-lw-emblem-crewneck.jpg' },
-                { name: 'Pink', variants: '/crewnecks/pink-lw-emblem-crewneck.jpg' },
-                { name: 'Red', variants: '/crewnecks/red-blk-lw-emblem-crewneck.jpg|/crewnecks/red-white-lw-crewneck.png' },
-                { name: 'Royal Blue', variants: '/crewnecks/royal-blue-lw-emblem-crewneck.png' },
-                { name: 'Yellow', variants: '/crewnecks/yellow-lw-emblem-crewneck.jpg' }
+                { name: 'White', variants: '../crewnecks/white-blk-lw-emblem-crewneck.png|../crewnecks/white-red-lw-emblem-crewneck.png' },
+                { name: 'Black', variants: '../crewnecks/black-white-lw-emblem-crewneck.png|../crewnecks/black-gold-lw-emblem-crewneck.png|../crewnecks/black-red-lw-emblem-crewneck.png' },
+                { name: 'Grey', variants: '../crewnecks/grey-lw-emblem-crewneck.png' },
+                { name: 'Pink', variants: '../crewnecks/pink-lw-emblem-crewneck.png' },
+                { name: 'Red', variants: '../crewnecks/red-blk-lw-emblem-crewneck.jpg|../crewnecks/red-white-lw-crewneck.jpg' },
+                { name: 'Royal Blue', variants: '../crewnecks/royal-blue-lw-emblem-crewneck.png' },
+                { name: 'Yellow', variants: '../crewnecks/yellow-lw-emblem-crewneck.png' }
             ]
         },
         'wolf-head': {
             colors: [
-                { name: 'White', variants: '/crewnecks/white-blk-wolf-head-crewneck.jpg|/crewnecks/white-red-wolf-head-emblem-crewneck.jpg' },
-                { name: 'Black', variants: '/crewnecks/black-white-wolf-head-crewneck.jpg|/crewnecks/black-gold-wolf-head-crewneck.jpg|/crewnecks/black-red-wolf-head-crewneck.jpg' },
-                { name: 'Grey', variants: '/crewnecks/grey-wolf-head-crewneck.png' },
-                { name: 'Pink', variants: '/crewnecks/pink-blk-wolf-head-crewneck.jpg' },
-                { name: 'Red', variants: '/crewnecks/red-white-wolf-wead-crewneck.jpg' },
-                { name: 'Royal Blue', variants: '/crewnecks/royal-blue-wolf-head-crewneck.jpg' },
-                { name: 'Yellow', variants: '/crewnecks/yellow-wolf-head-crewneck.png' }
+                { name: 'White', variants: '../crewnecks/white-blk-wolf-head-crewneck.png|../crewnecks/white-red-wolf-head-emblem-crewneck.png' },
+                { name: 'Black', variants: '../crewnecks/black-white-wolf-head-crewneck.png|../crewnecks/black-gold-wolf-head-crewneck.png|../crewnecks/black-red-wolf-head-crewneck.png' },
+                { name: 'Grey', variants: '../crewnecks/grey-wolf-head-crewneck.jpg' },
+                { name: 'Pink', variants: '../crewnecks/pink-blk-wolf-head-crewneck.png' },
+                { name: 'Red', variants: '../crewnecks/red-white-wolf-wead-crewneck.png' },
+                { name: 'Royal Blue', variants: '../crewnecks/royal-blue-wolf-head-crewneck.png' },
+                { name: 'Yellow', variants: '../crewnecks/yellow-wolf-head-crewneck.png' }
             ]
         },
         'lone-wolf-typography': {
             colors: [
-                { name: 'White', variants: '/crewnecks/white-black-wolf-head-sleeve-lw-type-crewneck.png|/crewnecks/white-red-wolf-head-sleeve-lw-type-crewneck.png' },
-                { name: 'Black', variants: '/crewnecks/black-white-wolf-head-sleeve-lw-type-crewneck.png|/crewnecks/black-gold-wolf-head-sleeve-lw-type-crewneck.jpg|/crewnecks/black-red-wolf-head-sleeve-lw-type-crewneck.png' },
-                { name: 'Grey', variants: '/crewnecks/grey-lw-type-crewneck.png' },
-                { name: 'Pink', variants: '/crewnecks/pink-lw-type-crewneck.png' },
-                { name: 'Red', variants: '/crewnecks/red-black-wolf-head-sleeve-lw-type-crewneck.png|/crewnecks/red-white-wolf-head-sleeve-lw-type-crewneck.png' },
-                { name: 'Royal Blue', variants: '/crewnecks/royal-blue-lw-type-crewneck.png' },
-                { name: 'Yellow', variants: '/crewnecks/yellow-blk-lw-type-crewneck.png' }
+                { name: 'White', variants: '../crewnecks/white-black-wolf-head-sleeve-lw-type-crewneck.jpg|../crewnecks/white-red-wolf-head-sleeve-lw-type-crewneck.jpg' },
+                { name: 'Black', variants: '../crewnecks/black-white-wolf-head-sleeve-lw-type-crewneck.jpg|../crewnecks/black-gold-wolf-head-sleeve-lw-type-crewneck.png|../crewnecks/black-red-wolf-head-sleeve-lw-type-crewneck.png' },
+                { name: 'Grey', variants: '../crewnecks/grey-lw-type-crewneck.png' },
+                { name: 'Pink', variants: '../crewnecks/pink-lw-type-crewneck.jpg' },
+                { name: 'Red', variants: '../crewnecks/red-black-wolf-head-sleeve-lw-type-crewneck.png|../crewnecks/red-white-wolf-head-sleeve-lw-type-crewneck.png' },
+                { name: 'Royal Blue', variants: '../crewnecks/royal-blue-lw-type-crewneck.jpg' },
+                { name: 'Yellow', variants: '../crewnecks/yellow-blk-lw-type-crewneck.png' }
             ]
         },
         'isolation-breeds-growth': {
             colors: [
-                { name: 'White', variants: '/crewnecks/white-a4-ibg-crewneck.png|/crewnecks/white-red-ibg-crewneck.png' },
-                { name: 'Black', variants: '/crewnecks/black-white-ibg-crewneck.png|/crewnecks/black-red-ibg-crewneck.png' },
-                { name: 'Grey', variants: '/crewnecks/grey-a4-ibg-crewneck.png' },
-                { name: 'Pink', variants: '/crewnecks/pink-ibg-crewneck.png' },
-                { name: 'Red', variants: '/crewnecks/red-a4-ibg-crewneck.png|/crewnecks/red-white-ibg-crewneck.jpg' },
-                { name: 'Royal Blue', variants: '/crewnecks/royalr-blue-ibg-crewneck.png' },
-                { name: 'Yellow', variants: '/crewnecks/yellow-blk-ibg-crewneck.png' }
+                { name: 'White', variants: '../crewnecks/white-a4-ibg-crewneck.jpg|../crewnecks/white-red-ibg-crewneck.jpg' },
+                { name: 'Black', variants: '../crewnecks/black-white-ibg-crewneck.jpg|../crewnecks/black-red-ibg-crewneck.jpg|../crewnecks/black-gold-ibg-crewneck.jpg' },
+                { name: 'Grey', variants: '../crewnecks/grey-a4-ibg-crewneck.png' },
+                { name: 'Pink', variants: '../crewnecks/pink-ibg-crewneck.png' },
+                { name: 'Red', variants: '../crewnecks/red-a4-ibg-crewneck.png|../crewnecks/red-white-ibg-crewneck.png' },
+                { name: 'Royal Blue', variants: '../crewnecks/royalr-blue-ibg-crewneck.jpg' },
+                { name: 'Yellow', variants: '../crewnecks/yellow-blk-ibg-crewneck.jpg' }
             ]
         }
     };
@@ -798,13 +806,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Yellow', img: '/hoodies/yellow-ibg-hoodie.jpg', variants: null }
             ]
         }
-    };
-
-    var colorMap = {
-        'White': '#FFFFFF', 'Black': '#111111', 'Grey': '#808080',
-        'Khaki': '#F0E68C', 'Beige': '#F0E68C', 'Pink': '#FFB6C1',
-        'Red': '#FF0000', 'Royal Blue': '#4169E1', 'Yellow': '#FFDB58',
-        'Mustard Yellow': '#E1AD01', 'Orange': '#FF8C00', 'Navy Blue': '#1F3C68'
     };
 
     var colorOrder = ['White', 'Black', 'Grey', 'Navy Blue', 'Khaki', 'Beige', 'Pink', 'Red', 'Royal Blue', 'Yellow', 'Mustard Yellow', 'Orange'];
@@ -917,14 +918,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 sortColorSwatches(palette);
 
-                // Select first swatch
+                // Use the selected swatch's mapping for both the image and carousel.
+                // A separate default image can disagree with the highlighted colour.
                 if (palette.children.length > 0) {
-                    palette.children[0].classList.add('selected-color');
-                    palette.children[0].classList.add('selected');
+                    palette.children[0].click();
                 }
-
-                // Set default image
-                imgEl.src = data.defaultImg;
             });
         });
     }
