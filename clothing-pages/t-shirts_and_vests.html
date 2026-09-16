@@ -10,6 +10,7 @@
 
         <title>Lone Wolf Klothing Pty Ltd</title>
 
+    <link rel="stylesheet" href="/clothing-stylesheets/product-filters.css">
 </head>
 <body>
     <div class="navbar-container">
@@ -56,7 +57,7 @@
     <div class="product-heading">
         <h2 class="product-title">T-Shirts and Vests</h2>
         <p class="product-description">
-            Gently used floor model sneakers and discontinued styles at our lowest prices of the year.<br> Get 'em before they're gone!
+            Explore Lone Wolf Klothing T-shirts and vests, available in a range of colours, sizes and signature designs.
         </p>
     </div>
 
@@ -68,6 +69,7 @@
             <div class="details_container">
                 <h3>Lone Wolf T-Shirts</h3>
                 <div class="buy_container">
+                    <h3 class="product-display-name">Lone Wolf Classic T-Shirt</h3>
                     <p class="price">R299.95</p>
                     <div class="flex-space-between">
                         <div class="input-holder">
@@ -113,10 +115,11 @@
         <div class="item">
                 <figure><img id="item2-img" src="../vests/white-blk-lw-emblem-vest.jpg?v=20260911e" alt="Lone Wolf Emblem Vest" /></figure>
             <div class="details_container"><h3>Lone Wolf Vests</h3><div class="buy_container">
+                <h3 class="product-display-name">Lone Wolf Classic Vest</h3>
                 <p class="price">R199.95</p>
                 <div class="flex-space-between"><div class="input-holder"><label for="size-select">Size:</label><select name="size" id="size-select" class="input-style"><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></div><div class="input-holder"><label for="quantity-select">Quantity:</label><select name="quantity" id="quantity-select" class="input-style"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></div>
                 <div class="color-row"><label for="color-select">Color:</label><div class="colors"><span class="color" data-color="White" data-variants="../vests/white-blk-lw-emblem-vest.jpg|../vests/white-red-lw-emblem-vest.jpg" data-wolf-head-variants="../vests/white-blk-wolf-head-vest.jpg|../vests/white-red-wolf-head-vest.jpg"></span><span class="color" data-color="Black" data-variants="../vests/black-white-lw-emblem-vest.jpg|../vests/black-red-lw-emblem-vest.jpg|../vests/black-gold-lw-emblem-vest.jpg" data-wolf-head-variants="../vests/black-white-wolf-head-vest.jpg|../vests/black-red-wolf-head-vest.jpg|../vests/black-gold-wolf-head-vest.jpg"></span><span class="color" data-color="Grey" data-variants="../vests/grey-blk-lw-emblem-vest.jpg|../vests/grey-red-lw-emblem-vest.jpg" data-wolf-head-variants="../vests/grey-blk-wolf-head-vest.jpg|../vests/white-red-wolf-head-vest.jpg"></span><span class="color" data-color="Red" data-variants="../vests/red-blk-lw-emblem-vest.jpg|../vests/red-white-lw-emblem-vest.jpg" data-wolf-head-variants="../vests/red-blk-wolf-head-vest.png|../vests/red-white-wolf-head-vest.png"></span></div></div>
-                <div class="design-selector-row"><label for="vest-design">Select Design:</label><select id="vest-design" name="design" class="input-style" onchange="updateVestDesign(this)"><option value="emblem">Lone Wolf Emblem</option><option value="wolf-head">Wolf Head</option><option value="typography">Lone Wolf Typography</option></select></div>
+                <div class="design-selector-row"><label for="vest-design">Design:</label><select id="vest-design" name="design" class="input-style" onchange="updateVestDesign(this)"><option value="emblem">Lone Wolf Emblem</option><option value="wolf-head">Wolf Head</option><option value="typography">Lone Wolf Typography</option></select></div>
                 <button type="button" class="add-to-cart-button" onclick="addToCart('item2-img')">Add to Cart</button>
             </div></div>
         </div>
@@ -179,5 +182,6 @@
   </div>
 </footer>
 <!---Footer--->
+<script src="/javascript-files/product-filters.js"></script>
 </body>
 </html>
