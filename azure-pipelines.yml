@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
@@ -10,20 +5,29 @@ pool:
   vmImage: windows-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Package Lone Wolf Klothing website'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 - task: CopyFiles@2
+  displayName: 'Copy website files'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '**/*'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-- task: PublishBuildArtifacts@1
+    Contents: |
+      **/*
+      !.git/**/*
+      !azure-pipelines.yml
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/website'
+    CleanTargetFolder: true
+
+- task: ArchiveFiles@2
+  displayName: 'Archive website files'
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/website'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: '$(Build.ArtifactStagingDirectory)/lone-wolf-website.zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish website artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/lone-wolf-website.zip'
     ArtifactName: 'lone-wolf-website'
     publishLocation: 'Container'
