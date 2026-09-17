@@ -230,11 +230,11 @@ function updateTracksuitDesign(selectElement) {
             Yellow: ['/tracksuits/yellow-wolf-head-tracksuit.webp']
         },
         typography: {
-            White: ['/tracksuits/white-blk-wolf-head-sleeve-lw-type-tracksuit.png.webp', '/tracksuits/white-red-wolf-head-sleeve-lw-type-tracksuit.png.webp'],
-            Black: ['/tracksuits/black-gold-wolf-head-sleeve-lw-type-tracksuit.png.webp', '/tracksuits/black-red-wolf-head-sleeve-lw-type-tracksuit.png.webp', '/tracksuits/black-white-wolf-head-sleeve-lw-type-tracksuit.png.webp'],
-            Grey: ['/tracksuits/grey-blk-lw-type-tracksuit.webp', '/tracksuits/grey-red-wolf-head-sleeve-lw-type-tracksuit.png.webp'],
-            Pink: ['/tracksuits/pink-blk-wolf-head-sleeve-lw-type-tracksuit.png.webp'],
-            Red: ['/tracksuits/red-black-gold-wolf-head-sleeve-lw-type-tracksuit.png.webp', '/tracksuits/red-white-wolf-head-sleeve-lw-type-tracksuit.png.webp'],
+            White: ['/tracksuits/white-blk-wolf-head-sleeve-lw-type-tracksuit.webp', '/tracksuits/white-red-wolf-head-sleeve-lw-type-tracksuit.webp'],
+            Black: ['/tracksuits/black-gold-wolf-head-sleeve-lw-type-tracksuit.webp', '/tracksuits/black-red-wolf-head-sleeve-lw-type-tracksuit.webp', '/tracksuits/black-white-wolf-head-sleeve-lw-type-tracksuit.webp'],
+            Grey: ['/tracksuits/grey-blk-lw-type-tracksuit.webp', '/tracksuits/grey-red-wolf-head-sleeve-lw-type-tracksuit.webp'],
+            Pink: ['/tracksuits/pink-blk-wolf-head-sleeve-lw-type-tracksuit.webp'],
+            Red: ['/tracksuits/red-black-gold-wolf-head-sleeve-lw-type-tracksuit.webp', '/tracksuits/red-white-wolf-head-sleeve-lw-type-tracksuit.webp'],
             Yellow: ['/tracksuits/yellow-lw-type-tracksuit.webp']
         }
     };
