@@ -13,7 +13,7 @@ function initProductFilters(grid) {
         /typography/i.test(name) ? 'Lone Wolf Typography' :
         /emblem.*large print/i.test(name) ? 'Lone Wolf Emblem - Large Print' :
         /emblem.*pocket size/i.test(name) ? 'Lone Wolf Emblem - Pocket Size' :
-        /emblem/i.test(name) ? 'Lone Wolf Emblem' : name;
+        /emblem/i.test(name) ? 'Lone Wolf Emblem - Pocket Size' : name;
     const products = Array.from(grid.querySelectorAll('.item'), element => ({
         element,
         type: [element.dataset.productType || element.querySelector('h3').textContent.trim().replace(/^(Lone Wolf|Wolf)\s+/, '').replace(/^Tracksuit$/, 'Tracksuits')],
@@ -75,8 +75,8 @@ function initProductFilters(grid) {
     });
     controls.append(colours);
     const availableDesigns = new Set(products.flatMap(product => product.design));
-    const designOptions = ['Wolf Head', 'Lone Wolf Typography', 'Lone Wolf Emblem',
-        'Lone Wolf Emblem - Large Print', 'Lone Wolf Emblem - Pocket Size', 'Isolation Breeds Growth'];
+    const designOptions = ['Lone Wolf Emblem - Large Print', 'Lone Wolf Emblem - Pocket Size',
+        'Wolf Head', 'Lone Wolf Typography', 'Isolation Breeds Growth'];
     addSelect('design', 'Design', designOptions.filter(name => availableDesigns.has(name)));
     if (availableDesigns.has('Lone Wolf Emblem - Large Print') || availableDesigns.has('Lone Wolf Emblem - Pocket Size')) {
         selects.design.parentElement.classList.add('product-filter-field-long-design');

@@ -13,6 +13,10 @@ const assert = require('node:assert/strict');
   const filters=page.locator('.product-filters');
   await filters.waitFor();
   await page.waitForTimeout(350);
+  const designChoices = await filters.getByLabel('Design',{exact:true}).locator('option').allTextContents();
+  const designOrder = ['Lone Wolf Emblem - Large Print','Lone Wolf Emblem - Pocket Size','Wolf Head','Lone Wolf Typography','Isolation Breeds Growth'];
+  assert.deepEqual(designChoices.filter(name=>name!=='All'),designOrder.filter(name=>designChoices.includes(name)));
+  assert(!designChoices.includes('Lone Wolf Emblem'));
   const carouselState = () => page.locator('.item').evaluateAll(items => items.map(item => ({
    image: item.querySelector('img').getAttribute('src'),
    colour: item.querySelector('.selected-color')?.dataset.color,
@@ -62,11 +66,13 @@ const assert = require('node:assert/strict');
   assert.equal(await filters.getByRole('button',{name:'Clear all',exact:true}).isVisible(),false);
   for (const design of ['Lone Wolf Emblem - Large Print','Lone Wolf Emblem - Pocket Size']) {
    const supported = await page.locator('.item').evaluateAll((items,name)=>items.filter(item=>
-    Array.from(item.querySelectorAll('select[name="design"] option')).some(option=>option.textContent===name)).length,design);
+    Array.from(item.querySelectorAll('select[name="design"] option')).some(option=>
+     (option.textContent.trim() === 'Lone Wolf Emblem' ? 'Lone Wolf Emblem - Pocket Size' : option.textContent.trim()) === name)).length,design);
    assert.equal(await filters.getByLabel('Design',{exact:true}).locator('option').filter({hasText:design}).count(), supported ? 1 : 0);
    if (!supported) continue;
    await page.locator('.item select[name="design"]').evaluateAll((selects,name)=>selects.forEach(select=> {
-    const option=Array.from(select.options).find(option=>option.textContent===name);
+    const option=Array.from(select.options).find(option=>
+     (option.textContent.trim() === 'Lone Wolf Emblem' ? 'Lone Wolf Emblem - Pocket Size' : option.textContent.trim()) === name);
     if(option) { select.value=option.value; select.dispatchEvent(new Event('change',{bubbles:true})); }
    }),design);
    const expected=await carouselState();
@@ -77,9 +83,15 @@ const assert = require('node:assert/strict');
    const actual=await carouselState();
    const visibleIndices=await page.locator('.item').evaluateAll(items=>items.flatMap((item,index)=>item.hidden?[]:[index]));
    for(const index of visibleIndices) assert.deepEqual(actual[index],expected[index]);
+   if(file === 'tracksuits.html') {
+    const variants = actual[visibleIndices[0]].variants;
+    assert(variants.every(path => design === 'Lone Wolf Emblem - Large Print' ? /a4-/.test(path) : !/a4-/.test(path)),
+     'tracksuit emblem variants mix large print and pocket size');
+   }
    const actualPrices=await page.locator('.item .price').allTextContents();
    for(const index of visibleIndices) assert.equal(actualPrices[index],prices[index]);
-   assert(await page.locator('.item:visible select[name="design"]').evaluateAll((selects,name)=>selects.every(select=>select.selectedOptions[0].textContent===name),design));
+   assert(await page.locator('.item:visible select[name="design"]').evaluateAll((selects,name)=>selects.every(select=>
+    (select.selectedOptions[0].textContent.trim() === 'Lone Wolf Emblem' ? 'Lone Wolf Emblem - Pocket Size' : select.selectedOptions[0].textContent.trim()) === name),design));
    await filters.getByRole('button',{name:'Clear all',exact:true}).click();
   }
   if(file === 'puffer_jackets_and_body_warmers.html') {

@@ -104,6 +104,52 @@ function removeVariantNav(item) {
     item._variants = undefined;
 }
 
+function updateSweatpantsDesign(selectElement) {
+    var item = selectElement.closest('.item');
+    var palette = item ? item.querySelector('.colors') : null;
+    if (!palette) return;
+
+    var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' :
+        /typography/i.test(selectElement.value) ? 'typography' : 'emblem';
+    var variants = {
+        emblem: {
+            White: ['../sweatpants/white-lw-emblem-sweatpants.png', '../sweatpants/white-red-lw-emblem-sweatpants.png'],
+            Black: ['../sweatpants/black-white-lw-emblem-sweatpants.jpg', '../sweatpants/black-red-lw-emblem-sweatpants.jpg', '../sweatpants/black-gold-lw-emblem-sweatpants.jpg'],
+            Grey: ['../sweatpants/grey-lw-emblem-sweatpants.png'],
+            Pink: ['../sweatpants/pink-lw-emblem-sweatpants.jpg'],
+            Red: ['../sweatpants/red-blk-lw-emblem-sweatpants.png', '../sweatpants/red-white-lw-emblem-sweatpants.png'],
+            'Royal Blue': ['../sweatpants/royal-blue-white-lw-emblem-sweatpants.jpg'],
+            Yellow: ['../sweatpants/yellow-lw-emblem-sweatpants.jpg']
+        },
+        'wolf-head': {
+            White: ['../sweatpants/white-blk-wolf-head-sweatpants.jpg', '../sweatpants/white-red-wolf-head-sweatpants.png'],
+            Black: ['../sweatpants/black-white-wolf-head-sweatpants.jpg', '../sweatpants/black-red-wolf-head-sweatpants.jpg', '../sweatpants/black-gold-wolf-head-sweatpants.jpg'],
+            Grey: ['../sweatpants/grey-wolf-head-sweatpants.jpg'],
+            Pink: ['../sweatpants/pink-wolf-head-sweatpants.jpg'],
+            Red: ['../sweatpants/red-blk-wolf-head-sweatpants.jpg', '../sweatpants/red-white-wolf-head-sweatpants.jpg'],
+            'Royal Blue': ['../sweatpants/royal-blue-white-wolf-head-sweatpants.jpg'],
+            Yellow: ['../sweatpants/yellow-wolf-head-sweatpants.jpg']
+        },
+        typography: {
+            White: ['../sweatpants/white-blk-lw-type-sweatpants.jpg'],
+            Black: ['../sweatpants/black-white-lw-type-sweatpants.jpg', '../sweatpants/black-gold-lw-type-sweatpants.jpg'],
+            Grey: ['../sweatpants/grey-lw-type-sweatpants.jpg'],
+            Pink: ['../sweatpants/pink-lw-type-sweatpants.jpg'],
+            Red: ['../sweatpants/red-blk-lw-type-sweatpants.jpg', '../sweatpants/red-white-lw-type-sweatpants.jpg'],
+            'Royal Blue': ['../sweatpants/royal-blue-white-lw-type-sweatpants.jpg'],
+            Yellow: ['../sweatpants/yellow-lw-type-sweatpants.jpg']
+        }
+    };
+
+    palette.querySelectorAll('.color[data-color]').forEach(function (swatch) {
+        var images = variants[design][swatch.getAttribute('data-color')];
+        swatch.setAttribute('data-variants', images ? images.join('|') : '');
+        swatch.removeAttribute('data-img');
+    });
+    var selectedColor = palette.querySelector('.selected-color') || palette.querySelector('.color');
+    if (selectedColor) selectedColor.click();
+}
+
 function updateTracksuitDesign(selectElement) {
     var item = selectElement.closest('.item');
     var palette = item ? item.querySelector('.colors') : null;
@@ -111,15 +157,23 @@ function updateTracksuitDesign(selectElement) {
 
     var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' :
         /typography/i.test(selectElement.value) ? 'typography' :
-        /isolation breeds growth/i.test(selectElement.value) ? 'isolation-breeds-growth' : 'emblem';
+        /pocket size/i.test(selectElement.value) ? 'lone-wolf-emblem-pocket-size' : 'lone-wolf-emblem-large-print';
     var variants = {
-        emblem: {
-            White: ['/tracksuits/white-blk-a4-lw-emblem-tracksuit.jpg', '/tracksuits/white-red-a4-lw-emblem-tracksuit.jpg', '/tracksuits/white-blk-lw-emblem-tracksuit.jpg', '/tracksuits/white-red-lw-emblem-tracksuit.jpg'],
-            Black: ['/tracksuits/black-white-a4-lonewolf-emblem-tracksuit.jpg', '/tracksuits/black-red-a4-lw-emblem-tracksuit.jpg', '/tracksuits/black-gold-lw-emblem-tracksuit.jpg', '/tracksuits/black-red-lw-emblem-tracksuit.jpg', '/tracksuits/black-white-lw-emblem-tracksuit.jpg'],
-            Grey: ['/tracksuits/grey-blk-a4-lw-emblem-tracksuit.jpg', '/tracksuits/grey-red-a4-lw-emblem-tracksuit.jpg', '/tracksuits/grey-blk-lw-emblem-tracksuit.jpg', '/tracksuits/grey-red-lw-emblem-tracksuit.jpg'],
-            Pink: ['/tracksuits/pink-a4-lw-emblem-tracksuit.jpg', '/tracksuits/pink-lw-emblem-tracksuit.jpg'],
-            Red: ['/tracksuits/red-a4-white-lw-emblem-tracksuit.jpg', '/tracksuits/red-black-a4-lw-emblem-tracksuit.jpg', '/tracksuits/red-black-lw-emblem-tracksuit.jpg', '/tracksuits/red-white-lw-emblem-tracksuit.jpg'],
-            Yellow: ['/tracksuits/yellow-a4-lw-emblem-tracksuits.jpg', '/tracksuits/yellow-lw-emblem-tracksuit.jpg']
+        'lone-wolf-emblem-large-print': {
+            White: ['/tracksuits/white-blk-a4-lw-emblem-tracksuit.jpg', '/tracksuits/white-red-a4-lw-emblem-tracksuit.jpg'],
+            Black: ['/tracksuits/black-white-a4-lonewolf-emblem-tracksuit.jpg', '/tracksuits/black-red-a4-lw-emblem-tracksuit.jpg', '/tracksuits/black-gold-a4-lw-emblem-tracksuit.jpg'],
+            Grey: ['/tracksuits/grey-blk-a4-lw-emblem-tracksuit.jpg', '/tracksuits/grey-red-a4-lw-emblem-tracksuit.jpg'],
+            Pink: ['/tracksuits/pink-a4-lw-emblem-tracksuit.jpg'],
+            Red: ['/tracksuits/red-a4-white-lw-emblem-tracksuit.jpg', '/tracksuits/red-black-a4-lw-emblem-tracksuit.jpg'],
+            Yellow: ['/tracksuits/yellow-a4-lw-emblem-tracksuits.jpg']
+        },
+        'lone-wolf-emblem-pocket-size': {
+            White: ['/tracksuits/white-blk-lw-emblem-tracksuit.jpg', '/tracksuits/white-red-lw-emblem-tracksuit.jpg'],
+            Black: ['/tracksuits/black-white-lw-emblem-tracksuit.jpg', '/tracksuits/black-red-lw-emblem-tracksuit.jpg', '/tracksuits/black-gold-lw-emblem-tracksuit.jpg'],
+            Grey: ['/tracksuits/grey-blk-lw-emblem-tracksuit.jpg', '/tracksuits/grey-red-lw-emblem-tracksuit.jpg'],
+            Pink: ['/tracksuits/pink-lw-emblem-tracksuit.jpg'],
+            Red: ['/tracksuits/red-black-lw-emblem-tracksuit.jpg', '/tracksuits/red-white-lw-emblem-tracksuit.jpg'],
+            Yellow: ['/tracksuits/yellow-lw-emblem-tracksuit.jpg']
         },
         'wolf-head': {
             White: ['/tracksuits/white-blk-wolf-head-tracksuit.jpg', '/tracksuits/white-red-wolf-head-tracksuit.jpg'],
@@ -136,14 +190,6 @@ function updateTracksuitDesign(selectElement) {
             Pink: ['/tracksuits/pink-blk-wolf-head-sleeve-lw-type-tracksuit.png.jpg'],
             Red: ['/tracksuits/red-black-gold-wolf-head-sleeve-lw-type-tracksuit.png.jpg', '/tracksuits/red-white-wolf-head-sleeve-lw-type-tracksuit.png.jpg'],
             Yellow: ['/tracksuits/yellow-lw-type-tracksuit.jpg']
-        },
-        'isolation-breeds-growth': {
-            White: ['/tracksuits/black-white-a4-lonewolf-emblem-tracksuit.jpg', '/tracksuits/white-red-a4-lw-emblem-tracksuit.jpg'],
-            Black: ['/tracksuits/black-gold-a4-lw-emblem-tracksuit.jpg', '/tracksuits/black-red-a4-lw-emblem-tracksuit.jpg'],
-            Grey: ['/tracksuits/grey-blk-a4-lw-emblem-tracksuit.jpg', '/tracksuits/grey-red-a4-lw-emblem-tracksuit.jpg'],
-            Pink: ['/tracksuits/pink-a4-lw-emblem-tracksuit.jpg'],
-            Red: ['/tracksuits/red-a4-white-lw-emblem-tracksuit.jpg', '/tracksuits/red-black-a4-lw-emblem-tracksuit.jpg'],
-            Yellow: ['/tracksuits/yellow-a4-lw-emblem-tracksuits.jpg']
         }
     };
 
@@ -719,7 +765,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Black', variants: '../crewnecks/black-white-wolf-head-crewneck.png|../crewnecks/black-gold-wolf-head-crewneck.png|../crewnecks/black-red-wolf-head-crewneck.png' },
                 { name: 'Grey', variants: '../crewnecks/grey-wolf-head-crewneck.jpg' },
                 { name: 'Pink', variants: '../crewnecks/pink-blk-wolf-head-crewneck.png' },
-                { name: 'Red', variants: '../crewnecks/red-white-wolf-wead-crewneck.png' },
+                { name: 'Red', variants: '../crewnecks/red-blk-wolf-wead-crewneck.png|../crewnecks/red-white-wolf-wead-crewneck.png' },
                 { name: 'Royal Blue', variants: '../crewnecks/royal-blue-wolf-head-crewneck.png' },
                 { name: 'Yellow', variants: '../crewnecks/yellow-wolf-head-crewneck.png' }
             ]
@@ -751,59 +797,59 @@ document.addEventListener('DOMContentLoaded', function () {
     window.hoodieDesignData = {
         'lone-wolf-emblem-large-print': {
             colors: [
-                { name: 'White', img: null, variants: '../hoodies/white-red-a4-lw-emblem-hoodie.jpg|../hoodies/white-blk-a4-lw-emblem-hoodie.jpg' },
+                { name: 'White', img: null, variants: '../hoodies/white-blk-a4-lw-emblem-hoodie.jpg|../hoodies/white-red-a4-lw-emblem-hoodie.jpg' },
                 { name: 'Black', img: null, variants: '../hoodies/black-a4-lw-emblem-hoodie.jpg|../hoodies/black-a4-gold-lw-emblem-hoodie.jpg|../hoodies/black-red-a4-lw-emblem-hoodie.jpg' },
                 { name: 'Grey', img: '../hoodies/grey-a4-lw-emblem-hoodie.jpg', variants: null },
-                { name: 'Red', img: null, variants: '../hoodies/red-a4-lw-emblem-hoodie.png|../hoodies/red-blk-a4-lw-emblem-hoodie.png' },
-                { name: 'Pink', img: '../hoodies/pink-a4-lw-emblem-hoodie.png', variants: null },
+                { name: 'Red', img: null, variants: '../hoodies/red-white-a4-lw-emblem-hoodie.png|../hoodies/red-blk-a4-lw-emblem-hoodie.png' },
+                { name: 'Pink', img: '../hoodies/pink-a4-lw-emblem-hoodie.jpg', variants: null },
                 { name: 'Yellow', img: '../hoodies/yellow-a4-lw-emblem-hoodie.jpg', variants: null },
                 { name: 'Royal Blue', img: '../hoodies/royal-blue-a4-lw-emblem-hoodie.jpg', variants: null }
             ],
-            defaultImg: '../hoodies/white-red-a4-lw-emblem-hoodie.jpg'
+            defaultImg: '../hoodies/white-blk-a4-lw-emblem-hoodie.jpg'
         },
         'lone-wolf-emblem-pocket-size': {
             colors: [
                 { name: 'White', img: null, variants: '../hoodies/white-blk-lw-emblem-hoodie.png|../hoodies/white-red-lw-emblem-hoodie.png' },
-                { name: 'Black', img: null, variants: '../hoodies/black-white-lw-emblem-hoodie.png|../hoodies/black-gold-lw-emblem-hoodie.jpg|../hoodies/black-red-lw-emblem-hoodie.png' },
-                { name: 'Grey', img: '../hoodies/grey-blk-lw-emblem-hoodie.png', variants: null },
-                { name: 'Red', img: null, variants: '../hoodies/red-blk-lw-emblem-hoodie.png|../hoodies/red-white-lw-emblem-hoodie.jpg' },
+                { name: 'Black', img: null, variants: '../hoodies/black-white-lw-emblem-hoodie.jpg|../hoodies/black-gold-lw-emblem-hoodie.jpg|../hoodies/black-red-lw-emblem-hoodie.jpg' },
+                { name: 'Grey', img: '../hoodies/grey-blk-lw-emblem-hoodie.jpg', variants: null },
+                { name: 'Red', img: null, variants: '../hoodies/red-blk-lw-emblem-hoodie.png|../hoodies/red-white-lw-emblem-hoodie.png' },
                 { name: 'Pink', img: '../hoodies/pink-blk-lw-emblem-hoodie.png', variants: null },
-                { name: 'Yellow', img: '../hoodies/Yellow-LW-Emblem-Hoodie.png', variants: null },
-                { name: 'Royal Blue', img: '../hoodies/Royal-Blue-LW-Emblem-Hoodie.jpg', variants: null }
+                { name: 'Yellow', img: '../hoodies/yellow-lw-emblem-hoodie.jpg', variants: null },
+                { name: 'Royal Blue', img: '../hoodies/royal-blue-lw-emblem-hoodie.jpg', variants: null }
             ],
             defaultImg: '../hoodies/white-blk-lw-emblem-hoodie.png'
         },
         'wolf-head': {
             colors: [
-                { name: 'White', img: null, variants: '/hoodies/white-blk-wolf-head-hoodie.jpg|/hoodies/white-red-wolf-head-hoodie.jpg' },
-                { name: 'Black', img: null, variants: '/hoodies/black-white-wolf-head-hoodie.jpg|/hoodies/black-gold-wolf-head-hoodie.jpg|/hoodies/black-red-wolf-head-hoodie.jpg' },
-                { name: 'Grey', img: '/hoodies/grey-wolf-head-hoodie.jpg', variants: null },
-                { name: 'Pink', img: '/hoodies/pink-blk-wolf-head-hoodie.png', variants: null },
-                { name: 'Red', img: null, variants: '/hoodies/red-blk-wolf-head-hoodie.png|/hoodies/red-white-wolf-head-hoodie.png' },
-                { name: 'Royal Blue', img: '/hoodies/Royal-Blue-Wolf-Head-Hoodie.jpg', variants: null },
-                { name: 'Yellow', img: '/hoodies/yellow-wolf-head-hoodie.jpg', variants: null }
+                { name: 'White', img: null, variants: '../hoodies/white-blk-wolf-head-hoodie.png|../hoodies/white-red-wolf-head-hoodie.png' },
+                { name: 'Black', img: null, variants: '../hoodies/black-white-wolf-head-hoodie.jpg|../hoodies/black-gold-wolf-head-hoodie.jpg|../hoodies/black-red-wolf-head-hoodie.jpg' },
+                { name: 'Grey', img: '../hoodies/grey-wolf-head-hoodie.png', variants: null },
+                { name: 'Pink', img: '../hoodies/pink-blk-wolf-head-hoodie.jpg', variants: null },
+                { name: 'Red', img: null, variants: '../hoodies/red-blk-wolf-head-hoodie.png|../hoodies/red-white-wolf-head-hoodie.png' },
+                { name: 'Royal Blue', img: '../hoodies/royal-blue-wolf-head-hoodie.jpg', variants: null },
+                { name: 'Yellow', img: '../hoodies/yellow-wolf-head-hoodie.jpg', variants: null }
             ]
         },
         'lone-wolf-typography': {
             colors: [
-                { name: 'White', img: null, variants: '/hoodies/white-blk-wolf-head-sleeve-lw-type-hoodie.jpg|/hoodies/white-red-wolf-head-sleeve-lw-type-hoodie.jpg' },
-                { name: 'Black', img: null, variants: '/hoodies/black-white-lw-type-white-wolf-head-sleeve-hoodie.jpg|/hoodies/black-gold-wolf-head-sleeve-lw-type-hoodie.jpg|/hoodies/black-red-wolf-head-sleeve-lw-type-hoodie.jpg' },
-                { name: 'Grey', img: '/hoodies/grey-lw-type-hoodie.jpg', variants: null },
-                { name: 'Pink', img: '/hoodies/pink-lw-type-blk-wolf-head-sleeve-hoodie.png', variants: null },
-                { name: 'Red', img: null, variants: '/hoodies/red-blk-wolf-head-sleeve-lw-type-hoodie.png|/hoodies/red-white-wolf-head-sleeve-lw-type-hoodie.png' },
-                { name: 'Royal Blue', img: '/hoodies/Royal-Blue-LW-Type-Hoodie.jpg', variants: null },
-                { name: 'Yellow', img: '/hoodies/yellow-lw-type-hoodie.jpg', variants: null }
+                { name: 'White', img: null, variants: '../hoodies/white-blk-wolf-head-sleeve-lw-type-hoodie.png|../hoodies/white-red-wolf-head-sleeve-lw-type-hoodie.png' },
+                { name: 'Black', img: null, variants: '../hoodies/black-white-lw-type-white-wolf-head-sleeve-hoodie.png|../hoodies/black-gold-wolf-head-sleeve-lw-type-hoodie.png|../hoodies/black-red-wolf-head-sleeve-lw-type-hoodie.png' },
+                { name: 'Grey', img: '../hoodies/grey-lw-type-hoodie.png', variants: null },
+                { name: 'Pink', img: '../hoodies/pink-lw-type-blk-wolf-head-sleeve-hoodie.jpg', variants: null },
+                { name: 'Red', img: null, variants: '../hoodies/red-blk-wolf-head-sleeve-lw-type-hoodie.jpg|../hoodies/red-white-wolf-head-sleeve-lw-type-hoodie.jpg' },
+                { name: 'Royal Blue', img: '../hoodies/royal-blue-lw-type-hoodie.png', variants: null },
+                { name: 'Yellow', img: '../hoodies/yellow-lw-type-hoodie.jpg', variants: null }
             ]
         },
         'isolation-breeds-growth': {
             colors: [
-                { name: 'White', img: null, variants: '/hoodies/white-blk-ibg-hoodie.jpg|/hoodies/white-red-ibg-hoodie.jpg' },
-                { name: 'Black', img: null, variants: '/hoodies/black-white-a4-ibg-hoodie.jpg|/hoodies/black-gold-ibg-hoodie.jpg|/hoodies/black-red-ibg-hoodie.jpg' },
-                { name: 'Grey', img: '/hoodies/grey-ibg-hoodie.jpg', variants: null },
-                { name: 'Pink', img: '/hoodies/pink-a4-ibg-hoodie.png', variants: null },
-                { name: 'Red', img: null, variants: '/hoodies/red-blk-igb-hoodie.png|/hoodies/red-white-ibg-hoodie.png' },
-                { name: 'Royal Blue', img: '/hoodies/Royal-Blue-IBG-Hoodie.jpg', variants: null },
-                { name: 'Yellow', img: '/hoodies/yellow-ibg-hoodie.jpg', variants: null }
+                { name: 'White', img: null, variants: '../hoodies/white-blk-ibg-hoodie.png|../hoodies/white-red-ibg-hoodie.png' },
+                { name: 'Black', img: null, variants: '../hoodies/black-white-a4-ibg-hoodie.jpg|../hoodies/black-gold-ibg-hoodie.jpg|../hoodies/black-red-ibg-hoodie.jpg' },
+                { name: 'Grey', img: '../hoodies/grey-ibg-hoodie.jpg', variants: null },
+                { name: 'Pink', img: '../hoodies/pink-a4-ibg-hoodie.jpg', variants: null },
+                { name: 'Red', img: null, variants: '../hoodies/red-blk-igb-hoodie.png|../hoodies/red-white-ibg-hoodie.png' },
+                { name: 'Royal Blue', img: '../hoodies/Royal-Blue-IBG-Hoodie.png', variants: null },
+                { name: 'Yellow', img: '../hoodies/yellow-ibg-hoodie.jpg', variants: null }
             ]
         }
     };
@@ -840,11 +886,12 @@ document.addEventListener('DOMContentLoaded', function () {
             var isBeanieItem = itemHeading && /beanies?/i.test(itemHeading.textContent);
             var isHoodieItem = itemHeading && /hoodies?/i.test(itemHeading.textContent);
             var isCrewneckItem = itemHeading && /crewnecks?/i.test(itemHeading.textContent);
+            var isSweatpantsItem = itemHeading && /sweatpants?/i.test(itemHeading.textContent);
 
             // These products use dedicated handlers attached when their selector
             // is created. A second generic handler would replace their mappings
             // with the T-shirt dataset.
-            if (isCapItem || isBucketHatItem || isBeanieItem || isHoodieItem || isCrewneckItem) return;
+            if (isCapItem || isBucketHatItem || isBeanieItem || isHoodieItem || isCrewneckItem || isSweatpantsItem) return;
 
             designSelect._designSwitchAttached = true;
 
