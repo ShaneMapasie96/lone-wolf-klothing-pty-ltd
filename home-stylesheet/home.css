@@ -246,7 +246,7 @@ body {
 
 .hero {
     display: grid;
-    grid-template-columns: 1.25fr 0.75fr;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     align-items: center;
     gap: 32px;
     padding: 40px;
@@ -321,15 +321,72 @@ body {
 
 .hero-visual {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 420px;
+    justify-self: center;
 }
 
-.hero-visual img {
-    width: min(100%, 300px);
+.hero-image-frame {
+    width: 100%;
+}
+
+.hero-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
     height: auto;
-    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 16px;
     box-shadow: 0 18px 32px rgba(0, 0, 0, 0.25);
+}
+
+.hero-image[hidden] {
+    display: none;
+}
+
+.hero-image:first-child {
+    object-position: center 20%;
+}
+
+.hero-image:nth-child(2) {
+    object-position: center 38%;
+}
+
+.hero-image:nth-child(4) {
+    object-position: center 70%;
+}
+
+.hero-image-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.hero-image-button {
+    padding: 7px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 999px;
+    background: transparent;
+    color: #ffffff;
+    font: inherit;
+    font-size: 0.78rem;
+    cursor: pointer;
+}
+
+.hero-image-button[aria-pressed="true"] {
+    background: #cc092f;
+    border-color: #cc092f;
+}
+
+.hero-image-button:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
 }
 
 .category-section {
@@ -429,6 +486,23 @@ body {
     }
 }
 
+@media (max-width: 760px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 28px;
+    }
+
+    .hero-visual {
+        order: -1;
+        max-width: none;
+    }
+
+    .hero-image {
+        height: 220px;
+        aspect-ratio: auto;
+    }
+}
+
 @media (max-width: 640px) {
     .navbar-container {
         position: sticky;
@@ -486,6 +560,11 @@ body {
     .content {
         margin-top: 24px;
         padding: 16px;
+    }
+
+    .home-main {
+        margin-top: 0;
+        padding-top: 24px;
     }
 
     .t-shirts_and_tops-container .product-title,

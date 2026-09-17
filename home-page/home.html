@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/home-stylesheet/home.css">
@@ -65,7 +66,18 @@
             </div>
 
             <div class="hero-visual">
-                <img src="/images/logo.png" alt="Lone Wolf logo" />
+                <div class="hero-image-frame">
+                    <img class="hero-image" src="/images/female-model-in-lw-emblem-hero-piece.png" alt="Model wearing a red Lone Wolf emblem hoodie and a white beanie" width="941" height="1672" fetchpriority="high" />
+                    <img class="hero-image" data-src="/images/female-model-in-wolf-head-hero-piece.png" alt="Model wearing a pink Wolf Head hoodie" width="941" height="1672" hidden />
+                    <img class="hero-image" data-src="/images/male-model-in-ibg-hero-piece.jpg" alt="Close-up of a model wearing an Isolation Breeds Growth T-shirt" width="4860" height="3648" hidden />
+                    <img class="hero-image" data-src="/images/male-model-white-lw-type-t-shirt.jpg" alt="Model wearing a white Lone Wolf typography T-shirt outdoors" width="960" height="1280" hidden />
+                </div>
+                <div class="hero-image-controls" role="group" aria-label="Hero photos">
+                    <button type="button" class="hero-image-button" data-hero-image="0" aria-pressed="true">Lone Wolf</button>
+                    <button type="button" class="hero-image-button" data-hero-image="1" aria-pressed="false">Wolf Head</button>
+                    <button type="button" class="hero-image-button" data-hero-image="2" aria-pressed="false">Isolation Breeds Growth</button>
+                    <button type="button" class="hero-image-button" data-hero-image="3" aria-pressed="false">Lone Wolf Typography</button>
+                </div>
             </div>
         </section>
 
@@ -165,5 +177,6 @@
             <p>&copy; 2024 Lone Wolf Klothing Pty Ltd. All rights reserved.</p>
         </div>
     </footer>
+    <script src="/javascript-files/home-hero.js" defer></script>
 </body>
 </html>
