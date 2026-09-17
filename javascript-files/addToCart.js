@@ -126,6 +126,7 @@ function ensureDesignSelector(itemContainer) {
     const isTracksuit = Boolean(itemContainer.closest('.tracksuits-container'));
     const isCap = productType === '6-Panel Caps';
     const isCrewneck = productType === 'Crews';
+    const isSweatpants = productType === 'Sweatpants';
     const isVest = productType === 'Vests';
     const isTShirtOrHoodie = ['T-Shirts', 'Hoodies', 'Crewnecks'].includes(productType);
     const isHoodie = productType === 'Hoodies';
@@ -138,6 +139,11 @@ function ensureDesignSelector(itemContainer) {
         designOptions.push('Wolf Head - ' + productType);
         designOptions.push('Lone Wolf Typography - ' + productType);
         designOptions.push('Isolation Breeds Growth - ' + productType);
+    } else if (isTracksuit) {
+        designOptions.push('Lone Wolf Emblem - Large Print - ' + productType);
+        designOptions.push('Lone Wolf Emblem - Pocket Size - ' + productType);
+        designOptions.push('Wolf Head - ' + productType);
+        designOptions.push('Lone Wolf Typography - ' + productType);
     } else {
         if (!isHoodie) {
             designOptions.push('Wolf Head - ' + productType);
@@ -180,6 +186,14 @@ function ensureDesignSelector(itemContainer) {
         select.addEventListener('change', function () {
             if (typeof updateTracksuitDesign === 'function') {
                 updateTracksuitDesign(this);
+            }
+        });
+    }
+
+    if (isSweatpants) {
+        select.addEventListener('change', function () {
+            if (typeof updateSweatpantsDesign === 'function') {
+                updateSweatpantsDesign(this);
             }
         });
     }
