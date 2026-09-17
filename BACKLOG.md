@@ -40,6 +40,45 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
   - Review copy for current business details and policies.
   - Add a clear contact submission success/error state.
 
+### US-104: Reach the official social accounts
+- **Status:** Done
+- **Priority:** Medium
+- **User story:** As a shopper, I want the footer social icons to open the official Lone Wolf Klothing accounts.
+- **Acceptance criteria:**
+  - Every HTML page has Facebook, Instagram, and TikTok links in its footer.
+  - Instagram points to `https://www.instagram.com/lonewolf_klothing/`.
+  - TikTok points to `https://www.tiktok.com/@lonewolf_klothing`.
+  - Facebook uses the verified Lone Wolf Klothing page URL, not the unavailable `loneWolfKlothing` vanity URL.
+  - The Twitter icon is absent.
+- **Tasks:**
+  - Completed: Update social links across all 16 pages and add them to the four category footers that lacked them.
+  - Recheck the external destinations periodically because account URLs and visibility can change.
+
+### US-105: Navigate from the homepage to collections
+- **Status:** Done
+- **Priority:** High
+- **User story:** As a shopper, I want collection cards and the main shopping button to take me to the product category I expect.
+- **Acceptance criteria:**
+  - Collection cards use product photos rather than emoji.
+  - Each category has one card; Golfers, Tracksuits, and 6-Panel Caps are included.
+  - The T-Shirts & Vests button names its destination.
+  - The compact mobile menu exposes the main product categories.
+- **Tasks:**
+  - Completed: Replace emoji cards, remove the duplicate Beanies card, and add the missing categories.
+  - Completed: Rename the shopping button and add the compact mobile menu.
+  - Verify card destinations and menu operation at desktop and mobile widths.
+
+### US-106: Show the clothing in the homepage hero
+- **Status:** Done
+- **Priority:** Medium
+- **User story:** As a shopper, I want to see Lone Wolf clothing on models so I can understand the collection at a glance.
+- **Acceptance criteria:**
+  - The hero offers four images: Lone Wolf, Wolf Head, Isolation Breeds Growth, and Lone Wolf Typography.
+  - Each image has descriptive alternative text and its selection control identifies the active image.
+- **Tasks:**
+  - Completed: Replace the logo-led hero visual with four model images and image controls.
+  - Verify all four assets and controls on desktop and mobile.
+
 ## Epic 2: Product Images and Variant Mapping
 
 ### US-201: Display correct product images by color
@@ -47,7 +86,7 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
 - **Priority:** High
 - **User story:** As a shopper, I want the product image to change to the selected color so that I can see what I am buying.
 - **Acceptance criteria:**
-  - T-shirt, golfer, hoodie, crewneck, tracksuit, beanie, bucket-hat, and cap color mappings use existing asset filenames.
+  - T-shirt, golfer, hoodie, crewneck, sweatpants, shorts, tracksuit, beanie, bucket-hat, and cap color mappings use existing asset filenames.
   - The default golfer image loads without a broken-image state.
   - Royal Blue is removed from the golfer color selector.
   - Beanie mappings use the current `.jpg` assets for Grey and Pink Lone Wolf Emblem variants.
@@ -55,6 +94,7 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
 - **Tasks:**
   - Completed: Correct stale Grey and Pink Lone Wolf Emblem beanie paths in the page and design mapping.
   - Completed: Prevent the generic T-shirt/Golfer design handler from overwriting bucket-hat and beanie mappings.
+  - Completed: Update crewneck, hoodie, sweatpants, and shorts paths and swatches for the renamed and added assets.
   - Audit every `data-img` and `data-variants` path against the filesystem.
   - Replace remaining stale filenames or incorrect extensions.
   - Test every color/design combination on each product page.
@@ -87,9 +127,22 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
   - Existing product controls remain functional.
 - **Tasks:**
   - Completed: Replace the Golfer left thumbnail gallery with a matching single portrait frame.
+  - Completed: Update the Tracksuits model images for the left and right galleries.
   - Validate the golfers and tracksuits galleries against the approved reference screenshot.
-  - Decide whether the same gallery treatment is required for other product categories.
+  - Completed: Keep T-Shirts & Vests and Crews & Hoodies focused on their product grids; remove the empty lifestyle placeholders.
   - Add thumbnail click behavior if thumbnails are intended to control the main image.
+
+### US-204: Add collection context and related navigation
+- **Status:** Done
+- **Priority:** Medium
+- **User story:** As a shopper, I want a short collection description and a relevant next category after browsing products.
+- **Acceptance criteria:**
+  - The selected multi-product category pages have copy that describes the products shown.
+  - Their related collection links lead to existing category pages.
+  - The text and links do not crowd product cards on small screens.
+- **Tasks:**
+  - Completed: Add collection statements and related collection navigation to the selected multi-product pages.
+  - Verify layout and link destinations across viewport sizes.
 
 ## Epic 3: Design Type and Pricing Selection
 
@@ -234,6 +287,7 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
 - **Tasks:**
   - Test all pages at desktop, tablet, and mobile viewport sizes.
   - Fix layout overflow and overlapping text.
+  - Verify the compact homepage mobile menu exposes every main product category.
   - Confirm golfer and tracksuit galleries collapse appropriately on mobile.
   - Capture regression screenshots for key pages.
 
