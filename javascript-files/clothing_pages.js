@@ -150,6 +150,52 @@ function updateSweatpantsDesign(selectElement) {
     if (selectedColor) selectedColor.click();
 }
 
+function updateShortsDesign(selectElement) {
+    var item = selectElement.closest('.item');
+    var palette = item ? item.querySelector('.colors') : null;
+    if (!palette) return;
+
+    var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' :
+        /typography/i.test(selectElement.value) ? 'typography' : 'emblem';
+    var variants = {
+        emblem: {
+            White: ['../shorts/white-blk-lw-emblem-shorts.png', '../shorts/white-red-lw-emblem-shorts.png'],
+            Black: ['../shorts/black-white-lw-emblem-shorts.png', '../shorts/black-red-lw-emblem-shorts.png', '../shorts/black-gold-lw-emblem-shorts.png'],
+            Grey: ['../shorts/grey-blk-lw-emblem-shorts.jpg'],
+            Pink: ['../shorts/pink-blk-lw-emblem-shorts.jpg'],
+            Red: ['../shorts/red-blk-lw-emblem-shorts.png', '../shorts/red-white-lw-emblem-shorts.png'],
+            'Royal Blue': ['../shorts/royal-blue-white-lw-emblem-shorts.jpg'],
+            Yellow: ['../shorts/yellow-blk-lw-emblem-shorts.png']
+        },
+        'wolf-head': {
+            White: ['../shorts/white-blk-wolf-head-shorts.png', '../shorts/white-red-wolf-head-shorts.png'],
+            Black: ['../shorts/black-white-wolf-head-shorts.png', '../shorts/black-red-wolf-head-shorts.png', '../shorts/black-gold-wolf-head-shorts.png'],
+            Grey: ['../shorts/grey-blk-wolf-head-shorts.jpg'],
+            Pink: ['../shorts/pink-blk-wolf-head-shorts.jpg'],
+            Red: ['../shorts/red-blk-wolf-head-shorts.png', '../shorts/red-white-wolf-head-shorts.png'],
+            'Royal Blue': ['../shorts/royal-blue-white-wolf-head-shorts.png'],
+            Yellow: ['../shorts/yellow-blk-wolf-head-shorts.png']
+        },
+        typography: {
+            White: ['../shorts/white-blk-lw-type-shorts.png'],
+            Black: ['../shorts/black-white-lw-type-shorts.png', '../shorts/black-gold-lw-type-shorts.png'],
+            Grey: ['../shorts/grey-blk-lw-type-shorts.jpg'],
+            Pink: ['../shorts/pink-blk-lw-type-shorts.jpg'],
+            Red: ['../shorts/red-blk-lw-type-shorts.png', '../shorts/red-white-lw-type-shorts.png'],
+            'Royal Blue': ['../shorts/royal-blue-white-lw-type-shorts.png'],
+            Yellow: ['../shorts/yellow-blk-lw-type-shorts.png']
+        }
+    };
+
+    palette.querySelectorAll('.color[data-color]').forEach(function (swatch) {
+        var images = variants[design][swatch.getAttribute('data-color')];
+        swatch.setAttribute('data-variants', images ? images.join('|') : '');
+        swatch.removeAttribute('data-img');
+    });
+    var selectedColor = palette.querySelector('.selected-color') || palette.querySelector('.color');
+    if (selectedColor) selectedColor.click();
+}
+
 function updateTracksuitDesign(selectElement) {
     var item = selectElement.closest('.item');
     var palette = item ? item.querySelector('.colors') : null;
@@ -887,11 +933,12 @@ document.addEventListener('DOMContentLoaded', function () {
             var isHoodieItem = itemHeading && /hoodies?/i.test(itemHeading.textContent);
             var isCrewneckItem = itemHeading && /crewnecks?/i.test(itemHeading.textContent);
             var isSweatpantsItem = itemHeading && /sweatpants?/i.test(itemHeading.textContent);
+            var isShortsItem = itemHeading && /shorts?/i.test(itemHeading.textContent);
 
             // These products use dedicated handlers attached when their selector
             // is created. A second generic handler would replace their mappings
             // with the T-shirt dataset.
-            if (isCapItem || isBucketHatItem || isBeanieItem || isHoodieItem || isCrewneckItem || isSweatpantsItem) return;
+            if (isCapItem || isBucketHatItem || isBeanieItem || isHoodieItem || isCrewneckItem || isSweatpantsItem || isShortsItem) return;
 
             designSelect._designSwitchAttached = true;
 

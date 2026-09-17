@@ -47,6 +47,14 @@
     padding: 0 16px;
 }
 
+.t-shirts_and_tops-container .collection-statement {
+    max-width: 760px;
+    margin: 0 auto 48px;
+    padding: 0 16px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
 /* Styles for items container */
 .t-shirts_and_tops-container .items_container {
     display: grid;

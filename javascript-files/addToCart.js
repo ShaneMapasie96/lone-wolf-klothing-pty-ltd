@@ -127,6 +127,7 @@ function ensureDesignSelector(itemContainer) {
     const isCap = productType === '6-Panel Caps';
     const isCrewneck = productType === 'Crews';
     const isSweatpants = productType === 'Sweatpants';
+    const isShorts = productType === 'Shorts';
     const isVest = productType === 'Vests';
     const isTShirtOrHoodie = ['T-Shirts', 'Hoodies', 'Crewnecks'].includes(productType);
     const isHoodie = productType === 'Hoodies';
@@ -194,6 +195,14 @@ function ensureDesignSelector(itemContainer) {
         select.addEventListener('change', function () {
             if (typeof updateSweatpantsDesign === 'function') {
                 updateSweatpantsDesign(this);
+            }
+        });
+    }
+
+    if (isShorts) {
+        select.addEventListener('change', function () {
+            if (typeof updateShortsDesign === 'function') {
+                updateShortsDesign(this);
             }
         });
     }
