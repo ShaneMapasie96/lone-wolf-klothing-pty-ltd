@@ -45,9 +45,9 @@ const assert = require('node:assert/strict');
   if(file === 't-shirts_and_vests.html') {
    const shirt=page.locator('.item').first();
    assert.equal(await shirt.locator('.selected-color').getAttribute('data-color'),'White');
-   assert.equal(await shirt.locator('figure > img').getAttribute('src'),'../t-shirts/white-blk-wolf-head-t-shirt.jpg');
+   assert.equal(await shirt.locator('figure > img').getAttribute('src'),'../t-shirts/white-blk-wolf-head-t-shirt.webp');
    await shirt.getByRole('button',{name:'Next variant',exact:true}).click();
-   assert.equal(await shirt.locator('figure > img').getAttribute('src'),'../t-shirts/white-red-wolf-head-t-shirt.jpg');
+   assert.equal(await shirt.locator('figure > img').getAttribute('src'),'../t-shirts/white-red-wolf-head-t-shirt.webp');
    await shirt.getByRole('button',{name:'Previous variant',exact:true}).click();
   }
   await filters.getByRole('button',{name:file === 'puffer_jackets_and_body_warmers.html' ? 'Black' : 'White',exact:true}).click();
