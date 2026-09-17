@@ -117,6 +117,19 @@ const assert = require('node:assert/strict');
    assert.equal(await page.locator('.item:visible').count(),1);
    await filters.getByRole('button',{name:'Clear all',exact:true}).click();
   }
+  if(file === 'sweatpants_and_shorts.html') {
+   const shorts = page.locator('.item').nth(1);
+   for (const [design, filename] of [['Lone Wolf Emblem','lw-emblem'],['Wolf Head','wolf-head'],['Lone Wolf Typography','lw-type']]) {
+    await shorts.locator('select[name="design"]').selectOption({label:design});
+    assert.deepEqual(await shorts.locator('.color[data-color]').evaluateAll(swatches=>swatches.map(swatch=>swatch.dataset.color)),
+     ['White','Black','Grey','Pink','Red','Royal Blue','Yellow']);
+    await shorts.locator('.color[data-color="Royal Blue"]').click();
+    const image = shorts.locator('figure > img');
+    assert((await image.getAttribute('src')).includes('../shorts/royal-blue-white-'+filename+'-shorts.'));
+    await image.evaluate(img=>img.decode());
+    assert(await image.evaluate(img=>img.naturalWidth>0));
+   }
+  }
   assert.equal(await page.locator('.design-selector-row label').filter({hasText:'Select Design:'}).count(),0);
   for (const width of [1280,768,375]) {
    await page.setViewportSize({width,height:900});

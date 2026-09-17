@@ -55,6 +55,14 @@
     align-items: stretch;
 }
 
+.crews-and-hoodies-container .collection-statement {
+    max-width: 760px;
+    margin: 0 auto 48px;
+    padding: 0 16px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
 /* Each item */
 .crews-and-hoodies-container .item {
     width: min(100%, 300px);
