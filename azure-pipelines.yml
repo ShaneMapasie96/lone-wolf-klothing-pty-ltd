@@ -6,7 +6,7 @@ pool:
 
 steps:
 - task: CopyFiles@2
-  displayName: 'Copy website files'
+  displayName: 'Copy Website Files'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: |
@@ -15,18 +15,16 @@ steps:
       !azure-pipelines.yml
     TargetFolder: '$(Build.ArtifactStagingDirectory)/website'
     CleanTargetFolder: true
-
 - task: ArchiveFiles@2
-  displayName: 'Archive website files'
   inputs:
     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/website'
     includeRootFolder: false
-    archiveType: zip
+    archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/lone-wolf-website.zip'
     replaceExistingArchive: true
 
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish website artifact'
+  displayName: 'Publish Website Artifact'
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/lone-wolf-website.zip'
     ArtifactName: 'lone-wolf-website'
