@@ -55,6 +55,35 @@
     align-items: stretch;
 }
 
+.crews-and-hoodies-container .collection-image-placeholder {
+    width: min(100%, 760px);
+    min-height: 260px;
+    box-sizing: border-box;
+    margin: 0 auto 24px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px dashed rgba(255, 255, 255, 0.45);
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(20, 28, 42, 0.8), rgba(55, 63, 78, 0.6));
+    color: #fff;
+    text-align: center;
+}
+
+.crews-and-hoodies-container .collection-image-placeholder span {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.crews-and-hoodies-container .collection-image-placeholder strong {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
 .crews-and-hoodies-container .collection-statement {
     max-width: 760px;
     margin: 0 auto 48px;
