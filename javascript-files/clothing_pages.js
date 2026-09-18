@@ -537,7 +537,7 @@ function updateOuterwearDesign(selectElement) {
                 Red: ['/puffer-jackets/red-white-lw-emblem-puffer-jacket.webp', '/puffer-jackets/red-blk-lw-puffer-jacket.webp']
             },
             typography: {
-                Black: ['/puffer-jackets/black-white-lw-type-puffer-jacket.webp', '/puffer-jackets/black-gold-lw-tye-puffer-alaskan-jacket.webp'],
+                Black: ['/puffer-jackets/Black-white-lw-type-puffer-jacket.webp', '/puffer-jackets/black-gold-lw-tye-puffer-alaskan-jacket.webp'],
                 Grey: ['/puffer-jackets/grey-lw-type-alaskan-puffer-jacket.webp'],
                 'Navy Blue': ['/puffer-jackets/navy-lw-type-puffer-jacket.webp'],
                 Red: ['/puffer-jackets/red-white-lw-type-puffer-jacket.webp', '/puffer-jackets/red-blk-lw-type-puffer-jacket.webp']
@@ -861,7 +861,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Red', img: null, variants: '../hoodies/red-blk-lw-emblem-hoodie.webp|../hoodies/red-white-lw-emblem-hoodie.webp' },
                 { name: 'Pink', img: '../hoodies/pink-blk-lw-emblem-hoodie.webp', variants: null },
                 { name: 'Yellow', img: '../hoodies/yellow-lw-emblem-hoodie.webp', variants: null },
-                { name: 'Royal Blue', img: '../hoodies/royal-blue-lw-emblem-hoodie.webp', variants: null }
+                { name: 'Royal Blue', img: '../hoodies/Royal-Blue-LW-Emblem-Hoodie.webp', variants: null }
             ],
             defaultImg: '../hoodies/white-blk-lw-emblem-hoodie.webp'
         },
@@ -872,7 +872,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Grey', img: '../hoodies/grey-wolf-head-hoodie.webp', variants: null },
                 { name: 'Pink', img: '../hoodies/pink-blk-wolf-head-hoodie.webp', variants: null },
                 { name: 'Red', img: null, variants: '../hoodies/red-blk-wolf-head-hoodie.webp|../hoodies/red-white-wolf-head-hoodie.webp' },
-                { name: 'Royal Blue', img: '../hoodies/royal-blue-wolf-head-hoodie.webp', variants: null },
+                { name: 'Royal Blue', img: '../hoodies/Royal-Blue-Wolf-Head-Hoodie.webp', variants: null },
                 { name: 'Yellow', img: '../hoodies/yellow-wolf-head-hoodie.webp', variants: null }
             ]
         },
