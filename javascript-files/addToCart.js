@@ -1,41 +1,7 @@
-// Function to handle adding items to cart and sending to WhatsApp
+// Save the configured product and open the shared cart summary.
 function addToCart(itemId) {
-    const productImage = document.getElementById(itemId);
-    if (!productImage) {
-        return;
-    }
-
-    // Find the relevant item container based on the provided itemId
-    const itemContainer = productImage.closest('.item');
-    if (!itemContainer) {
-        return;
-    }
-
-    // Retrieve selected size and quantity scoped to this item card
-    const sizeSelect = itemContainer.querySelector('select[name="size"]');
-    const quantitySelect = itemContainer.querySelector('select[name="quantity"]');
-    const designSelect = itemContainer.querySelector('select[name="design"]');
-    const size = sizeSelect ? sizeSelect.value : 'N/A';
-    const quantity = quantitySelect ? quantitySelect.value : '1';
-    const design = designSelect ? designSelect.value : 'Standard';
-
-    // Resolve selected color from the color swatch; fallback to current image filename
-    const selectedColor = itemContainer.querySelector('.colors .selected-color, .colors .selected');
-    const namedColor = selectedColor ? selectedColor.getAttribute('data-color') : null;
-    const colorImagePath = selectedColor ? selectedColor.getAttribute('data-img') : productImage.getAttribute('src');
-    const color = namedColor || (colorImagePath ? colorImagePath.split('/').pop() : 'Default');
-
-    // Construct message with each input field on its own line
-    const fullMessage = 'Design: ' + design + '\nSize: ' + size + '\nQuantity: ' + quantity + '\nColor: ' + color;
-
-    // Encode the message for use in a URL
-    const encodedMessage = encodeURIComponent(fullMessage);
-
-    // Prepare the WhatsApp link with the pre-filled message
-    const whatsappLink = 'https://wa.me/27615816059?text=' + encodedMessage;
-
-    // Open WhatsApp with the pre-filled message
-    window.open(whatsappLink, '_blank');
+    const image = document.getElementById(itemId);
+    if (image && window.LoneWolfShop) window.LoneWolfShop.addFromImage(image);
 }
 
 function getProductType(itemContainer, productImage) {
