@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:shop": "node tests/shop-tools.cjs",
+    "test:filters": "node tests/product-filters.cjs"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ShaneMapasie96/cput-lone-wolf-wear-pty-ltd.git"
