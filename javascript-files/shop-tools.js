@@ -74,8 +74,10 @@
         if (!dialog.open) opener = document.activeElement;
         title.textContent = view;
         dialog.classList.toggle('shop-wishlist', view === 'Wishlist');
-        dialog.classList.toggle('shop-collection', view === 'Wishlist' || view === 'Shopping cart');
-        closeButton.textContent = ['Wishlist', 'Shopping cart'].includes(view) ? '\u00d7' : 'Close';
+        dialog.classList.add('shop-collection');
+        dialog.classList.toggle('shop-search-panel', view === 'Search');
+        dialog.classList.toggle('shop-account-panel', view === 'Account');
+        closeButton.textContent = '\u00d7';
         content.replaceChildren();
         notice.textContent = '';
         if (view === 'Search') renderSearch();
@@ -84,17 +86,30 @@
         if (!dialog.open) dialog.showModal();
     }
     function renderSearch() {
+        const icon = element('span', undefined, title);
+        icon.setAttribute('aria-hidden', 'true');
+        icon.innerHTML = '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></svg>';
+        title.prepend(icon);
+        element('p', 'Find your next favourite collection.', content).className = 'shop-wishlist-intro';
         const label = element('label', 'Search collections', content);
         const input = element('input', undefined, label);
         input.type = 'search';
+        input.id = 'shop-collection-search';
+        input.name = 'collection-search';
         input.placeholder = 'Try hoodies, caps or golfers';
         const results = element('div', undefined, content);
+        results.className = 'shop-search-results';
         results.setAttribute('aria-live', 'polite');
         const render = () => {
             results.replaceChildren();
             const matches = collections.filter(([name]) => input.value.toLowerCase().trim().split(/\s+/).every(word => name.toLowerCase().includes(word)));
-            matches.forEach(([name, url]) => { const link = element('a', name, results); link.href = url; link.className = 'shop-result'; });
-            if (!matches.length) element('p', 'No collections found. Try another search.', results);
+            matches.forEach(([name, url]) => {
+                const link = element('a', name, results);
+                link.href = url; link.className = 'shop-result';
+                const arrow = element('span', '\u2192', link);
+                arrow.setAttribute('aria-hidden', 'true');
+            });
+            if (!matches.length) element('p', 'No collections found. Try another search.', results).className = 'shop-empty';
         };
         input.addEventListener('input', render);
         render();
@@ -124,7 +139,7 @@
             link.href = collections[0][1];
             return;
         }
-        state[type].forEach(item => {
+        state[type].forEach((item, index) => {
             const row = element('article', undefined, content);
             row.className = 'shop-item';
             let details = row;
@@ -166,6 +181,8 @@
             if (type === 'cart') {
                 const label = element('label', 'Quantity ', actions);
                 const input = element('input', undefined, label);
+                input.id = `shop-cart-quantity-${index}`;
+                input.name = `cart-quantity-${index}`;
                 input.type = 'number'; input.min = '1'; input.max = '99'; input.value = item.quantity;
                 input.setAttribute('aria-label', `Quantity for ${item.name}`);
                 input.addEventListener('change', () => {
@@ -189,7 +206,11 @@
         }
     }
     function renderProfile() {
-        element('p', 'Save your profile on this device. Online sign-in and order history are not available yet.', content);
+        const icon = element('span', undefined, title);
+        icon.setAttribute('aria-hidden', 'true');
+        icon.innerHTML = '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg>';
+        title.prepend(icon);
+        element('p', 'Save your profile on this device. Online sign-in and order history are not available yet.', content).className = 'shop-wishlist-intro';
         const form = element('form', undefined, content);
         for (const [field, labelText] of [['name', 'Name'], ['email', 'Email']]) {
             const label = element('label', labelText, form);
@@ -203,7 +224,7 @@
             state.profile = { name: form.elements.name.value.trim(), email: form.elements.email.value.trim() };
             notice.textContent = 'Profile saved on this device.'; persist();
         });
-        button('Clear profile', content, () => { state.profile = { name: '', email: '' }; open('Account'); persist(); });
+        button('Clear profile', form, () => { state.profile = { name: '', email: '' }; open('Account'); persist(); }).className = 'shop-clear-profile';
     }
     function capture(image) {
         const card = image.closest('.item');

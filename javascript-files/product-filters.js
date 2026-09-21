@@ -39,6 +39,8 @@ function initProductFilters(grid) {
         const caption = document.createElement('span');
         caption.textContent = title;
         const select = document.createElement('select');
+        select.id = `product-filter-${key}`;
+        select.name = `filter-${key}`;
         select.dataset.filter = key;
         select.setAttribute('aria-label', title);
         select.add(new Option('All', ''));

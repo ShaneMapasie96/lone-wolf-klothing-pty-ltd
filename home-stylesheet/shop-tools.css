@@ -59,6 +59,23 @@
 .shop-empty h3 { font-size: 20px; }
 .shop-empty p { font-size: 14px; color: #afb7c4; }
 .shop-collection [role=status]:not(:empty) { padding: 10px 12px; border-left: 3px solid #aab4c5; border-radius: 4px; background: #29313d; color: #e0e5ed; font-size: 13px; }
+.shop-search-panel h2 > span { display: inline-flex; }
+.shop-search-panel label { color: #c6cbd3; font-size: 13px; margin: 0 0 20px; }
+.shop-search-panel input[type=search] { margin-top: 8px; padding: 14px; border: 1px solid #626877; border-radius: 10px; background: #191f27; color: #fff; font-size: 16px; }
+.shop-search-panel input::placeholder { color: #aeb7c5; opacity: 1; }
+.shop-search-results { display: grid; gap: 8px; }
+.shop-search-panel .shop-result { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 13px 16px; border: 1px solid #454d5a; border-radius: 10px; background: #191f27; color: #e6eaf0; font-size: 15px; font-weight: 600; }
+.shop-search-panel .shop-result span { color: #aeb7c5; font-size: 20px; flex-shrink: 0; }
+.shop-search-panel .shop-result:hover { background: #29313d; border-color: #78788c; color: #fff; }
+.shop-search-panel .shop-result:hover span { color: #f3788d; }
+.shop-account-panel h2 > span { display: inline-flex; }
+.shop-account-panel form { padding: 20px; border: 1px solid #454d5a; border-radius: 12px; background: #191f27; }
+.shop-account-panel label { margin: 0 0 18px; color: #c6cbd3; font-size: 14px; }
+.shop-account-panel input { margin-top: 8px; padding: 14px; border: 1px solid #626877; border-radius: 10px; background: #29313d; color: #fff; font-size: 16px; }
+.shop-account-panel form button { margin: 4px 10px 0 0; padding: 12px 18px; border: 2px solid #78788c; border-radius: 10px; background: transparent; box-shadow: 0 0 5px #cccccc40; font-weight: 700; }
+.shop-account-panel form button:hover { background: #394352; border-color: #9ba2af; }
+.shop-account-panel form .shop-clear-profile { border-color: transparent; box-shadow: none; color: #b9c0cb; font-weight: normal; }
+.shop-account-panel form .shop-clear-profile:hover { color: #ff91a3; background: #c4082e15; }
 @media (max-width: 480px) {
     .shop-collection { padding: 18px; }
     .shop-collection h2 { font-size: 20px; gap: 7px; }
