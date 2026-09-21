@@ -67,27 +67,33 @@
               <div class="text-one">+27 61 581 6059</div>
           </div>
           <div class="email details">
-              <a href="mailto:lw16sa@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+              <a href="mailto:lwe16sa@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
               <div class="topic">Email</div>
-              <div class="text-one">lwKlothing@gmail.com</div>
+              <div class="text-one">lwe16sa@gmail.com</div>
           </div>
       </div>
       <div class="right-side">
         <div class="topic-text">Send us a message</div>
-        <p>If you have any work from me or any types of queries related to my tutorial, you can send me a message from here. It's my pleasure to help you.</p>
-        <form id="contactForm">
+        <p>Have a question or want us to call you back? Send us your contact details and message, and the Lone Wolf Klothing team will get back to you.</p>
+        <form id="contactForm" action="https://formsubmit.co/lwe16sa@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Lone Wolf Klothing enquiry / callback request">
+            <input type="text" name="_honey" class="contact-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="input-box">
-                <input id="nameInput" type="text" placeholder="Enter your name" />
+                <input id="nameInput" name="name" type="text" aria-label="Your name" autocomplete="name" required placeholder="Enter your name" />
             </div>
             <div class="input-box">
-                <input id="emailInput" type="email" placeholder="Enter your email" />
+                <input id="emailInput" name="email" type="email" aria-label="Your email" autocomplete="email" required placeholder="Enter your email" />
+            </div>
+            <div class="input-box">
+                <input id="phoneInput" name="phone" type="tel" aria-label="Your phone number" autocomplete="tel" required placeholder="Enter your phone number" />
             </div>
             <div class="input-box message-box">
-                <textarea id="messageInput" placeholder="Enter your message"></textarea>
+                <textarea id="messageInput" name="message" aria-label="Your message" required placeholder="Enter your message"></textarea>
             </div>
             <div class="button">
                 <input id="submitButton" type="submit" value="Send Now" />
             </div>
+            <p id="contactStatus" role="status" aria-live="polite"></p>
         </form>
     </div>
   </div>
