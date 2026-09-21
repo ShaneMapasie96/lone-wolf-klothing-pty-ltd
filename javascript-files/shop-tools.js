@@ -74,7 +74,8 @@
         if (!dialog.open) opener = document.activeElement;
         title.textContent = view;
         dialog.classList.toggle('shop-wishlist', view === 'Wishlist');
-        closeButton.textContent = view === 'Wishlist' ? '\u00d7' : 'Close';
+        dialog.classList.toggle('shop-collection', view === 'Wishlist' || view === 'Shopping cart');
+        closeButton.textContent = ['Wishlist', 'Shopping cart'].includes(view) ? '\u00d7' : 'Close';
         content.replaceChildren();
         notice.textContent = '';
         if (view === 'Search') renderSearch();
@@ -100,19 +101,26 @@
         setTimeout(() => input.focus(), 0);
     }
     function renderItems(type) {
-        if (type === 'wishlist') {
-            title.textContent = 'Your Wishlist';
-            const heart = element('span', '\u2661', title);
+        {
+            title.textContent = type === 'wishlist' ? 'Your Wishlist' : 'Shopping cart';
+            const heart = element('span', type === 'wishlist' ? '\u2661' : '', title);
             heart.className = 'shop-heading-heart';
+            if (type === 'cart') {
+                heart.innerHTML = '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h3l3 13h11l3-10H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>';
+            }
             heart.setAttribute('aria-hidden', 'true');
             title.prepend(heart);
-            const count = state.wishlist.length;
+            const count = type === 'wishlist' ? state.wishlist.length : state.cart.reduce((sum, item) => sum + item.quantity, 0);
             element('span', `${count} ${count === 1 ? 'item' : 'items'}`, title).className = 'shop-list-count';
-            element('p', 'Your favourites, ready when you are.', content).className = 'shop-wishlist-intro';
+            element('p', type === 'wishlist' ? 'Your favourites, ready when you are.' : 'Your picks, one step closer.', content).className = 'shop-wishlist-intro';
         }
         if (!state[type].length) {
-            element('p', type === 'cart' ? 'Your cart is empty.' : 'Your wishlist is empty. Save a favourite from any product card.', content);
-            const link = element('a', 'Browse T-Shirts & Vests', content);
+            const empty = element('div', undefined, content);
+            empty.className = 'shop-empty';
+            element('h3', type === 'cart' ? 'Your cart is empty.' : 'Your wishlist is empty. Save a favourite from any product card.', empty);
+            element('p', 'Find your next favourite in our collections.', empty);
+            const link = element('a', 'Browse T-Shirts & Vests', empty);
+            link.className = 'shop-checkout';
             link.href = collections[0][1];
             return;
         }
@@ -120,7 +128,7 @@
             const row = element('article', undefined, content);
             row.className = 'shop-item';
             let details = row;
-            if (type === 'wishlist') {
+            {
                 const preview = element('a', undefined, row);
                 preview.className = 'shop-preview';
                 preview.href = item.url;
@@ -144,18 +152,19 @@
             }
             const link = element('a', item.name, details);
             link.href = item.url;
-            if (type === 'wishlist') {
+            {
                 element('p', item.design.replace(/[-_]/g, ' '), details).className = 'shop-design';
                 const tags = element('div', undefined, details);
                 tags.className = 'shop-option-tags';
                 element('span', item.color, tags);
                 element('span', `Size ${item.size}`, tags);
-            } else element('p', `${item.design} · ${item.color} · Size ${item.size}`, details);
-            element('p', money(item.price) + (type === 'cart' ? ` each · ${money(item.price * item.quantity)}` : ''), details).className = 'shop-item-price';
+            }
+            element('p', money(item.price * (type === 'cart' ? item.quantity : 1)), details).className = 'shop-item-price';
+            if (type === 'cart') element('p', `${money(item.price)} each`, details).className = 'shop-unit-price';
             const actions = element('div', undefined, details);
             actions.className = 'shop-item-actions';
             if (type === 'cart') {
-                const label = element('label', 'Quantity ', row);
+                const label = element('label', 'Quantity ', actions);
                 const input = element('input', undefined, label);
                 input.type = 'number'; input.min = '1'; input.max = '99'; input.value = item.quantity;
                 input.setAttribute('aria-label', `Quantity for ${item.name}`);
@@ -167,14 +176,16 @@
             button('Remove', actions, () => { state[type] = state[type].filter(entry => entry.id !== item.id); open(type === 'cart' ? 'Shopping cart' : 'Wishlist'); persist(); }).className = 'shop-remove';
         });
         if (type === 'cart') {
-            element('h3', 'Subtotal: ' + money(state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0)), content);
-            element('p', 'Delivery and availability will be confirmed on WhatsApp.', content);
-            const checkout = element('a', 'Order on WhatsApp', content);
+            const summary = element('div', undefined, content);
+            summary.className = 'shop-order-summary';
+            element('h3', 'Subtotal: ' + money(state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0)), summary);
+            element('p', 'Delivery and availability will be confirmed on WhatsApp.', summary);
+            const checkout = element('a', 'Order on WhatsApp', summary);
             checkout.className = 'shop-checkout';
             const message = ['Hello, I would like to order:', ...state.cart.map(item => `${item.name}\nDesign: ${item.design}\nColor: ${item.color}\nSize: ${item.size}\nQuantity: ${item.quantity}\nUnit price: ${money(item.price)}\nLine total: ${money(item.price * item.quantity)}`), 'Subtotal: ' + money(state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0))].join('\n\n');
             checkout.href = 'https://wa.me/27615816059?text=' + encodeURIComponent(message);
             checkout.target = '_blank'; checkout.rel = 'noopener noreferrer';
-            element('p', 'Your cart stays saved until you remove its items.', content);
+            element('p', 'Your cart stays saved until you remove its items.', summary).className = 'shop-cart-note';
         }
     }
     function renderProfile() {
