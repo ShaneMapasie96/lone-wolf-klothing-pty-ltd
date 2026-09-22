@@ -10,11 +10,16 @@
         ['Bucket Hats & Beanies', '/accessories-pages/bucket-hats-and-beanies.html'],
         ['6-Panel Caps', '/accessories-pages/6-panel-caps.html']
     ];
+    // Cloudflare serves HTML pages at extensionless URLs.
+    const collectionPath = url => {
+        const pathname = url.split('#')[0].toLowerCase().replace(/\.html$/, '');
+        return collections.find(([, path]) => path.replace(/\.html$/, '') === pathname)?.[1];
+    };
     const key = 'lw-shop-v1';
     let state = { cart: [], wishlist: [], profile: { name: '', email: '' } };
     const validItem = item => item && typeof item.name === 'string' && typeof item.id === 'string'
         && typeof item.design === 'string' && typeof item.size === 'string' && typeof item.color === 'string'
-        && typeof item.url === 'string' && collections.some(([, url]) => item.url.split('#')[0].toLowerCase() === url)
+        && typeof item.url === 'string' && Boolean(collectionPath(item.url))
         && Number.isFinite(item.price) && item.price > 0 && Number.isInteger(item.quantity) && item.quantity > 0 && item.quantity <= 99;
     try {
         const saved = JSON.parse(localStorage.getItem(key));
@@ -236,7 +241,7 @@
             color: card.querySelector('.colors .selected-color, .colors .selected')?.dataset.color || image.getAttribute('src').split('/').pop(),
             price: Number(card.querySelector('.price')?.textContent.replace(/[^\d.]/g, '')),
             image: image.getAttribute('src'),
-            url: location.pathname + '#' + image.id
+            url: (collectionPath(location.pathname) || location.pathname) + '#' + image.id
         };
         item.id = JSON.stringify([item.url, item.design, item.size, item.color, image.getAttribute('src'), item.price]);
         return item;
