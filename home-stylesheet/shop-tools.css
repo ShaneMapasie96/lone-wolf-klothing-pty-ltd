@@ -93,3 +93,7 @@
 .shop-order-details label { display: grid; gap: 6px; }
 .shop-order-details input, .shop-order-details select { width: 100%; min-width: 0; padding: 12px; border: 1px solid #78788c; border-radius: 6px; background: #1f2b3a; color: #fff; font: inherit; font-size: 16px; }
 .shop-order-details [hidden] { display: none; }
+
+.item .product-logo-colour { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0; color: #fff; font-size: 14px; line-height: 1.5; }
+.product-logo-chip { display: inline-flex; align-items: center; gap: 7px; padding: 4px 10px; border: 1px solid #78788c; border-radius: 6px; background: #1f2b3a; }
+.product-logo-swatch { display: inline-block; width: 16px; height: 16px; flex-shrink: 0; border: 1px solid #aeb7c5; border-radius: 50%; }
