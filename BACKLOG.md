@@ -1,6 +1,19 @@
 # Lone Wolf Klothing Website Backlog
 
-This backlog reflects the current static HTML/CSS/JavaScript website. Status values are `Done`, `In Progress`, or `To Do`.
+This backlog reflects the current static HTML/CSS/JavaScript website. Updated: 2026-09-21. Status values are `Done`, `In Progress`, or `To Do`. The contact-form issue is resolved, as confirmed by the business owner.
+
+## Jira and Azure DevOps import
+
+- Source of truth: this file. Preserve the existing `US-###` identifiers when editing stories.
+- Jira Cloud: import `backlog-imports/jira.csv` using the administrator **External system import > CSV** workflow. Map Issue ID and Parent to preserve Epic > Story links. Map Status and Priority to your project's values; Critical is exported as Highest. Epic rows appear before their stories. This targets Jira Cloud's current Parent field, not legacy Epic Link imports.
+- Azure DevOps: import `backlog-imports/azure-devops-agile.csv` through **Boards > Queries > Import work items**. This file targets the Agile process and uses Title 1/2/3 for Epic > Feature > User Story hierarchy. Each epic has one grouping Feature to retain the standard Agile backlog levels. For Scrum, change User Story to Product Backlog Item before import; Basic and custom processes need their own type mapping.
+- Azure creation imports omit ID and State. After saving the new items, export their assigned IDs and update State using the source-status tags and descriptions: To Do = New, In Progress = Active, Done = Closed. Never use the local story identifier as an Azure ID.
+- Both files preserve acceptance criteria and task checklists inside descriptions. Tasks are not separately imported work items. No owners, estimates, sprint assignments, project keys or remote IDs are invented.
+- These are creation imports. Reimporting them can create duplicates. For later updates, export actual Jira keys or Azure IDs and match the local identifiers in titles.
+- Regenerate CSV files after editing this document with `node scripts/export-backlog.cjs`. Review the import preview against your project's required fields before saving.
+- Import references: [Jira hierarchy mapping](https://support.atlassian.com/jira/kb/map-issueid-parentid-fields-jira-csv-import/) and [Azure CSV imports](https://learn.microsoft.com/en-us/azure/devops/boards/queries/import-work-items-from-csv?view=azure-devops).
+
+Existing Done stories retain their recorded implementation status. Unprefixed validation tasks on those stories are regression checklists, not newly reported defects. Outstanding implementation and unresolved validation work are recorded under In Progress or To Do stories.
 
 ## Epic 1: Product Catalogue and Navigation
 
@@ -38,7 +51,7 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
 - **Tasks:**
   - Verify all footer URLs.
   - Review copy for current business details and policies.
-  - Add a clear contact submission success/error state.
+  - Completed: Add a clear contact submission success/error state; see US-109.
 
 ### US-104: Reach the official social accounts
 - **Status:** Done
@@ -78,6 +91,50 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
 - **Tasks:**
   - Completed: Replace the logo-led hero visual with four model images and image controls.
   - Verify all four assets and controls on desktop and mobile.
+
+### US-107: Publish Courier Guy locker delivery information
+- **Status:** Done
+- **Priority:** High
+- **User story:** As a shopper, I want current locker delivery details so that I can choose a suitable collection location and understand delivery costs.
+- **Acceptance criteria:**
+  - The shipping page replaces PAXI and PEP references with The Courier Guy locker service.
+  - Estimated delivery is stated as 1-4 business days after dispatch.
+  - Collection instructions explain PIN or QR access, the notification's collection deadline, and location-dependent opening hours.
+  - Customers can open the locker finder and current courier quote page.
+  - Paid delivery uses The Courier Guy's quoted charge without an LWK markup.
+- **Tasks:**
+  - Completed: Replace outdated delivery copy and PAXI rates.
+  - Completed: Add locker collection details and official links.
+  - Completed: Check desktop and mobile page overflow.
+
+### US-108: Publish free locker delivery for orders over R750
+- **Status:** Done
+- **Priority:** High
+- **User story:** As a shopper, I want to know when LWK pays for delivery so that I understand the cost of my order.
+- **Acceptance criteria:**
+  - The shipping page states that LWK pays the locker delivery fee when the order total exceeds R750.
+  - Orders of exactly R750 or less retain the courier's quoted delivery charge without markup.
+  - Free collection from LWK remains available.
+  - This story covers the published shipping policy; automated cart shipping calculation is outside its scope.
+- **Tasks:**
+  - Completed: Add the free-delivery heading and explain who pays.
+  - Completed: Clarify the strict greater-than-R750 threshold and remove the old R500 offer.
+
+### US-109: Submit customer enquiries and callback requests by email
+- **Status:** Done
+- **Priority:** High
+- **User story:** As a customer, I want to submit my name, email, phone number and message so that LWK can reply or call me back.
+- **Acceptance criteria:**
+  - The visible contact email and email link use lwe16sa@gmail.com.
+  - The form requires a name, valid email, phone number and message.
+  - Send Now submits the enquiry through FormSubmit for delivery to lwe16sa@gmail.com without opening the customer's email app or WhatsApp.
+  - The page shows sending, success and error states and prevents duplicate submissions while a request is pending.
+  - Failed submissions retain the customer's details for retry.
+- **Tasks:**
+  - Completed: Update the email address and replace the email-draft flow with direct form submission.
+  - Completed: Restore Send Now and add the phone field, validation and status feedback.
+  - Completed: Verify submission payload, success/error handling and responsive overflow with mocked requests.
+  - Completed: Business owner confirmed the reported submission issue is resolved on 2026-09-21. Live delivery was not independently retested by the agent.
 
 ## Epic 2: Product Images and Variant Mapping
 
@@ -147,7 +204,7 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
 ## Epic 3: Design Type and Pricing Selection
 
 ### US-301: Select design type on apparel products
-- **Status:** Done for implemented apparel categories
+- **Status:** Done
 - **Priority:** High
 - **User story:** As a shopper, I want to choose a design type so that I can order the artwork style I prefer.
 - **Acceptance criteria:**
@@ -163,7 +220,7 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
   - Confirm the selected design never leaves stale image variants in the palette.
 
 ### US-302: Calculate price from design selection
-- **Status:** Done for implemented selectors; needs regression coverage
+- **Status:** In Progress
 - **Priority:** High
 - **User story:** As a shopper, I want the price to update when I select a different design type so that I know the correct total before adding to cart.
 - **Acceptance criteria:**
@@ -172,6 +229,7 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
   - The selected price is the price sent to the cart flow.
 - **Tasks:**
   - Confirm prices for every product category with the business owner.
+  - Completed: Implement price updates for the existing design selectors.
   - Test price changes after repeated design and color changes.
   - Add automated checks for selector-to-price behavior.
 
@@ -241,9 +299,9 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
   - The cart action works for every product category.
   - The shopper receives confirmation after adding an item.
 - **Tasks:**
-  - Audit `addToCart.js` for every product type.
+  - Audit `javascript-files/shop-tools.js` for every product type.
   - Test cart payloads after changing design, color, size, and quantity.
-  - Add cart item count and cart summary UI.
+  - Completed: Add cart item count and cart summary UI.
   - Prevent adding products with invalid or missing data.
 
 ### US-502: Complete the WhatsApp ordering flow
@@ -255,24 +313,24 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
   - Prices and quantities are correct.
   - The ordering link works on desktop and mobile.
 - **Tasks:**
-  - Confirm the destination number or ordering endpoint.
-  - Encode product data safely in the outgoing message.
+  - Completed: Configure the ordering destination as +27 61 581 6059.
+  - Completed: Encode product data safely in the outgoing message.
   - Test the flow on supported browsers and mobile devices.
   - Add an error state when the ordering action cannot open.
 
 ### US-503: Persist cart items between page visits
-- **Status:** To Do
+- **Status:** In Progress
 - **Priority:** High
 - **User story:** As a shopper, I want my cart to persist while I browse so that I do not lose selected items.
 - **Acceptance criteria:**
   - Cart data survives navigation and page refresh.
   - Items can be removed and quantities can be changed.
-  - Cart data is cleared after a successful order or explicit clear action.
+  - Opening WhatsApp does not clear the cart because the site cannot confirm whether an order was sent; items remain until the shopper removes them.
 - **Tasks:**
-  - Choose localStorage or another persistence approach.
-  - Define the cart data schema.
-  - Build cart summary and removal controls.
-  - Handle stale or malformed stored cart data.
+  - Completed: Persist the cart in localStorage with a defined data schema.
+  - Completed: Build cart summary, quantity editing and removal controls.
+  - Completed: Validate stored cart data before restoring it.
+  - Verify persistence across navigation and refresh, malformed storage, and quantity changes in supported browsers.
 
 ## Epic 6: Quality, Accessibility, and Release Readiness
 
@@ -307,7 +365,7 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
   - Run an accessibility audit.
 
 ### US-603: Establish automated regression tests
-- **Status:** To Do
+- **Status:** In Progress
 - **Priority:** High
 - **User story:** As a maintainer, I want automated checks so that image mappings, selectors, and cart behavior do not regress.
 - **Acceptance criteria:**
@@ -316,11 +374,12 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
   - Tests cover add-to-cart output.
   - Tests run from a documented command.
 - **Tasks:**
-  - Add npm scripts for Playwright tests.
+  - Completed: Add npm scripts `test:shop` and `test:filters` for the existing Playwright checks.
   - Create page smoke tests for all catalogue pages.
   - Add product configuration matrix tests.
   - Add screenshot tests for golfers and tracksuits.
-  - Document test setup and execution.
+  - Completed: Document test setup and execution in README.md.
+  - Add repeatable contact-form success/error tests using mocked requests; prior checks were run during implementation.
 
 ### US-604: Prepare the site for deployment
 - **Status:** To Do
@@ -341,6 +400,6 @@ This backlog reflects the current static HTML/CSS/JavaScript website. Status val
 
 1. Complete US-501 and US-502 by verifying the cart and ordering flow end to end.
 2. Complete the asset audit in US-201 across every product category.
-3. Add the Playwright smoke-test foundation in US-603.
+3. Extend the existing Playwright coverage in US-603.
 4. Finish responsive validation for the golfers and tracksuits galleries in US-601.
 5. Add accessible labels and keyboard focus behavior from US-602.
