@@ -78,6 +78,11 @@ const path = require('node:path');
         const order = decodeURIComponent(await page.getByRole('link', { name: 'Order on WhatsApp' }).getAttribute('href'));
         assert.match(order, /Quantity: 3/);
         assert.match(order, /Unit price: R/);
+        const orderedItems = await page.evaluate(() => JSON.parse(localStorage.getItem('lw-shop-v1')).cart);
+        for (const item of orderedItems) {
+            const imageName = item.image.split(/[?#]/)[0].split('/').pop().replace(/\.(webp|png|jpe?g)$/i, '');
+            assert(order.includes('Description: ' + imageName), 'Missing selected image description: ' + imageName);
+        }
         await page.locator('.shop-item').first().getByRole('button', { name: 'Remove' }).click();
         assert.equal(await page.locator('.shop-item').count(), count - 1);
         await close();
@@ -92,6 +97,25 @@ const path = require('node:path');
             assert(box.x >= 0 && box.x + box.width <= 390);
             await close();
         }
+        await page.evaluate(() => localStorage.removeItem('lw-shop-v1'));
+        await page.goto('http://local/clothing-pages/t-shirts_and_vests');
+        const vest = page.locator('.item').filter({ has: page.locator('#item2-img') });
+        await vest.locator('.color[data-color="Red"]').click();
+        await vest.getByRole('button', { name: 'Add to Cart', exact: true }).click();
+        await expect(page.locator('.shop-variant')).toHaveText('Selected variant: Red vest with black Lone Wolf Emblem');
+        await close();
+        await vest.getByRole('button', { name: 'Next variant', exact: true }).click();
+        await vest.getByRole('button', { name: 'Add to Cart', exact: true }).click();
+        assert.equal(await page.locator('.shop-item').count(), 2);
+        await expect(page.locator('.shop-variant').nth(1)).toHaveText('Selected variant: Red vest with white Lone Wolf Emblem');
+        await close();
+        await page.reload();
+        await open('Shopping cart');
+        const variantOrder = decodeURIComponent(await page.getByRole('link', { name: 'Order on WhatsApp' }).getAttribute('href'));
+        assert(variantOrder.includes('Description: red-blk-lw-emblem-vest'));
+        assert(variantOrder.includes('Description: red-white-lw-emblem-vest'));
+        assert.equal(await page.locator('.shop-item').count(), 2);
+        await close();
         await page.evaluate(() => localStorage.setItem('lw-shop-v1', '{broken'));
         await page.reload();
         await open('Shopping cart');

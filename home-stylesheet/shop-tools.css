@@ -86,3 +86,5 @@
     .shop-item-details > a { font-size: 16px; }
     .shop-collection .shop-item-actions button { padding: 10px; }
 }
+
+.shop-collection .shop-variant { margin: 0 0 12px; font-size: 13px; line-height: 1.5; color: #d9e0e8; overflow-wrap: anywhere; }
