@@ -1,15 +1,17 @@
 # Lone Wolf Klothing Website Backlog
 
-This backlog reflects the current static HTML/CSS/JavaScript website. Updated: 2026-09-21. Status values are `Done`, `In Progress`, or `To Do`. The contact-form issue is resolved, as confirmed by the business owner.
+This backlog reflects the current static HTML/CSS/JavaScript website. Updated: 2026-09-22. Status values are `Done`, `In Progress`, or `To Do`. The contact-form issue is resolved, as confirmed by the business owner.
 
 ## Jira and Azure DevOps import
+
+The full backlog has already been imported. The CSVs now contain only To Do and In Progress stories, their parent epics, and Azure grouping features. Done stories, fully completed epics, and Completed task entries are excluded. BACKLOG.md retains the complete history. These exports reflect local backlog statuses; they do not read changes made directly in Jira or Azure.
 
 - Source of truth: this file. Preserve the existing `US-###` identifiers when editing stories.
 - Jira Cloud: import `backlog-imports/jira.csv` using the administrator **External system import > CSV** workflow. Map Issue ID and Parent to preserve Epic > Story links. Map Status and Priority to your project's values; Critical is exported as Highest. Epic rows appear before their stories. This targets Jira Cloud's current Parent field, not legacy Epic Link imports.
 - Azure DevOps: import `backlog-imports/azure-devops-agile.csv` through **Boards > Queries > Import work items**. This file targets the Agile process and uses Title 1/2/3 for Epic > Feature > User Story hierarchy. Each epic has one grouping Feature to retain the standard Agile backlog levels. For Scrum, change User Story to Product Backlog Item before import; Basic and custom processes need their own type mapping.
 - Azure creation imports omit ID and State. After saving the new items, export their assigned IDs and update State using the source-status tags and descriptions: To Do = New, In Progress = Active, Done = Closed. Never use the local story identifier as an Azure ID.
-- Both files preserve acceptance criteria and task checklists inside descriptions. Tasks are not separately imported work items. No owners, estimates, sprint assignments, project keys or remote IDs are invented.
-- These are creation imports. Reimporting them can create duplicates. For later updates, export actual Jira keys or Azure IDs and match the local identifiers in titles.
+- Both files preserve acceptance criteria and outstanding task checklists inside descriptions. Tasks are not separately imported work items. No owners, estimates, sprint assignments, project keys or remote IDs are invented.
+- Do not import these filtered files as new items into the existing boards: the outstanding items were included in the previous import too. Filtering does not deduplicate or delete remote items. To update existing records, first export actual Jira keys or Azure IDs and match the local identifiers in titles. The current files contain no remote IDs and remain creation-format snapshots, not update imports.
 - Regenerate CSV files after editing this document with `node scripts/export-backlog.cjs`. Review the import preview against your project's required fields before saving.
 - Import references: [Jira hierarchy mapping](https://support.atlassian.com/jira/kb/map-issueid-parentid-fields-jira-csv-import/) and [Azure CSV imports](https://learn.microsoft.com/en-us/azure/devops/boards/queries/import-work-items-from-csv?view=azure-devops).
 
