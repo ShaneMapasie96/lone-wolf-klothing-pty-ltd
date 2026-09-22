@@ -29,6 +29,27 @@
             if (saved.profile && typeof saved.profile.name === 'string' && typeof saved.profile.email === 'string') state.profile = saved.profile;
         }
     } catch (_) { /* Use an empty basket when storage is unavailable or damaged. */ }
+    function variantImageName(item) {
+        let source = item.image;
+        try { source ||= JSON.parse(item.id)[4]; } catch (_) { /* Older cart entry. */ }
+        if (typeof source !== 'string') return '';
+        // Asset names identify the exact displayed colour/artwork variant, including carousel choices.
+        return source.split(/[?#]/)[0].split('/').pop().replace(/\.(webp|png|jpe?g)$/i, '');
+    }
+    function variantDescription(item) {
+        const filename = variantImageName(item);
+        if (!filename) return item.design.replace(/[-_]/g, ' ');
+        const vest = filename.match(/^(red|white|black|grey)-(blk|white|whte|red|gold)-(lw-emblem|wolf-head|lw-type)-vest$/i);
+        if (vest) {
+            const logoColour = { blk: 'black', whte: 'white' }[vest[2]] || vest[2];
+            const artwork = { 'lw-emblem': 'Lone Wolf Emblem', 'wolf-head': 'Wolf Head', 'lw-type': 'Lone Wolf Typography' }[vest[3]];
+            return vest[1][0].toUpperCase() + vest[1].slice(1) + ' vest with ' + logoColour + ' ' + artwork;
+        }
+        return filename.replace(/[-_]/g, ' ').replace(/\bblk\b/gi, 'black').replace(/\bwhte\b/gi, 'white')
+            .replace(/\blw\b/gi, 'Lone Wolf').replace(/\btype\b/gi, 'Typography')
+            .replace(/\bibg\b/gi, 'Isolation Breeds Growth').replace(/\ba4\b/gi, 'A4')
+            .replace(/^./, letter => letter.toUpperCase());
+    }
     const money = value => 'R' + value.toFixed(2);
     function element(tag, text, parent) {
         const node = document.createElement(tag);
@@ -174,6 +195,7 @@
             link.href = item.url;
             {
                 element('p', item.design.replace(/[-_]/g, ' '), details).className = 'shop-design';
+                element('p', 'Selected variant: ' + variantDescription(item), details).className = 'shop-variant';
                 const tags = element('div', undefined, details);
                 tags.className = 'shop-option-tags';
                 element('span', item.color, tags);
@@ -204,7 +226,7 @@
             element('p', 'Delivery and availability will be confirmed on WhatsApp.', summary);
             const checkout = element('a', 'Order on WhatsApp', summary);
             checkout.className = 'shop-checkout';
-            const message = ['Hello, I would like to order:', ...state.cart.map(item => `${item.name}\nDesign: ${item.design}\nColor: ${item.color}\nSize: ${item.size}\nQuantity: ${item.quantity}\nUnit price: ${money(item.price)}\nLine total: ${money(item.price * item.quantity)}`), 'Subtotal: ' + money(state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0))].join('\n\n');
+            const message = ['Hello, I would like to order:', ...state.cart.map(item => `${item.name}\nDesign: ${item.design}\nDescription: ${variantImageName(item) || variantDescription(item)}\nColor: ${item.color}\nSize: ${item.size}\nQuantity: ${item.quantity}\nUnit price: ${money(item.price)}\nLine total: ${money(item.price * item.quantity)}`), 'Subtotal: ' + money(state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0))].join('\n\n');
             checkout.href = 'https://wa.me/27615816059?text=' + encodeURIComponent(message);
             checkout.target = '_blank'; checkout.rel = 'noopener noreferrer';
             element('p', 'Your cart stays saved until you remove its items.', summary).className = 'shop-cart-note';
