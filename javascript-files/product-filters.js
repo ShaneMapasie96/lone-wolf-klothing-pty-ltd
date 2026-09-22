@@ -51,7 +51,7 @@ function initProductFilters(grid) {
         selects[key] = select;
     }
     addSelect('type', 'Product Type', [...new Set(products.flatMap(product => product.type))]);
-    addSelect('size', 'Size', ['XS', 'S', 'M', 'L', 'XL', '2XL']);
+    addSelect('size', 'Size', ['S', 'M', 'L', 'XL', '2XL', '3XL']);
     const colours = document.createElement('fieldset');
     colours.className = 'product-filter-colours';
     colours.innerHTML = '<legend>Colour</legend><div class="product-filter-palette"></div>';

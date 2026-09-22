@@ -37,7 +37,7 @@ const assert = require('node:assert/strict');
   await page.locator('.item select[name="design"]').evaluateAll((elements,values)=>elements.forEach((select,index)=> {
    select.value=values[index]; select.dispatchEvent(new Event('change',{bubbles:true}));
   }),originalDesigns);
-  await filters.getByLabel('Size',{exact:true}).selectOption('XS');
+  await filters.getByLabel('Size',{exact:true}).selectOption('S');
   await filters.getByLabel('Design',{exact:true}).selectOption('Wolf Head');
   assert.deepEqual(await carouselState(),expectedCarousel,'top design filter differs from card carousel handler');
   assert.deepEqual(await page.locator('.item select[name="design"]').evaluateAll(elements=>elements.map(el=>el.value)),expectedDesigns);
@@ -52,14 +52,15 @@ const assert = require('node:assert/strict');
   }
   await filters.getByRole('button',{name:file === 'puffer_jackets_and_body_warmers.html' ? 'Black' : 'White',exact:true}).click();
   assert.equal(await filters.locator('.product-filter-tag').count(),3);
-  await filters.getByRole('button',{name:'Remove XS filter',exact:true}).click();
+  await filters.getByRole('button',{name:'Remove S filter',exact:true}).click();
   assert.equal(await filters.getByLabel('Size',{exact:true}).inputValue(),'');
   assert.equal(await filters.getByLabel('Design',{exact:true}).inputValue(),'Wolf Head');
   assert.deepEqual(await page.locator('.item select:not([name="design"])').evaluateAll(elements=>elements.map(el=>el.value)),purchase);
   assert.deepEqual(await carouselState(),expectedCarousel,'other filters changed carousel or purchase colour');
   await filters.getByLabel('Size',{exact:true}).selectOption('2XL');
-  assert.equal(await page.locator('.items_container').isVisible(),false);
-  assert.equal(await page.locator('.product-filter-empty').innerText(),'No products match your selected filters.');
+  assert(await page.locator('.item:visible').count() > 0, '2XL should match clothing');
+  await filters.getByLabel('Size',{exact:true}).selectOption('3XL');
+  assert(await page.locator('.item:visible').count() > 0, '3XL should match clothing');
   await filters.getByRole('button',{name:'Clear all',exact:true}).click();
   assert.equal(await page.locator('.item:visible').count(),total);
   assert.equal(await filters.locator('.product-filter-tag').count(),0);
@@ -168,7 +169,7 @@ const assert = require('node:assert/strict');
   }
   assert.equal(await filters.locator('.product-filter-panel').isVisible(),true);
   assert(await filters.evaluate(el=>el.scrollWidth<=el.clientWidth),'filter overflow');
-  await filters.getByLabel('Size',{exact:true}).selectOption('XS');
+  await filters.getByLabel('Size',{exact:true}).selectOption('S');
   await page.keyboard.press('Escape');
   assert.equal(await filters.locator('.product-filter-panel').isVisible(),false);
   console.log('PASS '+file);

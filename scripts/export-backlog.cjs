@@ -48,9 +48,19 @@ const htmlList = values => '<ul>' + values.map(value => '<li>' + escapeHtml(valu
 const statusTag = status => 'source-status-' + status.toLowerCase().replace(/ /g, '-');
 const aggregateStatus = items => items.every(item => item.Status === 'Done') ? 'Done' : items.every(item => item.Status === 'To Do') ? 'To Do' : 'In Progress';
 
+// Export only unfinished work; retain the complete history in BACKLOG.md.
+const outstandingEpics = epics.map(group => ({
+    ...group,
+    stories: group.stories.filter(item => item.Status !== 'Done').map(item => ({
+        ...item,
+        tasks: item.tasks.filter(task => !task.startsWith('Completed:'))
+    }))
+})).filter(group => group.stories.length > 0);
+const outstandingStories = outstandingEpics.flatMap(group => group.stories);
+
 const jira = [['Issue ID', 'Parent', 'Issue Type', 'Summary', 'Description', 'Status', 'Priority', 'Labels']];
 const azure = [['Work Item Type', 'Title 1', 'Title 2', 'Title 3', 'Description', 'Priority', 'Tags']];
-for (const group of epics) {
+for (const group of outstandingEpics) {
     const epicId = `EPIC-${String(group.id).padStart(2, '0')}`;
     const epicStatus = aggregateStatus(group.stories);
     const priority = Math.min(...group.stories.map(item => priorities[item.Priority]));
@@ -86,5 +96,5 @@ const destination = path.join(root, 'backlog-imports');
 fs.mkdirSync(destination, { recursive: true });
 fs.writeFileSync(path.join(destination, 'jira.csv'), csv(jira), 'utf8');
 fs.writeFileSync(path.join(destination, 'azure-devops-agile.csv'), csv(azure), 'utf8');
-console.log(`Exported ${epics.length} epics and ${stories.length} stories. Jira: ${jira.length - 1} rows. Azure: ${azure.length - 1} rows (includes ${epics.length} grouping features).`);
-console.log(JSON.stringify(Object.fromEntries(states.map(state => [state, stories.filter(item => item.Status === state).length]))));
+console.log(`Exported ${outstandingEpics.length} outstanding epics and ${outstandingStories.length} outstanding stories. Jira: ${jira.length - 1} rows. Azure: ${azure.length - 1} rows (includes ${outstandingEpics.length} grouping features).`);
+console.log(JSON.stringify(Object.fromEntries(states.map(state => [state, outstandingStories.filter(item => item.Status === state).length]))));
