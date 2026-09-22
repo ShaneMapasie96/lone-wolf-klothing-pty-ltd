@@ -10,7 +10,8 @@ const path = require('node:path');
         const errors = [];
         page.on('pageerror', error => errors.push(error.message));
         await page.route('http://local/**', async route => {
-            const file = path.join(process.cwd(), new URL(route.request().url()).pathname);
+            let file = path.join(process.cwd(), new URL(route.request().url()).pathname);
+            if (!path.extname(file)) file += '.html';
             if (fs.existsSync(file) && fs.statSync(file).isFile()) await route.fulfill({ path: file });
             else await route.abort();
         });
@@ -45,6 +46,27 @@ const path = require('node:path');
                     await close();
                 }
             }
+        }
+        // The same selections on Cloudflare URLs must merge with existing items.
+        const before = await page.evaluate(() => JSON.parse(localStorage.getItem('lw-shop-v1')));
+        for (const dir of ['clothing-pages', 'accessories-pages']) {
+            for (const file of fs.readdirSync(dir).filter(file => file.endsWith('.html'))) {
+                await page.goto('http://local/' + dir + '/' + file.replace(/\.html$/, ''));
+                for (const card of await page.locator('.item').all()) {
+                    await card.getByRole('button', { name: 'Add to Wishlist', exact: true }).click();
+                    assert(!/Please select a valid/.test(await page.getByRole('dialog').innerText()), file);
+                    await close();
+                    await card.getByRole('button', { name: 'Add to Cart', exact: true }).click();
+                    assert.match(await page.getByRole('dialog').getByRole('status').innerText(), /Added to your cart/, file);
+                    await close();
+                }
+            }
+        }
+        const after = await page.evaluate(() => JSON.parse(localStorage.getItem('lw-shop-v1')));
+        assert.equal(after.cart.length, before.cart.length, 'URL formats must not duplicate cart items');
+        assert.equal(after.wishlist.length, before.wishlist.length, 'URL formats must not duplicate wishlist items');
+        for (const item of before.cart) {
+            assert.equal(after.cart.find(other => other.id === item.id).quantity, item.quantity * 2);
         }
         await page.goto('http://local/home-page/home.html');
         await open('Shopping cart');
