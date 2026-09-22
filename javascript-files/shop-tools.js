@@ -15,6 +15,7 @@
         const pathname = url.split('#')[0].toLowerCase().replace(/\.html$/, '');
         return collections.find(([, path]) => path.replace(/\.html$/, '') === pathname)?.[1];
     };
+    const orderDetails = { name: '', phone: '', method: 'locker', locker: '' };
     const key = 'lw-shop-v1';
     let state = { cart: [], wishlist: [], profile: { name: '', email: '' } };
     const validItem = item => item && typeof item.name === 'string' && typeof item.id === 'string'
@@ -222,13 +223,66 @@
         if (type === 'cart') {
             const summary = element('div', undefined, content);
             summary.className = 'shop-order-summary';
-            element('h3', 'Subtotal: ' + money(state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0)), summary);
-            element('p', 'Delivery and availability will be confirmed on WhatsApp.', summary);
-            const checkout = element('a', 'Order on WhatsApp', summary);
-            checkout.className = 'shop-checkout';
+            const subtotalCents = state.cart.reduce((sum, item) => sum + Math.round(item.price * 100) * item.quantity, 0);
+            const freeDelivery = subtotalCents > 75000;
+            element('h3', 'Subtotal: ' + money(subtotalCents / 100), summary);
+            const delivery = element('p', freeDelivery
+                ? 'Free locker delivery - Lone Wolf Klothing pays your delivery fee.'
+                : 'Spend ' + money((75001 - subtotalCents) / 100) + ' more to qualify for free locker delivery. Orders of R750 or less carry the courier delivery charge.', summary);
+            delivery.className = 'shop-delivery-status';
+            delivery.setAttribute('aria-live', 'polite');
+            const deliveryNote = element('p', '', summary);
+            const form = element('form', undefined, summary);
+            form.className = 'shop-order-details';
+            element('h4', 'Your order details', form);
+            function orderInput(field, caption, type, autocomplete) {
+                const label = element('label', caption, form);
+                const input = element('input', undefined, label);
+                input.name = field; input.type = type; input.autocomplete = autocomplete;
+                input.required = true; input.maxLength = 150; input.value = orderDetails[field];
+                input.addEventListener('input', () => { orderDetails[field] = input.value; input.setCustomValidity(''); });
+                return input;
+            }
+            const customerName = orderInput('name', 'Customer name', 'text', 'name');
+            const phone = orderInput('phone', 'Phone number', 'tel', 'tel');
+            const methodLabel = element('label', 'Delivery method', form);
+            const method = element('select', undefined, methodLabel);
+            method.name = 'method'; method.setAttribute('aria-label', 'Delivery method');
+            method.add(new Option('Courier Guy locker delivery', 'locker'));
+            method.add(new Option('Collection from LWK', 'collection'));
+            method.value = orderDetails.method;
+            const locker = orderInput('locker', 'Preferred Courier Guy locker (name and location)', 'text', 'off');
+            const finder = element('a', 'Find a Courier Guy locker', form);
+            finder.href = 'https://thecourierguy.co.za/locations/';
+            finder.target = '_blank'; finder.rel = 'noopener noreferrer';
+            function updateMethod() {
+                orderDetails.method = method.value;
+                deliveryNote.textContent = method.value === 'collection' ? 'Availability and collection arrangements will be confirmed on WhatsApp.' : freeDelivery ? 'Availability and locker details will be confirmed on WhatsApp.' : 'Delivery cost and availability will be confirmed on WhatsApp.';
+                const useLocker = method.value === 'locker';
+                locker.required = useLocker; locker.disabled = !useLocker;
+                locker.parentElement.hidden = !useLocker; finder.hidden = !useLocker;
+                locker.setCustomValidity('');
+                if (!useLocker) delivery.textContent = 'Free collection from LWK. Collection arrangements will be confirmed on WhatsApp.';
+                else delivery.textContent = freeDelivery ? 'Free locker delivery - Lone Wolf Klothing pays your delivery fee.'
+                    : 'Spend ' + money((75001 - subtotalCents) / 100) + ' more to qualify for free locker delivery. Orders of R750 or less carry the courier delivery charge.';
+            }
+            method.addEventListener('change', updateMethod);
+            updateMethod();
+            const checkout = element('button', 'Order on WhatsApp', form);
+            checkout.type = 'submit'; checkout.className = 'shop-checkout';
+            element('p', 'Review your message and press Send in WhatsApp to place your enquiry.', form);
+            form.addEventListener('submit', event => {
+                event.preventDefault();
+                customerName.setCustomValidity(customerName.value.trim() ? '' : 'Please enter your name.');
+                const digits = phone.value.replace(/\D/g, '');
+                phone.setCustomValidity(/^[+\d\s().-]+$/.test(phone.value) && digits.length >= 7 && digits.length <= 15 ? '' : 'Please enter a valid phone number.');
+                locker.setCustomValidity(method.value !== 'locker' || locker.value.trim() ? '' : 'Please enter your preferred locker name and location.');
+                if (!form.reportValidity()) return;
             const message = ['Hello, I would like to order:', ...state.cart.map(item => `${item.name}\nDesign: ${item.design}\nDescription: ${variantImageName(item) || variantDescription(item)}\nColor: ${item.color}\nSize: ${item.size}\nQuantity: ${item.quantity}\nUnit price: ${money(item.price)}\nLine total: ${money(item.price * item.quantity)}`), 'Subtotal: ' + money(state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0))].join('\n\n');
-            checkout.href = 'https://wa.me/27615816059?text=' + encodeURIComponent(message);
-            checkout.target = '_blank'; checkout.rel = 'noopener noreferrer';
+                const customer = ['Customer name: ' + customerName.value.trim(), 'Phone number: ' + phone.value.trim(),
+                    method.value === 'locker' ? 'Delivery: Courier Guy locker\nPreferred locker: ' + locker.value.trim() + '\nDelivery fee: ' + (freeDelivery ? 'Free - paid by LWK' : 'Courier quote to be confirmed') : 'Delivery: Collection from LWK\nDelivery fee: Free collection'].join('\n');
+                window.open('https://wa.me/27615816059?text=' + encodeURIComponent(customer + '\n\n' + message), '_blank', 'noopener,noreferrer');
+            });
             element('p', 'Your cart stays saved until you remove its items.', summary).className = 'shop-cart-note';
         }
     }
