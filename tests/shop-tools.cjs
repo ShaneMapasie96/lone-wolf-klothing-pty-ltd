@@ -40,12 +40,31 @@ const path = require('node:path');
         await page.getByRole('button', { name: 'Save profile', exact: true }).click();
         assert.match(await page.getByRole('dialog').getByRole('status').innerText(), /Profile saved/);
         await close();
+        await page.goto('http://local/clothing-pages/sweatpants_and_shorts.html');
+        const product = page.locator('.item').first();
+        const logo = product.locator('.product-logo-colour');
+        await expect(logo).toContainText('Black');
+        await product.locator('.color[data-color="Black"]').click();
+        await expect(logo).toContainText('White');
+        await product.getByRole('button', { name: 'Next variant', exact: true }).click();
+        await expect(logo).toContainText('Red');
+        await product.getByRole('button', { name: 'Next variant', exact: true }).click();
+        await expect(logo).toContainText('Gold');
+        await product.getByRole('button', { name: 'Next variant', exact: true }).click();
+        await expect(logo).toContainText('White');
+        await product.getByRole('button', { name: 'Previous variant', exact: true }).click();
+        await expect(logo).toContainText('Gold');
+        await product.locator('select[name="design"]').selectOption({ label: 'Lone Wolf Typography' });
+        await expect(logo).toContainText('White');
+        await product.locator('.color[data-color="White"]').click();
+        await expect(logo).toContainText('Black');
         for (const dir of ['clothing-pages', 'accessories-pages']) {
             for (const file of fs.readdirSync(dir).filter(file => file.endsWith('.html'))) {
                 await page.goto('http://local/' + dir + '/' + file);
                 const cards = page.locator('.item');
                 for (let i = 0; i < await cards.count(); i++) {
                     const card = cards.nth(i);
+                    await expect(card.locator('.product-logo-colour')).toBeVisible();
                     await card.getByRole('button', { name: 'Add to Wishlist', exact: true }).click();
                     assert(!/Please select a valid/.test(await page.getByRole('dialog').innerText()), file);
                     await close();

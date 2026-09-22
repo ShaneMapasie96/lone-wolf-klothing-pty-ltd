@@ -51,6 +51,17 @@
             .replace(/\bibg\b/gi, 'Isolation Breeds Growth').replace(/\ba4\b/gi, 'A4')
             .replace(/^./, letter => letter.toUpperCase());
     }
+    function logoColours(source) {
+        const filename = variantImageName({ image: source }).toLowerCase();
+        // Strip the garment colour first so it cannot be mistaken for the artwork.
+        const garment = filename.match(/^(royalr?-blue|navy-blue|mustard-yellow|white|black|grey|khaki|beige|pink|red|yellow|orange)-/);
+        if (!garment) return [];
+        const artwork = filename.slice(garment[0].length);
+        const colours = (artwork.match(/\b(white|whte|black|blk|red|gold)\b/g) || [])
+            .map(colour => ({ blk: 'black', whte: 'white' }[colour] || colour));
+        // The catalogue's unqualified artwork uses these contrast colours.
+        return [...new Set(colours.length ? colours : [/^(black|royalr?-blue|navy-blue)$/.test(garment[1]) ? 'white' : 'black'])];
+    }
     const money = value => 'R' + value.toFixed(2);
     function element(tag, text, parent) {
         const node = document.createElement(tag);
@@ -338,6 +349,31 @@
         const image = card.querySelector('img[id]');
         const purchase = card.querySelector('.buy_container');
         if (!image || !purchase) return;
+        const selection = element('div');
+        selection.className = 'product-logo-colour';
+        selection.setAttribute('role', 'status');
+        selection.setAttribute('aria-live', 'polite');
+        selection.setAttribute('aria-atomic', 'true');
+        const colourRow = purchase.querySelector('.color-row');
+        if (colourRow) colourRow.after(selection);
+        else purchase.insertBefore(selection, purchase.querySelector('.design-selector-row, .add-to-cart-button'));
+        function updateLogoColour() {
+            selection.replaceChildren();
+            element('span', 'Logo color:', selection);
+            const colours = logoColours(image.getAttribute('src'));
+            colours.forEach(colour => {
+                const chip = element('span', undefined, selection);
+                chip.className = 'product-logo-chip';
+                const swatch = element('span', undefined, chip);
+                swatch.className = 'product-logo-swatch';
+                swatch.style.backgroundColor = { white: '#fff', black: '#111', red: '#e32636', gold: '#d4af37' }[colour];
+                swatch.setAttribute('aria-hidden', 'true');
+                element('span', colour[0].toUpperCase() + colour.slice(1), chip);
+            });
+            if (!colours.length) element('span', 'See artwork preview', selection);
+        }
+        updateLogoColour();
+        new MutationObserver(updateLogoColour).observe(image, { attributes: true, attributeFilter: ['src'] });
         const save = button('Add to Wishlist', purchase, () => {
             const item = capture(image);
             if (!validItem(item)) { open('Wishlist'); notice.textContent = 'Please select a valid product first.'; return; }
