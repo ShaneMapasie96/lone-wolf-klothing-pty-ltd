@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test:shop": "node tests/shop-tools.cjs",
-    "test:filters": "node tests/product-filters.cjs"
+    "test:filters": "node tests/product-filters.cjs",
+    "test:paths": "node tests/hosting-paths.cjs"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,7 @@
 (() => {
     'use strict';
+    // Resolve from this script so both domain-root and project-folder hosting work.
+    const siteRoot = new URL('../', document.currentScript.src);
     const collections = [
         ['T-Shirts & Vests', '/clothing-pages/t-shirts_and_vests.html'],
         ['Golfers', '/clothing-pages/golfers.html'],
@@ -9,7 +11,7 @@
         ['Puffer Jackets & Body Warmers', '/clothing-pages/puffer_jackets_and_body_warmers.html'],
         ['Bucket Hats & Beanies', '/accessories-pages/bucket-hats-and-beanies.html'],
         ['6-Panel Caps', '/accessories-pages/6-panel-caps.html']
-    ];
+    ].map(([name, path]) => [name, new URL(path.slice(1), siteRoot).pathname]);
     // Cloudflare serves HTML pages at extensionless URLs.
     const collectionPath = url => {
         const pathname = url.split('#')[0].toLowerCase().replace(/\.html$/, '');
@@ -17,6 +19,19 @@
     };
     const orderDetails = { name: '', phone: '', method: 'locker', locker: '' };
     const key = 'lw-shop-v1';
+    const referenceKey = 'lw-order-reference-v1';
+    let draftReference;
+    function orderReference(forceNew = false) {
+        const signature = JSON.stringify(state.cart.map(item => [item.id, item.quantity]).sort((a, b) => a[0].localeCompare(b[0])));
+        try { draftReference ||= JSON.parse(localStorage.getItem(referenceKey)); } catch (_) { /* Keep the reference in memory. */ }
+        if (forceNew || draftReference?.signature !== signature || !/^LWK-[A-F0-9]{12}$/.test(draftReference?.reference || '')) {
+            const bytes = crypto.getRandomValues(new Uint8Array(6));
+            const reference = 'LWK-' + Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('').toUpperCase();
+            draftReference = { signature, reference };
+            try { localStorage.setItem(referenceKey, JSON.stringify(draftReference)); } catch (_) { /* Keep the reference in memory. */ }
+        }
+        return draftReference.reference;
+    }
     let state = { cart: [], wishlist: [], profile: { name: '', email: '' } };
     const validItem = item => item && typeof item.name === 'string' && typeof item.id === 'string'
         && typeof item.design === 'string' && typeof item.size === 'string' && typeof item.color === 'string'
@@ -234,9 +249,27 @@
         if (type === 'cart') {
             const summary = element('div', undefined, content);
             summary.className = 'shop-order-summary';
+            const reference = orderReference();
+            element('p', 'Order reference: ' + reference, summary).className = 'shop-order-reference';
+            element('p', 'Keep this reference for your confirmed quote, deposit, balance and proof of payment. This enquiry is not yet a confirmed order.', summary);
+            button('New order reference', summary, () => {
+                orderReference(true);
+                open('Shopping cart');
+            });
             const subtotalCents = state.cart.reduce((sum, item) => sum + Math.round(item.price * 100) * item.quantity, 0);
             const freeDelivery = subtotalCents > 75000;
             element('h3', 'Subtotal: ' + money(subtotalCents / 100), summary);
+            // Round the deposit to cents, then subtract so the two amounts total exactly.
+            const depositCents = Math.round(subtotalCents / 2);
+            const balanceCents = subtotalCents - depositCents;
+            const depositText = 'Estimated 50% deposit: ' + money(depositCents / 100);
+            const balanceText = 'Estimated remaining balance: ' + money(balanceCents / 100);
+            const estimateNote = 'Estimates are based on the product subtotal and exclude any delivery charges. The final order total, deposit and balance depend on confirmed availability and delivery costs.';
+            const paymentTerms = 'A 50% deposit is required before processing your confirmed order. The remaining balance is due before dispatch or collection. Please wait for order confirmation and payment details before paying.';
+            element('p', depositText, summary).className = 'shop-deposit';
+            element('p', balanceText, summary).className = 'shop-balance';
+            element('p', estimateNote, summary).className = 'shop-estimate-note';
+            element('p', paymentTerms, summary).className = 'shop-payment-terms';
             const delivery = element('p', freeDelivery
                 ? 'Free locker delivery - Lone Wolf Klothing pays your delivery fee.'
                 : 'Spend ' + money((75001 - subtotalCents) / 100) + ' more to qualify for free locker delivery. Orders of R750 or less carry the courier delivery charge.', summary);
@@ -289,11 +322,15 @@
                 phone.setCustomValidity(/^[+\d\s().-]+$/.test(phone.value) && digits.length >= 7 && digits.length <= 15 ? '' : 'Please enter a valid phone number.');
                 locker.setCustomValidity(method.value !== 'locker' || locker.value.trim() ? '' : 'Please enter your preferred locker name and location.');
                 if (!form.reportValidity()) return;
-            const message = ['Hello, I would like to order:', ...state.cart.map(item => `${item.name}\nDesign: ${item.design}\nDescription: ${variantImageName(item) || variantDescription(item)}\nColor: ${item.color}\nSize: ${item.size}\nQuantity: ${item.quantity}\nUnit price: ${money(item.price)}\nLine total: ${money(item.price * item.quantity)}`), 'Subtotal: ' + money(state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0))].join('\n\n');
-                const customer = ['Customer name: ' + customerName.value.trim(), 'Phone number: ' + phone.value.trim(),
+            const message = ['Hello, I would like to order:', ...state.cart.map(item => `${item.name}\nDesign: ${item.design}\nDescription: ${variantImageName(item) || variantDescription(item)}\nColor: ${item.color}\nSize: ${item.size}\nQuantity: ${item.quantity}\nUnit price: ${money(item.price)}\nLine total: ${money(item.price * item.quantity)}`), 'Subtotal: ' + money(subtotalCents / 100), depositText, balanceText, estimateNote, paymentTerms].join('\n\n');
+                const customer = ['Order reference: ' + reference, 'Please include this reference on my confirmed quote and payment instructions.', 'Payment reference for deposit and balance: ' + reference, 'Customer name: ' + customerName.value.trim(), 'Phone number: ' + phone.value.trim(),
                     method.value === 'locker' ? 'Delivery: Courier Guy locker\nPreferred locker: ' + locker.value.trim() + '\nDelivery fee: ' + (freeDelivery ? 'Free - paid by LWK' : 'Courier quote to be confirmed') : 'Delivery: Collection from LWK\nDelivery fee: Free collection'].join('\n');
                 window.open('https://wa.me/27615816059?text=' + encodeURIComponent(customer + '\n\n' + message), '_blank', 'noopener,noreferrer');
+                thanks.textContent = 'Thank you for choosing Lone Wolf Klothing. Your Werewolf journey starts here! Send your enquiry in WhatsApp, then wait for confirmation and payment details. Your reference is ' + reference + '.';
             });
+            const thanks = element('p', '', form);
+            thanks.className = 'shop-enquiry-thanks';
+            thanks.setAttribute('aria-live', 'polite');
             element('p', 'Your cart stays saved until you remove its items.', summary).className = 'shop-cart-note';
         }
     }

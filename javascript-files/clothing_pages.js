@@ -206,36 +206,36 @@ function updateTracksuitDesign(selectElement) {
         /pocket size/i.test(selectElement.value) ? 'lone-wolf-emblem-pocket-size' : 'lone-wolf-emblem-large-print';
     var variants = {
         'lone-wolf-emblem-large-print': {
-            White: ['/tracksuits/white-blk-a4-lw-emblem-tracksuit.webp', '/tracksuits/white-red-a4-lw-emblem-tracksuit.webp'],
-            Black: ['/tracksuits/black-white-a4-lonewolf-emblem-tracksuit.webp', '/tracksuits/black-red-a4-lw-emblem-tracksuit.webp', '/tracksuits/black-gold-a4-lw-emblem-tracksuit.webp'],
-            Grey: ['/tracksuits/grey-blk-a4-lw-emblem-tracksuit.webp', '/tracksuits/grey-red-a4-lw-emblem-tracksuit.webp'],
-            Pink: ['/tracksuits/pink-a4-lw-emblem-tracksuit.webp'],
-            Red: ['/tracksuits/red-a4-white-lw-emblem-tracksuit.webp', '/tracksuits/red-black-a4-lw-emblem-tracksuit.webp'],
-            Yellow: ['/tracksuits/yellow-a4-lw-emblem-tracksuits.webp']
+            White: ['../tracksuits/white-blk-a4-lw-emblem-tracksuit.webp', '../tracksuits/white-red-a4-lw-emblem-tracksuit.webp'],
+            Black: ['../tracksuits/black-white-a4-lonewolf-emblem-tracksuit.webp', '../tracksuits/black-red-a4-lw-emblem-tracksuit.webp', '../tracksuits/black-gold-a4-lw-emblem-tracksuit.webp'],
+            Grey: ['../tracksuits/grey-blk-a4-lw-emblem-tracksuit.webp', '../tracksuits/grey-red-a4-lw-emblem-tracksuit.webp'],
+            Pink: ['../tracksuits/pink-a4-lw-emblem-tracksuit.webp'],
+            Red: ['../tracksuits/red-a4-white-lw-emblem-tracksuit.webp', '../tracksuits/red-black-a4-lw-emblem-tracksuit.webp'],
+            Yellow: ['../tracksuits/yellow-a4-lw-emblem-tracksuits.webp']
         },
         'lone-wolf-emblem-pocket-size': {
-            White: ['/tracksuits/white-blk-lw-emblem-tracksuit.webp', '/tracksuits/white-red-lw-emblem-tracksuit.webp'],
-            Black: ['/tracksuits/black-white-lw-emblem-tracksuit.webp', '/tracksuits/black-red-lw-emblem-tracksuit.webp', '/tracksuits/black-gold-lw-emblem-tracksuit.webp'],
-            Grey: ['/tracksuits/grey-blk-lw-emblem-tracksuit.webp', '/tracksuits/grey-red-lw-emblem-tracksuit.webp'],
-            Pink: ['/tracksuits/pink-lw-emblem-tracksuit.webp'],
-            Red: ['/tracksuits/red-black-lw-emblem-tracksuit.webp', '/tracksuits/red-white-lw-emblem-tracksuit.webp'],
-            Yellow: ['/tracksuits/yellow-lw-emblem-tracksuit.webp']
+            White: ['../tracksuits/white-blk-lw-emblem-tracksuit.webp', '../tracksuits/white-red-lw-emblem-tracksuit.webp'],
+            Black: ['../tracksuits/black-white-lw-emblem-tracksuit.webp', '../tracksuits/black-red-lw-emblem-tracksuit.webp', '../tracksuits/black-gold-lw-emblem-tracksuit.webp'],
+            Grey: ['../tracksuits/grey-blk-lw-emblem-tracksuit.webp', '../tracksuits/grey-red-lw-emblem-tracksuit.webp'],
+            Pink: ['../tracksuits/pink-lw-emblem-tracksuit.webp'],
+            Red: ['../tracksuits/red-black-lw-emblem-tracksuit.webp', '../tracksuits/red-white-lw-emblem-tracksuit.webp'],
+            Yellow: ['../tracksuits/yellow-lw-emblem-tracksuit.webp']
         },
         'wolf-head': {
-            White: ['/tracksuits/white-blk-wolf-head-tracksuit.webp', '/tracksuits/white-red-wolf-head-tracksuit.webp'],
-            Black: ['/tracksuits/black-white-wolf-head-tracksuit.webp', '/tracksuits/black-red-wolf-head-tracksuit.webp', '/tracksuits/black-gold-wolf-head-tracksuit.webp'],
-            Grey: ['/tracksuits/grey-blk-wolf-head-tracksuit.webp', '/tracksuits/grey-red-wolf-head-tracksuit.webp'],
-            Pink: ['/tracksuits/pink-wolf-head-tracksuit.webp'],
-            Red: ['/tracksuits/red-blk-wolf-head-tracksuit.webp', '/tracksuits/red-white-wolf-head-tracksuit.webp'],
-            Yellow: ['/tracksuits/yellow-wolf-head-tracksuit.webp']
+            White: ['../tracksuits/white-blk-wolf-head-tracksuit.webp', '../tracksuits/white-red-wolf-head-tracksuit.webp'],
+            Black: ['../tracksuits/black-white-wolf-head-tracksuit.webp', '../tracksuits/black-red-wolf-head-tracksuit.webp', '../tracksuits/black-gold-wolf-head-tracksuit.webp'],
+            Grey: ['../tracksuits/grey-blk-wolf-head-tracksuit.webp', '../tracksuits/grey-red-wolf-head-tracksuit.webp'],
+            Pink: ['../tracksuits/pink-wolf-head-tracksuit.webp'],
+            Red: ['../tracksuits/red-blk-wolf-head-tracksuit.webp', '../tracksuits/red-white-wolf-head-tracksuit.webp'],
+            Yellow: ['../tracksuits/yellow-wolf-head-tracksuit.webp']
         },
         typography: {
-            White: ['/tracksuits/white-blk-wolf-head-sleeve-lw-type-tracksuit.webp', '/tracksuits/white-red-wolf-head-sleeve-lw-type-tracksuit.webp'],
-            Black: ['/tracksuits/black-gold-wolf-head-sleeve-lw-type-tracksuit.webp', '/tracksuits/black-red-wolf-head-sleeve-lw-type-tracksuit.webp', '/tracksuits/black-white-wolf-head-sleeve-lw-type-tracksuit.webp'],
-            Grey: ['/tracksuits/grey-blk-lw-type-tracksuit.webp', '/tracksuits/grey-red-wolf-head-sleeve-lw-type-tracksuit.webp'],
-            Pink: ['/tracksuits/pink-blk-wolf-head-sleeve-lw-type-tracksuit.webp'],
-            Red: ['/tracksuits/red-black-gold-wolf-head-sleeve-lw-type-tracksuit.webp', '/tracksuits/red-white-wolf-head-sleeve-lw-type-tracksuit.webp'],
-            Yellow: ['/tracksuits/yellow-lw-type-tracksuit.webp']
+            White: ['../tracksuits/white-blk-wolf-head-sleeve-lw-type-tracksuit.webp', '../tracksuits/white-red-wolf-head-sleeve-lw-type-tracksuit.webp'],
+            Black: ['../tracksuits/black-gold-wolf-head-sleeve-lw-type-tracksuit.webp', '../tracksuits/black-red-wolf-head-sleeve-lw-type-tracksuit.webp', '../tracksuits/black-white-wolf-head-sleeve-lw-type-tracksuit.webp'],
+            Grey: ['../tracksuits/grey-blk-lw-type-tracksuit.webp', '../tracksuits/grey-red-wolf-head-sleeve-lw-type-tracksuit.webp'],
+            Pink: ['../tracksuits/pink-blk-wolf-head-sleeve-lw-type-tracksuit.webp'],
+            Red: ['../tracksuits/red-black-gold-wolf-head-sleeve-lw-type-tracksuit.webp', '../tracksuits/red-white-wolf-head-sleeve-lw-type-tracksuit.webp'],
+            Yellow: ['../tracksuits/yellow-lw-type-tracksuit.webp']
         }
     };
 
@@ -257,31 +257,31 @@ function updateBeanieDesign(selectElement) {
     var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' : /typography/i.test(selectElement.value) ? 'typography' : 'emblem';
     var variants = {
         emblem: {
-            White: ['/beanies/white-blk-lw-emblem-beanie.webp', '/beanies/white-red-lw-emblem-beanie.webp'],
-            Grey: ['/beanies/grey-blk-lw-emblem-beanie.webp'],
-            Black: ['/beanies/black-gold-lw-emblem-beanie.webp', '/beanies/black-white-lw-emblem-beanie.webp', '/beanies/black-red-lw-emblem-beanie.webp'],
-            Pink: ['/beanies/pink-blk-lw-emblem-beanie.webp'],
-            Red: ['/beanies/red-blk-lw-emblem-beanie.webp', '/beanies/red-white-lw-emblem-beanie.webp'],
-            'Royal Blue': ['/beanies/royal-blue-lw-emblem-beanie.webp'],
-            Yellow: ['/beanies/yellow-blk-lw-emblem-beanie.webp']
+            White: ['../beanies/white-blk-lw-emblem-beanie.webp', '../beanies/white-red-lw-emblem-beanie.webp'],
+            Grey: ['../beanies/grey-blk-lw-emblem-beanie.webp'],
+            Black: ['../beanies/black-gold-lw-emblem-beanie.webp', '../beanies/black-white-lw-emblem-beanie.webp', '../beanies/black-red-lw-emblem-beanie.webp'],
+            Pink: ['../beanies/pink-blk-lw-emblem-beanie.webp'],
+            Red: ['../beanies/red-blk-lw-emblem-beanie.webp', '../beanies/red-white-lw-emblem-beanie.webp'],
+            'Royal Blue': ['../beanies/royal-blue-lw-emblem-beanie.webp'],
+            Yellow: ['../beanies/yellow-blk-lw-emblem-beanie.webp']
         },
         'wolf-head': {
-            White: ['/beanies/white-blk-wolf-head-beanie.webp', '/beanies/white-red-wolf-head-beanie.webp'],
-            Grey: ['/beanies/grey-blk-wolf-head-beanie.webp'],
-            Black: ['/beanies/black-white-wolf-head-beanie.webp', '/beanies/black-red-wolf-head.webp', '/beanies/black-gold-wolf-head-beanie.webp'],
-            Pink: ['/beanies/pink-blk-wolf-head-beanie.webp'],
-            Red: ['/beanies/red-blk-wolf-head-beanie.webp', '/beanies/red-white-wolf-head-beanie.webp'],
-            'Royal Blue': ['/beanies/royal-blue-wolf-head-beanie.webp'],
-            Yellow: ['/beanies/yellow-blk-wolf-head-beanie.webp']
+            White: ['../beanies/white-blk-wolf-head-beanie.webp', '../beanies/white-red-wolf-head-beanie.webp'],
+            Grey: ['../beanies/grey-blk-wolf-head-beanie.webp'],
+            Black: ['../beanies/black-white-wolf-head-beanie.webp', '../beanies/black-red-wolf-head.webp', '../beanies/black-gold-wolf-head-beanie.webp'],
+            Pink: ['../beanies/pink-blk-wolf-head-beanie.webp'],
+            Red: ['../beanies/red-blk-wolf-head-beanie.webp', '../beanies/red-white-wolf-head-beanie.webp'],
+            'Royal Blue': ['../beanies/royal-blue-wolf-head-beanie.webp'],
+            Yellow: ['../beanies/yellow-blk-wolf-head-beanie.webp']
         },
         typography: {
-            White: ['/beanies/white-blk-lw-type-beanie.webp'],
-            Grey: ['/beanies/grey-blk-lw-type-beanie.webp'],
-            Black: ['/beanies/black-white-lw-type-beanie.webp', '/beanies/black-gold-lw-type-beanie.webp'],
-            Pink: ['/beanies/pink-lw-type-beanie.webp'],
-            Red: ['/beanies/red-blk-lw-type-beanie.webp', '/beanies/red-white-lw-type-beanie.webp'],
-            'Royal Blue': ['/beanies/royal-blue-lw-type-beanie.webp'],
-            Yellow: ['/beanies/yellow-blk-lw-type-beanie.webp']
+            White: ['../beanies/white-blk-lw-type-beanie.webp'],
+            Grey: ['../beanies/grey-blk-lw-type-beanie.webp'],
+            Black: ['../beanies/black-white-lw-type-beanie.webp', '../beanies/black-gold-lw-type-beanie.webp'],
+            Pink: ['../beanies/pink-lw-type-beanie.webp'],
+            Red: ['../beanies/red-blk-lw-type-beanie.webp', '../beanies/red-white-lw-type-beanie.webp'],
+            'Royal Blue': ['../beanies/royal-blue-lw-type-beanie.webp'],
+            Yellow: ['../beanies/yellow-blk-lw-type-beanie.webp']
         }
     };
 
@@ -302,23 +302,23 @@ function updateBucketHatDesign(selectElement) {
     var isWolfHead = /wolf head/i.test(selectElement.value);
     var isTypography = /typography/i.test(selectElement.value);
     var variants = isWolfHead ? {
-        White: ['/bucket-hats/white-blk-wolf-head-logo.webp', '/bucket-hats/white-red-wolf-head-bucket-hat.webp'],
-        Black: ['/bucket-hats/black-white-wolf-head-logo.webp', '/bucket-hats/black-red-wolf-head-bucket-hat.webp', '/bucket-hats/black-gold-wolf-head-bucket-hat.webp'],
-        Pink: ['/bucket-hats/pink-lw-wolf-head-bucket-hat.webp'],
-        Red: ['/bucket-hats/red-blk-wolf-bucket-hat.webp', '/bucket-hats/red-white-wolf-head-bucket-hat.webp'],
-        Yellow: ['/bucket-hats/yellow-blk-wolf-head-bucket-hat.webp']
+        White: ['../bucket-hats/white-blk-wolf-head-logo.webp', '../bucket-hats/white-red-wolf-head-bucket-hat.webp'],
+        Black: ['../bucket-hats/black-white-wolf-head-logo.webp', '../bucket-hats/black-red-wolf-head-bucket-hat.webp', '../bucket-hats/black-gold-wolf-head-bucket-hat.webp'],
+        Pink: ['../bucket-hats/pink-lw-wolf-head-bucket-hat.webp'],
+        Red: ['../bucket-hats/red-blk-wolf-bucket-hat.webp', '../bucket-hats/red-white-wolf-head-bucket-hat.webp'],
+        Yellow: ['../bucket-hats/yellow-blk-wolf-head-bucket-hat.webp']
     } : isTypography ? {
-        White: ['/bucket-hats/white-blk-lw-type-bucket-hat.webp'],
-        Black: ['/bucket-hats/black-white-lw-type-bucket-hat.webp', '/bucket-hats/black-gold-lw-type-bucket-hat.webp'],
-        Pink: ['/bucket-hats/pink-blk-lw-type-bucket-hat.webp'],
-        Red: ['/bucket-hats/red-blk-lw-type-bucket-hat.webp', '/bucket-hats/red-white-lw-type-bucket-hat.webp'],
-        Yellow: ['/bucket-hats/yellow-blk-lw-type-logo-bucket-hat.webp']
+        White: ['../bucket-hats/white-blk-lw-type-bucket-hat.webp'],
+        Black: ['../bucket-hats/black-white-lw-type-bucket-hat.webp', '../bucket-hats/black-gold-lw-type-bucket-hat.webp'],
+        Pink: ['../bucket-hats/pink-blk-lw-type-bucket-hat.webp'],
+        Red: ['../bucket-hats/red-blk-lw-type-bucket-hat.webp', '../bucket-hats/red-white-lw-type-bucket-hat.webp'],
+        Yellow: ['../bucket-hats/yellow-blk-lw-type-logo-bucket-hat.webp']
     } : {
-        White: ['/bucket-hats/white-blk-lw-emblem-bucket-hat.webp', '/bucket-hats/white-red-lw-emblem-bucket-hat.webp'],
-        Black: ['/bucket-hats/black-white-lw-emblem-bucket-hat.webp', '/bucket-hats/black-red-lw-emblem-bucket-hat.webp', '/bucket-hats/black-gold-lw-emblem-bucket-hat.webp'],
-        Pink: ['/bucket-hats/pink-lw-emblem-bucket-hat.webp'],
-        Red: ['/bucket-hats/red-blk-lw-emblem-bucket-hat.webp', '/bucket-hats/red-white-lw-emblem-bucket-hat.webp'],
-        Yellow: ['/bucket-hats/yellow-blk-lw-emblem-bucket-hat.webp']
+        White: ['../bucket-hats/white-blk-lw-emblem-bucket-hat.webp', '../bucket-hats/white-red-lw-emblem-bucket-hat.webp'],
+        Black: ['../bucket-hats/black-white-lw-emblem-bucket-hat.webp', '../bucket-hats/black-red-lw-emblem-bucket-hat.webp', '../bucket-hats/black-gold-lw-emblem-bucket-hat.webp'],
+        Pink: ['../bucket-hats/pink-lw-emblem-bucket-hat.webp'],
+        Red: ['../bucket-hats/red-blk-lw-emblem-bucket-hat.webp', '../bucket-hats/red-white-lw-emblem-bucket-hat.webp'],
+        Yellow: ['../bucket-hats/yellow-blk-lw-emblem-bucket-hat.webp']
     };
 
     if (!variants) return;
@@ -497,20 +497,20 @@ function updateCapDesign(selectElement) {
     var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' : 'typography';
     var variants = {
         'wolf-head': {
-            Black: ['/6-panel-caps/black-white-wolf-head-front-cap.webp', '/6-panel-caps/black-white-lw-type-side-cap.webp', '/6-panel-caps/black-red-wolf-head-front-cap.webp', '/6-panel-caps/black-gold-wolf-head-front-cap.webp', '/6-panel-caps/black-gold-lw-type-side-cap.webp'],
-            Khaki: ['/6-panel-caps/beige-blk-wolf-head-front-cap.webp', '/6-panel-caps/beige-blk-lw-type-side-cap.webp'],
-            'Royal Blue': ['/6-panel-caps/royal-blue-wolf-head-front-cap.webp', '/6-panel-caps/royal-blue-white-lw-type-side-cap.webp'],
-            Red: ['/6-panel-caps/red-blk-wolf-head-front-cap.webp', '/6-panel-caps/red-blk-lw-type-side-cap.webp', '/6-panel-caps/red-white-wolf-head-front-cap.webp', '/6-panel-caps/red-white-lw-type-side-cap.webp'],
-            White: ['/6-panel-caps/white-blk-wolf-head-front-cap.webp', '/6-panel-caps/white-blk-lw-type-side-cap.webp', '/6-panel-caps/white-red-wolf-head-front-cap.webp'],
-            Yellow: ['/6-panel-caps/yellow-blk-wolf-head-front-cap.webp', '/6-panel-caps/yellow-blk-lw-type-side-cap.webp', '/6-panel-caps/yellow-white-wolf-head-front-cap.webp', '/6-panel-caps/yellow-white-lw-type-side-cap.webp']
+            Black: ['../6-panel-caps/black-white-wolf-head-front-cap.webp', '../6-panel-caps/black-white-lw-type-side-cap.webp', '../6-panel-caps/black-red-wolf-head-front-cap.webp', '../6-panel-caps/black-gold-wolf-head-front-cap.webp', '../6-panel-caps/black-gold-lw-type-side-cap.webp'],
+            Khaki: ['../6-panel-caps/beige-blk-wolf-head-front-cap.webp', '../6-panel-caps/beige-blk-lw-type-side-cap.webp'],
+            'Royal Blue': ['../6-panel-caps/royal-blue-wolf-head-front-cap.webp', '../6-panel-caps/royal-blue-white-lw-type-side-cap.webp'],
+            Red: ['../6-panel-caps/red-blk-wolf-head-front-cap.webp', '../6-panel-caps/red-blk-lw-type-side-cap.webp', '../6-panel-caps/red-white-wolf-head-front-cap.webp', '../6-panel-caps/red-white-lw-type-side-cap.webp'],
+            White: ['../6-panel-caps/white-blk-wolf-head-front-cap.webp', '../6-panel-caps/white-blk-lw-type-side-cap.webp', '../6-panel-caps/white-red-wolf-head-front-cap.webp'],
+            Yellow: ['../6-panel-caps/yellow-blk-wolf-head-front-cap.webp', '../6-panel-caps/yellow-blk-lw-type-side-cap.webp', '../6-panel-caps/yellow-white-wolf-head-front-cap.webp', '../6-panel-caps/yellow-white-lw-type-side-cap.webp']
         },
         typography: {
-            Black: ['/6-panel-caps/black-white-lw-type-front-cap.webp', '/6-panel-caps/black-white-wolf-head-side-cap.webp', '/6-panel-caps/black-gold-lw-type-front-cap.webp', '/6-panel-caps/black-gold-wolf-head-side-cap.webp'],
-            Khaki: ['/6-panel-caps/beige-blk-lw-type-front-cap.webp', '/6-panel-caps/beige-blk-wolf-head-side-cap.webp'],
-            'Royal Blue': ['/6-panel-caps/royal-blue-lw-type-front-cap.webp', '/6-panel-caps/royal-blue-white-wolf-head-side-cap.webp'],
-            Red: ['/6-panel-caps/red-blk-lw-type-front-cap.webp', '/6-panel-caps/red-blk-wolf-head-side-cap.webp', '/6-panel-caps/red-white-lw-type-front-cap.webp', '/6-panel-caps/red-white-wolf-head-side-cap.webp'],
-            White: ['/6-panel-caps/white-blk-lw-type-front-cap.webp', '/6-panel-caps/white-blk-wolf-head-side-cap.webp'],
-            Yellow: ['/6-panel-caps/yellow-blk-lw-type-front-cap.webp', '/6-panel-caps/yellow-blk-wolf-head-side-cap.webp', '/6-panel-caps/yellow-white-lw-type-front-cap.webp', '/6-panel-caps/yellow-white-wolf-head-side-cap.webp']
+            Black: ['../6-panel-caps/black-white-lw-type-front-cap.webp', '../6-panel-caps/black-white-wolf-head-side-cap.webp', '../6-panel-caps/black-gold-lw-type-front-cap.webp', '../6-panel-caps/black-gold-wolf-head-side-cap.webp'],
+            Khaki: ['../6-panel-caps/beige-blk-lw-type-front-cap.webp', '../6-panel-caps/beige-blk-wolf-head-side-cap.webp'],
+            'Royal Blue': ['../6-panel-caps/royal-blue-lw-type-front-cap.webp', '../6-panel-caps/royal-blue-white-wolf-head-side-cap.webp'],
+            Red: ['../6-panel-caps/red-blk-lw-type-front-cap.webp', '../6-panel-caps/red-blk-wolf-head-side-cap.webp', '../6-panel-caps/red-white-lw-type-front-cap.webp', '../6-panel-caps/red-white-wolf-head-side-cap.webp'],
+            White: ['../6-panel-caps/white-blk-lw-type-front-cap.webp', '../6-panel-caps/white-blk-wolf-head-side-cap.webp'],
+            Yellow: ['../6-panel-caps/yellow-blk-lw-type-front-cap.webp', '../6-panel-caps/yellow-blk-wolf-head-side-cap.webp', '../6-panel-caps/yellow-white-lw-type-front-cap.webp', '../6-panel-caps/yellow-white-wolf-head-side-cap.webp']
         }
     };
 
@@ -531,28 +531,28 @@ function updateOuterwearDesign(selectElement) {
     var variants = {
         puffer: {
             emblem: {
-                Black: ['/puffer-jackets/black-white-lw-emblem-puffer-jacket.webp', '/puffer-jackets/black-red-lw-emblem-puffer-jacket.webp', '/puffer-jackets/black-gold-lw-emblem-puffer-jacket.webp'],
-                Grey: ['/puffer-jackets/grey-lw-emblem-alaskan-puffer-jacket.webp'],
-                'Navy Blue': ['/puffer-jackets/navy-lw-emblem-puffee-jacket.webp'],
-                Red: ['/puffer-jackets/red-white-lw-emblem-puffer-jacket.webp', '/puffer-jackets/red-blk-lw-puffer-jacket.webp']
+                Black: ['../puffer-jackets/black-white-lw-emblem-puffer-jacket.webp', '../puffer-jackets/black-red-lw-emblem-puffer-jacket.webp', '../puffer-jackets/black-gold-lw-emblem-puffer-jacket.webp'],
+                Grey: ['../puffer-jackets/grey-lw-emblem-alaskan-puffer-jacket.webp'],
+                'Navy Blue': ['../puffer-jackets/navy-lw-emblem-puffee-jacket.webp'],
+                Red: ['../puffer-jackets/red-white-lw-emblem-puffer-jacket.webp', '../puffer-jackets/red-blk-lw-puffer-jacket.webp']
             },
             typography: {
-                Black: ['/puffer-jackets/Black-white-lw-type-puffer-jacket.webp', '/puffer-jackets/black-gold-lw-tye-puffer-alaskan-jacket.webp'],
-                Grey: ['/puffer-jackets/grey-lw-type-alaskan-puffer-jacket.webp'],
-                'Navy Blue': ['/puffer-jackets/navy-lw-type-puffer-jacket.webp'],
-                Red: ['/puffer-jackets/red-white-lw-type-puffer-jacket.webp', '/puffer-jackets/red-blk-lw-type-puffer-jacket.webp']
+                Black: ['../puffer-jackets/Black-white-lw-type-puffer-jacket.webp', '../puffer-jackets/black-gold-lw-tye-puffer-alaskan-jacket.webp'],
+                Grey: ['../puffer-jackets/grey-lw-type-alaskan-puffer-jacket.webp'],
+                'Navy Blue': ['../puffer-jackets/navy-lw-type-puffer-jacket.webp'],
+                Red: ['../puffer-jackets/red-white-lw-type-puffer-jacket.webp', '../puffer-jackets/red-blk-lw-type-puffer-jacket.webp']
             },
             'wolf-head': {
-                Black: ['/puffer-jackets/black-wolf-head-puffer-jacket.webp', '/puffer-jackets/black-red-wolf-head-puffer-jacket.webp', '/puffer-jackets/black-gold-wolf-head-puffer-alaskan-jacket.webp'],
-                Grey: ['/puffer-jackets/grey-wolf-head-alaskan-puffer-jacket.webp'],
-                'Navy Blue': ['/puffer-jackets/navy-wolf-head-puffer-jacket.webp'],
-                Red: ['/puffer-jackets/red-white-wolf-head-puffer-jacket.webp', '/puffer-jackets/red-blk-wolf-head-puffer-jacket.webp']
+                Black: ['../puffer-jackets/black-wolf-head-puffer-jacket.webp', '../puffer-jackets/black-red-wolf-head-puffer-jacket.webp', '../puffer-jackets/black-gold-wolf-head-puffer-alaskan-jacket.webp'],
+                Grey: ['../puffer-jackets/grey-wolf-head-alaskan-puffer-jacket.webp'],
+                'Navy Blue': ['../puffer-jackets/navy-wolf-head-puffer-jacket.webp'],
+                Red: ['../puffer-jackets/red-white-wolf-head-puffer-jacket.webp', '../puffer-jackets/red-blk-wolf-head-puffer-jacket.webp']
             }
         },
         'body-warmer': {
-            emblem: { Black: ['/body-warmers/black-white-lw-emblem-body-warmer.webp', '/body-warmers/black-red-lw-emblem-body-warmer.webp', '/body-warmers/black-gold-lw-emblem-body-warmer.webp'] },
-            typography: { Black: ['/body-warmers/black-white-lw-type-body-warmer.webp', '/body-warmers/black-gold-lw-type-body-warmer.webp'] },
-            'wolf-head': { Black: ['/body-warmers/black-white-wolf-head-body-warmer.webp', '/body-warmers/black-red-wolf-head-body-warmer.webp', '/body-warmers/black-gold-wolf-head-body-warmer.webp'] }
+            emblem: { Black: ['../body-warmers/black-white-lw-emblem-body-warmer.webp', '../body-warmers/black-red-lw-emblem-body-warmer.webp', '../body-warmers/black-gold-lw-emblem-body-warmer.webp'] },
+            typography: { Black: ['../body-warmers/black-white-lw-type-body-warmer.webp', '../body-warmers/black-gold-lw-type-body-warmer.webp'] },
+            'wolf-head': { Black: ['../body-warmers/black-white-wolf-head-body-warmer.webp', '../body-warmers/black-red-wolf-head-body-warmer.webp', '../body-warmers/black-gold-wolf-head-body-warmer.webp'] }
         }
     };
 
@@ -724,25 +724,25 @@ document.addEventListener('DOMContentLoaded', function () {
     var cap_designData = {
         'wolf-head': {
             colors: [
-                { name: 'Black', img: null, variants: '/6-panel-caps/black-white-wolf-head-front-cap.webp|/6-panel-caps/black-white-lw-type-side-cap.webp|/6-panel-caps/black-red-wolf-head-front-cap.webp|/6-panel-caps/black-gold-wolf-head-front-cap.webp|/6-panel-caps/black-gold-lw-type-side-cap.webp' },
-                { name: 'Khaki', img: null, variants: '/6-panel-caps/beige-blk-wolf-head-front-cap.webp|/6-panel-caps/beige-blk-lw-type-side-cap.webp' },
-                { name: 'Royal Blue', img: null, variants: '/6-panel-caps/royal-blue-wolf-head-front-cap.webp|/6-panel-caps/royal-blue-white-lw-type-side-cap.webp' },
-                { name: 'Red', img: null, variants: '/6-panel-caps/red-blk-wolf-head-front-cap.webp|/6-panel-caps/red-blk-lw-type-side-cap.webp|/6-panel-caps/red-white-wolf-head-front-cap.webp|/6-panel-caps/red-white-lw-type-side-cap.webp' },
-                { name: 'White', img: null, variants: '/6-panel-caps/white-blk-wolf-head-front-cap.webp|/6-panel-caps/white-blk-lw-type-side-cap.webp|/6-panel-caps/white-red-wolf-head-front-cap.webp' },
-                { name: 'Yellow', img: null, variants: '/6-panel-caps/yellow-blk-wolf-head-front-cap.webp|/6-panel-caps/yellow-blk-lw-type-side-cap.webp|/6-panel-caps/yellow-white-wolf-head-front-cap.webp|/6-panel-caps/yellow-white-lw-type-side-cap.webp' }
+                { name: 'Black', img: null, variants: '../6-panel-caps/black-white-wolf-head-front-cap.webp|../6-panel-caps/black-white-lw-type-side-cap.webp|../6-panel-caps/black-red-wolf-head-front-cap.webp|../6-panel-caps/black-gold-wolf-head-front-cap.webp|../6-panel-caps/black-gold-lw-type-side-cap.webp' },
+                { name: 'Khaki', img: null, variants: '../6-panel-caps/beige-blk-wolf-head-front-cap.webp|../6-panel-caps/beige-blk-lw-type-side-cap.webp' },
+                { name: 'Royal Blue', img: null, variants: '../6-panel-caps/royal-blue-wolf-head-front-cap.webp|../6-panel-caps/royal-blue-white-lw-type-side-cap.webp' },
+                { name: 'Red', img: null, variants: '../6-panel-caps/red-blk-wolf-head-front-cap.webp|../6-panel-caps/red-blk-lw-type-side-cap.webp|../6-panel-caps/red-white-wolf-head-front-cap.webp|../6-panel-caps/red-white-lw-type-side-cap.webp' },
+                { name: 'White', img: null, variants: '../6-panel-caps/white-blk-wolf-head-front-cap.webp|../6-panel-caps/white-blk-lw-type-side-cap.webp|../6-panel-caps/white-red-wolf-head-front-cap.webp' },
+                { name: 'Yellow', img: null, variants: '../6-panel-caps/yellow-blk-wolf-head-front-cap.webp|../6-panel-caps/yellow-blk-lw-type-side-cap.webp|../6-panel-caps/yellow-white-wolf-head-front-cap.webp|../6-panel-caps/yellow-white-lw-type-side-cap.webp' }
             ],
-            defaultImg: '/6-panel-caps/white-blk-wolf-head-front-cap.webp'
+            defaultImg: '../6-panel-caps/white-blk-wolf-head-front-cap.webp'
         },
         'lone-wolf-typography': {
             colors: [
-                { name: 'Black', img: null, variants: '/6-panel-caps/black-white-lw-type-front-cap.webp|/6-panel-caps/black-white-wolf-head-side-cap.webp|/6-panel-caps/black-gold-lw-type-front-cap.webp|/6-panel-caps/black-gold-wolf-head-side-cap.webp' },
-                { name: 'Khaki', img: null, variants: '/6-panel-caps/beige-blk-lw-type-front-cap.webp|/6-panel-caps/beige-blk-wolf-head-side-cap.webp' },
-                { name: 'Royal Blue', img: null, variants: '/6-panel-caps/royal-blue-lw-type-front-cap.webp|/6-panel-caps/royal-blue-white-wolf-head-side-cap.webp' },
-                { name: 'Red', img: null, variants: '/6-panel-caps/red-blk-lw-type-front-cap.webp|/6-panel-caps/red-blk-wolf-head-side-cap.webp|/6-panel-caps/red-white-lw-type-front-cap.webp|/6-panel-caps/red-white-wolf-head-side-cap.webp' },
-                { name: 'White', img: null, variants: '/6-panel-caps/white-blk-lw-type-front-cap.webp|/6-panel-caps/white-blk-wolf-head-side-cap.webp' },
-                { name: 'Yellow', img: null, variants: '/6-panel-caps/yellow-blk-lw-type-front-cap.webp|/6-panel-caps/yellow-blk-wolf-head-side-cap.webp|/6-panel-caps/yellow-white-lw-type-front-cap.webp|/6-panel-caps/yellow-white-wolf-head-side-cap.webp' }
+                { name: 'Black', img: null, variants: '../6-panel-caps/black-white-lw-type-front-cap.webp|../6-panel-caps/black-white-wolf-head-side-cap.webp|../6-panel-caps/black-gold-lw-type-front-cap.webp|../6-panel-caps/black-gold-wolf-head-side-cap.webp' },
+                { name: 'Khaki', img: null, variants: '../6-panel-caps/beige-blk-lw-type-front-cap.webp|../6-panel-caps/beige-blk-wolf-head-side-cap.webp' },
+                { name: 'Royal Blue', img: null, variants: '../6-panel-caps/royal-blue-lw-type-front-cap.webp|../6-panel-caps/royal-blue-white-wolf-head-side-cap.webp' },
+                { name: 'Red', img: null, variants: '../6-panel-caps/red-blk-lw-type-front-cap.webp|../6-panel-caps/red-blk-wolf-head-side-cap.webp|../6-panel-caps/red-white-lw-type-front-cap.webp|../6-panel-caps/red-white-wolf-head-side-cap.webp' },
+                { name: 'White', img: null, variants: '../6-panel-caps/white-blk-lw-type-front-cap.webp|../6-panel-caps/white-blk-wolf-head-side-cap.webp' },
+                { name: 'Yellow', img: null, variants: '../6-panel-caps/yellow-blk-lw-type-front-cap.webp|../6-panel-caps/yellow-blk-wolf-head-side-cap.webp|../6-panel-caps/yellow-white-lw-type-front-cap.webp|../6-panel-caps/yellow-white-wolf-head-side-cap.webp' }
             ],
-            defaultImg: '/6-panel-caps/white-blk-lw-type-front-cap.webp'
+            defaultImg: '../6-panel-caps/white-blk-lw-type-front-cap.webp'
         }
     };
 
