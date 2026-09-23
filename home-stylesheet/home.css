@@ -56,6 +56,21 @@ html {
     background: #ffffff;
 }
 
+.ordering-guide {
+    margin: 32px 0;
+    padding: clamp(18px, 3vw, 32px);
+    border: 1px solid #78788c;
+    border-radius: 12px;
+    background: rgba(17, 24, 32, 0.88);
+    color: #e5e9ef;
+    text-align: left;
+}
+.ordering-guide h2 { margin: 0 0 18px; color: #fff; font-size: 24px; }
+.ordering-guide ol { margin: 0; padding-left: 24px; list-style: decimal; }
+.ordering-guide li { padding-left: 6px; line-height: 1.7; }
+.ordering-guide li + li { margin-top: 14px; }
+.ordering-guide strong { color: #fff; }
+
 body {
     background-color: #1f2b3a;
     background-image: url('../images/Body_Background.webp');
