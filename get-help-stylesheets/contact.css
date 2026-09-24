@@ -199,8 +199,19 @@ body {
 }
 
 #contactStatus {
-  margin-top: 16px;
+    margin-top: 16px;
 }
+
+#standardSubmit {
+  padding: 12px 16px;
+  border: 2px solid #78788c;
+  border-radius: 10px;
+  background: #1f2b3a;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+#standardSubmit[hidden] { display: none; }
 
 .right-side .button input:disabled {
   opacity: 0.65;

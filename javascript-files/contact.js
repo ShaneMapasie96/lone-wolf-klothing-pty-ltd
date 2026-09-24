@@ -1,7 +1,22 @@
 const contactForm = document.getElementById("contactForm");
 const submitButton = document.getElementById("submitButton");
 const contactStatus = document.getElementById("contactStatus");
+const standardSubmit = document.getElementById("standardSubmit");
 let submitting = false;
+
+// A user-controlled fallback lets FormSubmit display any verification page.
+standardSubmit.addEventListener("click", function () {
+    if (submitting || !contactForm.reportValidity()) return;
+    let source = contactForm.querySelector('input[name="_url"]');
+    if (!source) {
+        source = document.createElement("input");
+        source.type = "hidden";
+        source.name = "_url";
+        contactForm.append(source);
+    }
+    source.value = window.location.href;
+    HTMLFormElement.prototype.submit.call(contactForm);
+});
 
 contactForm.addEventListener("submit", async function(event) {
     event.preventDefault();
@@ -22,20 +37,24 @@ contactForm.addEventListener("submit", async function(event) {
     submitButton.value = "Sending...";
     contactForm.setAttribute("aria-busy", "true");
     contactStatus.textContent = "Sending your enquiry...";
+    standardSubmit.hidden = true;
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 20000);
+    const timeout = setTimeout(() => controller.abort(), 30000);
     try {
+        // Let the browser encode the form without a JSON Content-Type preflight.
+        const payload = new FormData(contactForm);
+        payload.set("name", name);
+        payload.set("email", email);
+        payload.set("phone", phone);
+        payload.set("message", message);
+        payload.set("_replyto", email);
+        payload.set("_template", "table");
+        payload.set("_url", window.location.href);
         const response = await fetch("https://formsubmit.co/ajax/lwe16sa@gmail.com", {
             method: "POST",
-            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            headers: { "Accept": "application/json" },
             signal: controller.signal,
-            body: JSON.stringify({
-                name, email, phone, message,
-                _replyto: email,
-                _subject: "Lone Wolf Klothing enquiry / callback request",
-                _template: "table",
-                _url: window.location.href
-            })
+            body: payload
         });
         const result = await response.json();
         if (!response.ok || (result.success !== true && result.success !== "true")) {
@@ -44,7 +63,8 @@ contactForm.addEventListener("submit", async function(event) {
         contactStatus.textContent = "Thank you! Your enquiry has been submitted. Lone Wolf Klothing will get back to you.";
         contactForm.reset();
     } catch (error) {
-        contactStatus.textContent = "We couldn't confirm your submission. Your details are still here. Please try again, or contact us at lwe16sa@gmail.com or +27 61 581 6059.";
+        contactStatus.textContent = "We couldn't confirm your submission. Your details are still here. You can retry using the standard form below, which opens our form provider's confirmation or verification page. Retrying may send a duplicate if your first attempt reached us. You can also contact us at lwe16sa@gmail.com or +27 61 581 6059.";
+        standardSubmit.hidden = false;
     } finally {
         clearTimeout(timeout);
         submitting = false;
