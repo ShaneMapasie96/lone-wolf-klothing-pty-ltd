@@ -90,6 +90,9 @@ body {
     font-weight: 500;
   }
 
+article a { color: #fff; text-decoration: underline; overflow-wrap: anywhere; }
+article .privacy-policy-headings { margin-top: 24px; }
+
 @media (max-width: 768px) {
   section {
     margin-top: 32px;
