@@ -45,8 +45,11 @@ body {
 }
 
 .return-policy-content {
-    text-align: center;
+    text-align: left;
 }
+
+.return-policy-content h2 { margin: 28px 0 10px; color: #fff; font-size: 20px; line-height: 1.4; }
+.return-policy-content a { color: #fff; text-decoration: underline; overflow-wrap: anywhere; }
 
 .return-policy-paragraph {
     display: block;
