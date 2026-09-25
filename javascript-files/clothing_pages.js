@@ -567,7 +567,39 @@ function updateOuterwearDesign(selectElement) {
 }
 
 // Add click event listeners to all color elements after DOM is loaded
+// Keep rebuilt palettes and pointer-driven selections accessible as well.
+function enableKeyboardColors(palette) {
+    function syncSwatches() {
+        palette.querySelectorAll('.color').forEach(function (swatch) {
+            swatch.setAttribute('role', 'button');
+            swatch.setAttribute('tabindex', '0');
+            swatch.setAttribute('aria-label', swatch.getAttribute('data-color') || 'Colour');
+            swatch.setAttribute('aria-pressed', String(
+                swatch.classList.contains('selected-color') || swatch.classList.contains('selected')
+            ));
+        });
+    }
+    palette.setAttribute('role', 'group');
+    palette.setAttribute('aria-label', 'Product colour');
+    palette.addEventListener('keydown', function (event) {
+        const swatch = event.target.closest('.color');
+        if (!swatch || !palette.contains(swatch)) return;
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            if (!event.repeat) swatch.click();
+        }
+    });
+    // Existing click handlers own product images, variants and selection classes.
+    // Only observe their inputs, so writing ARIA attributes cannot retrigger this.
+    new MutationObserver(syncSwatches).observe(palette, {
+        childList: true, subtree: true, attributes: true,
+        attributeFilter: ['class', 'data-color']
+    });
+    syncSwatches();
+}
+
 document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.item .colors').forEach(enableKeyboardColors);
     // Add extra swatches to product palettes (selective by page)
     const extraColors = [
         { name: 'Royal Blue', value: '#4169E1', className: 'royal-blue' },
