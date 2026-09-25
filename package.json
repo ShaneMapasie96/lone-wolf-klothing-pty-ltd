@@ -5,7 +5,8 @@
   "scripts": {
     "test:shop": "node tests/shop-tools.cjs",
     "test:filters": "node tests/product-filters.cjs",
-    "test:paths": "node tests/hosting-paths.cjs"
+    "test:paths": "node tests/hosting-paths.cjs",
+    "test:colors": "node tests/color-keyboard.cjs"
   },
   "repository": {
     "type": "git",
