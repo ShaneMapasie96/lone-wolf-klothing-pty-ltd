@@ -664,8 +664,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Yellow', img: null, variants: '../t-shirts/yellow-a4-lw-emblem-t-shirt.webp' },
                 { name: 'Royal Blue', img: null, variants: '../t-shirts/royal-blue-a4-lw-emblem-t-shirt.webp' },
                 { name: 'Pink', img: null, variants: '../t-shirts/pink-a4-lw-emblem-t-shirt.webp' }
-            ],
-            defaultImg: '../t-shirts/white-a4-red-lw-emblem-t-shirt.webp'
+            ]
         },
         'lone-wolf-emblem-pocket-size': {
             colors: [
@@ -677,8 +676,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Yellow', img: null, variants: '../t-shirts/yellow-lw-emblem-t-shirt.webp' },
                 { name: 'Royal Blue', img: null, variants: '../t-shirts/royal-blue-lw-emblem-t-shirt.webp' },
                 { name: 'Pink', img: null, variants: '../t-shirts/pink-lw-emblem-t-shirt.webp' }
-            ],
-            defaultImg: '../t-shirts/white-blk-lw-emblem-t-shirt.webp'
+            ]
         },
         'wolf-head': {
             colors: [
@@ -690,8 +688,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Yellow', img: '../t-shirts/yellow-wolf-head-t-shirt.webp', variants: null },
                 { name: 'Royal Blue', img: '../t-shirts/royal-blue-wolf-head-t-shirt.webp', variants: null },
                 { name: 'Pink', img: '../t-shirts/pink-wolf-head-t-shirt.webp', variants: null }
-            ],
-            defaultImg: '../t-shirts/beige-wolf-head-t-shirt.webp'
+            ]
         },
         'lone-wolf-typography': {
             colors: [
@@ -703,8 +700,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Yellow', img: '../t-shirts/yellow-lw-type-t-shirt.webp', variants: null },
                 { name: 'Royal Blue', img: '../t-shirts/royal-blue-lw-type-t-shirt.webp', variants: null },
                 { name: 'Pink', img: '../t-shirts/pink-lw-type-t-shirt.webp', variants: null }
-            ],
-            defaultImg: '../t-shirts/beige-lw-type-t-shirt.webp'
+            ]
         },
         'isolation-breeds-growth': {
             colors: [
@@ -716,33 +712,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Yellow', img: '../t-shirts/yellow-ibg-t-shirt.webp', variants: null },
                 { name: 'Royal Blue', img: '../t-shirts/royal-blue-a4-ibg-t-shirt.webp', variants: null },
                 { name: 'Pink', img: '../t-shirts/pink-a4-ibg-t-shirt.webp', variants: null }
-            ],
-            defaultImg: '../t-shirts/beige-ibg-t-shirt.webp'
-        }
-    };
-
-    var cap_designData = {
-        'wolf-head': {
-            colors: [
-                { name: 'Black', img: null, variants: '../6-panel-caps/black-white-wolf-head-front-cap.webp|../6-panel-caps/black-white-lw-type-side-cap.webp|../6-panel-caps/black-red-wolf-head-front-cap.webp|../6-panel-caps/black-gold-wolf-head-front-cap.webp|../6-panel-caps/black-gold-lw-type-side-cap.webp' },
-                { name: 'Khaki', img: null, variants: '../6-panel-caps/beige-blk-wolf-head-front-cap.webp|../6-panel-caps/beige-blk-lw-type-side-cap.webp' },
-                { name: 'Royal Blue', img: null, variants: '../6-panel-caps/royal-blue-wolf-head-front-cap.webp|../6-panel-caps/royal-blue-white-lw-type-side-cap.webp' },
-                { name: 'Red', img: null, variants: '../6-panel-caps/red-blk-wolf-head-front-cap.webp|../6-panel-caps/red-blk-lw-type-side-cap.webp|../6-panel-caps/red-white-wolf-head-front-cap.webp|../6-panel-caps/red-white-lw-type-side-cap.webp' },
-                { name: 'White', img: null, variants: '../6-panel-caps/white-blk-wolf-head-front-cap.webp|../6-panel-caps/white-blk-lw-type-side-cap.webp|../6-panel-caps/white-red-wolf-head-front-cap.webp' },
-                { name: 'Yellow', img: null, variants: '../6-panel-caps/yellow-blk-wolf-head-front-cap.webp|../6-panel-caps/yellow-blk-lw-type-side-cap.webp|../6-panel-caps/yellow-white-wolf-head-front-cap.webp|../6-panel-caps/yellow-white-lw-type-side-cap.webp' }
-            ],
-            defaultImg: '../6-panel-caps/white-blk-wolf-head-front-cap.webp'
-        },
-        'lone-wolf-typography': {
-            colors: [
-                { name: 'Black', img: null, variants: '../6-panel-caps/black-white-lw-type-front-cap.webp|../6-panel-caps/black-white-wolf-head-side-cap.webp|../6-panel-caps/black-gold-lw-type-front-cap.webp|../6-panel-caps/black-gold-wolf-head-side-cap.webp' },
-                { name: 'Khaki', img: null, variants: '../6-panel-caps/beige-blk-lw-type-front-cap.webp|../6-panel-caps/beige-blk-wolf-head-side-cap.webp' },
-                { name: 'Royal Blue', img: null, variants: '../6-panel-caps/royal-blue-lw-type-front-cap.webp|../6-panel-caps/royal-blue-white-wolf-head-side-cap.webp' },
-                { name: 'Red', img: null, variants: '../6-panel-caps/red-blk-lw-type-front-cap.webp|../6-panel-caps/red-blk-wolf-head-side-cap.webp|../6-panel-caps/red-white-lw-type-front-cap.webp|../6-panel-caps/red-white-wolf-head-side-cap.webp' },
-                { name: 'White', img: null, variants: '../6-panel-caps/white-blk-lw-type-front-cap.webp|../6-panel-caps/white-blk-wolf-head-side-cap.webp' },
-                { name: 'Yellow', img: null, variants: '../6-panel-caps/yellow-blk-lw-type-front-cap.webp|../6-panel-caps/yellow-blk-wolf-head-side-cap.webp|../6-panel-caps/yellow-white-lw-type-front-cap.webp|../6-panel-caps/yellow-white-wolf-head-side-cap.webp' }
-            ],
-            defaultImg: '../6-panel-caps/white-blk-lw-type-front-cap.webp'
+            ]
         }
     };
 
@@ -755,8 +725,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Pink', img: '../golfers/pink-lw-emblem-golfer.webp', variants: null },
                 { name: 'Red', img: null, variants: '../golfers/red-blk-lw-emblem-golfer.webp|../golfers/red-white-lw-emblem-golfer.webp' },
                 { name: 'Yellow', img: '../golfers/yellow-blk-lw-emblem-golfer.webp', variants: null }
-            ],
-            defaultImg: '../golfers/white-blk-lw-emblem-golfer.webp'
+            ]
         },
         'wolf-head': {
             colors: [
@@ -766,8 +735,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Pink', img: '../golfers/pink-wolf-head-golfer.webp', variants: null },
                 { name: 'Red', img: null, variants: '../golfers/red-blk-wolf-head-golfer.webp|../golfers/red-white-wolf-head-golfer.webp' },
                 { name: 'Yellow', img: '../golfers/yellow-blk-wolf-head-golfer.webp', variants: null }
-            ],
-            defaultImg: '../golfers/white-blk-wolf-head-golfer.webp'
+            ]
         },
         'lone-wolf-typography': {
             colors: [
@@ -777,8 +745,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Pink', img: '../golfers/pink-lw-type-golfer.webp', variants: null },
                 { name: 'Red', img: null, variants: '../golfers/red-blk-lw-type-golfer.webp|../golfers/red-white-lw-type-golfer.webp' },
                 { name: 'Yellow', img: '../golfers/yellow-blk-lw-type-golfer.webp', variants: null }
-            ],
-            defaultImg: '../golfers/white-blk-lw-type-golfer.webp'
+            ]
         }
     };
 
@@ -850,8 +817,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Pink', img: '../hoodies/pink-a4-lw-emblem-hoodie.webp', variants: null },
                 { name: 'Yellow', img: '../hoodies/yellow-a4-lw-emblem-hoodie.webp', variants: null },
                 { name: 'Royal Blue', img: '../hoodies/royal-blue-a4-lw-emblem-hoodie.webp', variants: null }
-            ],
-            defaultImg: '../hoodies/white-blk-a4-lw-emblem-hoodie.webp'
+            ]
         },
         'lone-wolf-emblem-pocket-size': {
             colors: [
@@ -862,8 +828,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 { name: 'Pink', img: '../hoodies/pink-blk-lw-emblem-hoodie.webp', variants: null },
                 { name: 'Yellow', img: '../hoodies/yellow-lw-emblem-hoodie.webp', variants: null },
                 { name: 'Royal Blue', img: '../hoodies/Royal-Blue-LW-Emblem-Hoodie.webp', variants: null }
-            ],
-            defaultImg: '../hoodies/white-blk-lw-emblem-hoodie.webp'
+            ]
         },
         'wolf-head': {
             colors: [
@@ -962,10 +927,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 if (!key) return;
 
-                var data = isCapItem ? cap_designData[key] : isGolferItem ? golfer_designData[key] : designData[key];
-                if (!data && isGolferItem && key === 'lone-wolf-emblem') {
-                    data = golfer_designData['lone-wolf-emblem'];
-                }
+                var data = isGolferItem ? golfer_designData[key] : designData[key];
                 if (!data) return;
 
                 var imgEl = item.querySelector('img');
