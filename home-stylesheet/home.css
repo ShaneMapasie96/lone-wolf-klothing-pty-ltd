@@ -647,36 +647,36 @@ body {
         margin-top: var(--page-title-offset-mobile) !important;
     }
 
-    .home-navbar {
+    .compact-navbar {
         flex-direction: row;
         align-items: center;
         gap: 8px;
         padding: 8px 0;
     }
 
-    .home-navbar > a.active,
-    .home-navbar > .custom-dropdown {
+    .compact-navbar > a:not(.custom-logo-link),
+    .compact-navbar > .custom-dropdown {
         display: none;
     }
 
-    .home-navbar .custom-logo {
+    .compact-navbar .custom-logo {
         width: 40px;
         margin: 0;
     }
 
-    .home-navbar .custom-logo-link {
+    .compact-navbar .custom-logo-link {
         width: auto;
         flex: none;
     }
 
-    .home-navbar .nav-tools {
+    .compact-navbar .nav-tools {
         width: auto;
         margin-left: auto;
         gap: 2px;
     }
 
-    .home-navbar .nav-icon-button,
-    .home-navbar .nav-search {
+    .compact-navbar .nav-icon-button,
+    .compact-navbar .nav-search {
         width: 34px;
         min-width: 34px;
         height: 40px;
@@ -685,11 +685,11 @@ body {
         padding: 0;
     }
 
-    .home-navbar .nav-search {
+    .compact-navbar .nav-search {
         border: 0 !important;
     }
 
-    .home-navbar .nav-search span {
+    .compact-navbar .nav-search span {
         display: none;
     }
 
@@ -753,13 +753,34 @@ body {
     box-shadow: 0 0 0 7px #111111;
 }
 .sizing-help {
-    display: block;
-    margin-top: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    width: fit-content;
+    margin-top: 4px;
+    padding: 6px 0;
     color: #ffffff;
-    font-size: 13px;
+    font-size: 11px;
+    font-weight: 600;
     line-height: 1.4;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.sizing-help span {
     text-decoration: underline;
     text-underline-offset: 3px;
+}
+
+.sizing-help svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.sizing-help:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
 }
 
 .sizing-help:hover,
