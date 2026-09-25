@@ -2,7 +2,6 @@
   "name": "cput-lone-wolf-wear-pty-ltd",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test:shop": "node tests/shop-tools.cjs",
     "test:filters": "node tests/product-filters.cjs",

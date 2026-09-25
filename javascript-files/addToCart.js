@@ -286,33 +286,13 @@ function ensureDesignSelector(itemContainer) {
     }
 }
 
-// Keep a selected swatch state per product card for cart lookups
+// Initialize product design selectors. Swatch selection is handled by clothing_pages.js.
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.item').forEach(function (item) {
         ensureDesignSelector(item);
 
-        const colors = item.querySelectorAll('.colors .color');
-        if (colors.length > 0) {
-            colors[0].classList.add('selected-color');
-            colors[0].classList.add('selected');
-        }
-
-        colors.forEach(function (color) {
-            color.addEventListener('click', function () {
-                colors.forEach(function (c) {
-                    c.classList.remove('selected-color');
-                    c.classList.remove('selected');
-                });
-                color.classList.add('selected-color');
-                color.classList.add('selected');
-            });
-        });
-
         const vestDesign = item.querySelector('select#vest-design');
         if (vestDesign && typeof updateVestDesign === 'function') {
-            vestDesign.addEventListener('change', function () {
-                updateVestDesign(this);
-            });
             updateVestDesign(vestDesign);
         }
     });
