@@ -752,3 +752,17 @@ body {
     outline-offset: 4px;
     box-shadow: 0 0 0 7px #111111;
 }
+.sizing-help {
+    display: block;
+    margin-top: 6px;
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 1.4;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.sizing-help:hover,
+.sizing-help:focus-visible {
+    color: #ffb3a6;
+}
