@@ -1,4 +1,4 @@
-const { chromium } = require('@playwright/test');
+const { chromium, expect } = require('@playwright/test');
 const assert = require('node:assert/strict');
 (async () => {
  const browser = await chromium.launch({channel:'msedge'});
@@ -132,12 +132,40 @@ const assert = require('node:assert/strict');
    }
   }
   assert.equal(await page.locator('.design-selector-row label').filter({hasText:'Select Design:'}).count(),0);
-  for (const width of [1280,768,375]) {
+  for (const width of [1280,768,640,375,320]) {
    await page.setViewportSize({width,height:900});
    await page.mouse.move(0,0);
    await page.locator('body').click({position:{x:1,y:1}});
    const headingTop = () => page.locator('.product-title').evaluate(el=>el.getBoundingClientRect().top+window.scrollY);
    const before = await headingTop();
+   const mobileMenu = page.locator('.home-mobile-menu');
+   if (width <= 640) {
+    await expect(page.locator('.custom-dropbtn').first()).toBeHidden();
+    const summary = mobileMenu.locator('summary');
+    await expect(summary).toBeVisible();
+    await summary.click();
+    await expect(mobileMenu).toHaveAttribute('open', '');
+    const links = mobileMenu.locator('nav a');
+    await expect(links).toHaveCount(8);
+    for (const link of await links.all()) await expect(link).toBeVisible();
+    assert.equal(await headingTop(),before,'mobile menu opening moved content at '+width);
+    await summary.click();
+    await expect(mobileMenu).not.toHaveAttribute('open');
+    await expect(links.first()).toBeHidden();
+    // Native details/summary must also work without a pointer.
+    await summary.focus();
+    await page.keyboard.press('Enter');
+    await expect(mobileMenu).toHaveAttribute('open', '');
+    await page.keyboard.press('Tab');
+    await expect(links.first()).toBeFocused();
+    assert.equal(await headingTop(),before,'mobile menu keyboard use moved content at '+width);
+    await summary.focus();
+    await page.keyboard.press('Enter');
+    await expect(mobileMenu).not.toHaveAttribute('open');
+    assert.equal(await headingTop(),before,'mobile menu closing moved content at '+width);
+    continue;
+   }
+   await expect(mobileMenu).toBeHidden();
    for (const trigger of await page.locator('.custom-dropbtn').all()) {
     await trigger.hover();
     await page.waitForTimeout(50);
