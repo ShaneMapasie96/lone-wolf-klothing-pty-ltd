@@ -64,5 +64,10 @@ body:has(.product-filters) .product-title { margin-top: 28px !important; }
     .product-filters.is-open .product-filter-panel { display: block; margin-top: 20px; }
     .product-filter-controls { gap: 16px; }
     .product-filter-colours { flex-basis: 100%; }
-    .product-filter-swatch { width: 32px; height: 32px; }
+    .product-filter-swatch { width: 44px; height: 44px; }
+}
+@media (max-width: 900px), (pointer: coarse) {
+    .product-filters select { font-size: 16px; height: 44px; }
+    .product-filters button { min-height: 44px; min-width: 44px; }
+    .product-filter-swatch { width: 44px; height: 44px; }
 }

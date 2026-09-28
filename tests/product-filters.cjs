@@ -132,14 +132,14 @@ const assert = require('node:assert/strict');
    }
   }
   assert.equal(await page.locator('.design-selector-row label').filter({hasText:'Select Design:'}).count(),0);
-  for (const width of [1280,768,640,375,320]) {
+  for (const width of [1280,901,900,768,667,640,375,320]) {
    await page.setViewportSize({width,height:900});
    await page.mouse.move(0,0);
    await page.locator('body').click({position:{x:1,y:1}});
    const headingTop = () => page.locator('.product-title').evaluate(el=>el.getBoundingClientRect().top+window.scrollY);
    const before = await headingTop();
    const mobileMenu = page.locator('.home-mobile-menu');
-   if (width <= 640) {
+   if (width <= 900) {
     await expect(page.locator('.custom-dropbtn').first()).toBeHidden();
     const summary = mobileMenu.locator('summary');
     await expect(summary).toBeVisible();

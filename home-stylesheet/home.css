@@ -559,7 +559,7 @@ body {
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
     .navbar-container {
         position: sticky;
     }
@@ -677,9 +677,9 @@ body {
 
     .compact-navbar .nav-icon-button,
     .compact-navbar .nav-search {
-        width: 34px;
-        min-width: 34px;
-        height: 40px;
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
         max-width: none;
         flex: none;
         padding: 0;
@@ -746,6 +746,19 @@ body {
     .home-mobile-menu nav a:last-child {
         border-bottom: 0;
     }
+}
+/* Keep all header actions reachable on the narrowest phones. */
+@media (max-width: 360px) {
+    .home-mobile-menu summary { width: 44px; padding: 0; gap: 0; font-size: 0; }
+    .home-mobile-menu summary i { font-size: 16px; }
+}
+
+@media (max-width: 900px), (pointer: coarse) {
+    .item .colors { gap: 10px; }
+    .item .colors .color { width: 44px; height: 44px; flex-shrink: 0; margin-right: 0; }
+    .item select.input-style { font-size: 16px; min-height: 44px; }
+    .variant-btn { min-width: 44px; min-height: 44px; }
+    .hero-image-button { min-height: 44px; }
 }
 .item .colors .color:focus-visible {
     outline: 3px solid #ffffff;
