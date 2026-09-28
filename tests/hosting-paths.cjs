@@ -54,6 +54,9 @@ const path = require('node:path');
                     for (const source of sources) {
                         const url = new URL(source);
                         assert(url.pathname.startsWith(base), 'Escaped project folder: ' + source);
+                        if (file === 'tracksuits.html') {
+                            assert(url.pathname.startsWith(base + 'tracksuits/'), 'Tracksuit design used another product category: ' + source);
+                        }
                         assert(fs.existsSync(path.join(process.cwd(), decodeURIComponent(url.pathname.slice(base.length)))), 'Missing image: ' + source);
                     }
                     await page.locator('.item').first().getByRole('button', { name: 'Add to Cart', exact: true }).click();
