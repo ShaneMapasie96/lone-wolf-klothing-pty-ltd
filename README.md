@@ -6,6 +6,10 @@ The profile is saved only in the current browser; there is no authentication or 
 
 Run `npm run test:shop` for header and shopping-flow checks and `npm run test:filters` for catalogue regression checks. Both use Playwright with locally installed Microsoft Edge, serve repository files through intercepted requests, and block external requests. No test sends an order.
 
+Run `npm run test:mobile` for all 17 content pages at 320px portrait and 667px landscape, plus homepage header breakpoint checks. It checks menu reachability, touch-target sizes, selector text and horizontal overflow. These Edge checks do not replace iOS Safari or Android device testing.
+
+The compact header is used through 900px. Mobile and touch product controls use 44px targets and 16px selector text. The downloadable catalogue is a 4.2 MB web copy; the original remains in `output/pdf/lone-wolf-catalogue-2026-updated.pdf`. When replacing a download or stylesheet, update its displayed size and version query in the HTML.
+
 ## Contact enquiries
 
 The contact form posts name, email, phone and message to FormSubmit for delivery to lwe16sa@gmail.com. It stays on the contact page and displays submission status. No email app or WhatsApp is required.
