@@ -201,6 +201,11 @@ function updateTracksuitDesign(selectElement) {
     var palette = item ? item.querySelector('.colors') : null;
     if (!item || !palette) return;
 
+    const priceElement = item.querySelector('.price');
+    if (priceElement) {
+        priceElement.textContent = /large print/i.test(selectElement.value) ? 'R949.95' : 'R899.95';
+    }
+
     var design = /wolf head/i.test(selectElement.value) ? 'wolf-head' :
         /typography/i.test(selectElement.value) ? 'typography' :
         /pocket size/i.test(selectElement.value) ? 'lone-wolf-emblem-pocket-size' : 'lone-wolf-emblem-large-print';
@@ -931,11 +936,12 @@ document.addEventListener('DOMContentLoaded', function () {
             var isCrewneckItem = itemHeading && /crewnecks?/i.test(itemHeading.textContent);
             var isSweatpantsItem = itemHeading && /sweatpants?/i.test(itemHeading.textContent);
             var isShortsItem = itemHeading && /shorts?/i.test(itemHeading.textContent);
+            var isTracksuitItem = Boolean(item.closest('.tracksuits-container'));
 
             // These products use dedicated handlers attached when their selector
             // is created. A second generic handler would replace their mappings
             // with the T-shirt dataset.
-            if (isCapItem || isBucketHatItem || isBeanieItem || isHoodieItem || isCrewneckItem || isSweatpantsItem || isShortsItem) return;
+            if (isCapItem || isBucketHatItem || isBeanieItem || isHoodieItem || isCrewneckItem || isSweatpantsItem || isShortsItem || isTracksuitItem) return;
 
             designSelect._designSwitchAttached = true;
 
