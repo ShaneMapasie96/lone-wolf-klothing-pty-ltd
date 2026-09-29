@@ -1,5 +1,7 @@
 # cput-lone-wolf-wear-pty-ltd
 
+Firebase Firestore setup, security rules, seed script and backend integration requirements are documented in [docs/database.md](docs/database.md).
+
 Browser automation identifiers and Playwright examples are documented in [docs/automation.md](docs/automation.md). Run `npm run test:automation` to verify ID uniqueness, control coverage, and dynamically rebuilt shopping controls.
 
 The header includes collection search, a wishlist, a shopping cart, and a device-local profile. Cart and wishlist entries retain the selected product options in browser storage. Add to Cart opens a summary; Order on WhatsApp prepares the order using the existing business number. Sending an order does not automatically empty the cart.
