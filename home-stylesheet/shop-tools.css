@@ -97,3 +97,21 @@
 .item .product-logo-colour { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0; color: #fff; font-size: 14px; line-height: 1.5; }
 .product-logo-chip { display: inline-flex; align-items: center; gap: 7px; padding: 4px 10px; border: 1px solid #78788c; border-radius: 6px; background: #1f2b3a; }
 .product-logo-swatch { display: inline-block; width: 16px; height: 16px; flex-shrink: 0; border: 1px solid #aeb7c5; border-radius: 50%; }
+/* Match the arrow inset to the text inset while keeping native select behaviour. */
+.item select.input-style,
+.product-filters select {
+    --select-inset: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+    padding-left: var(--select-inset);
+    padding-right: calc(var(--select-inset) * 2 + 12px);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 12px 8px;
+    background-position: right var(--select-inset) center;
+}
+.product-filters select { --select-inset: 10px; }
+@media (forced-colors: active) {
+    .item select.input-style,
+    .product-filters select { appearance: auto; background-image: none; padding-right: var(--select-inset); }
+}
