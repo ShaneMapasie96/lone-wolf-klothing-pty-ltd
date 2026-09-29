@@ -1,0 +1,7 @@
+{
+  "name": "lwk-firestore-setup",
+  "private": true,
+  "type": "commonjs",
+  "scripts": { "seed": "node seed.cjs" },
+  "dependencies": { "firebase-admin": "^13.0.0" }
+}

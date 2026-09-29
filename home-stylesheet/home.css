@@ -506,6 +506,14 @@ body {
     line-height: 1.5;
 }
 
+.category-card .category-price {
+    margin: 0 0 8px;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
 /* Keep first visible heading/content block at a consistent distance below nav on all pages. */
 .t-shirts_and_tops-container .product-title,
 .crews-and-hoodies-container .product-title,
