@@ -7,7 +7,8 @@
     "test:filters": "node tests/product-filters.cjs",
     "test:paths": "node tests/hosting-paths.cjs",
     "test:colors": "node tests/color-keyboard.cjs",
-    "test:mobile": "node tests/mobile-layout.cjs"
+    "test:mobile": "node tests/mobile-layout.cjs",
+    "test:automation": "node tests/automation-hooks.cjs"
   },
   "repository": {
     "type": "git",

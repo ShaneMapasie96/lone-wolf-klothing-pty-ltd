@@ -87,6 +87,7 @@
     function button(text, parent, action) {
         const node = element('button', text, parent);
         node.type = 'button';
+        node.dataset.testid = 'action-' + text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
         node.addEventListener('click', action);
         return node;
     }
@@ -195,6 +196,8 @@
         state[type].forEach((item, index) => {
             const row = element('article', undefined, content);
             row.className = 'shop-item';
+            row.dataset.itemKey = item.id;
+            row.dataset.collection = type;
             let details = row;
             {
                 const preview = element('a', undefined, row);

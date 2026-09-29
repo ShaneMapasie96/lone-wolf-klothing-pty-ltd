@@ -1,5 +1,7 @@
 # cput-lone-wolf-wear-pty-ltd
 
+Browser automation identifiers and Playwright examples are documented in [docs/automation.md](docs/automation.md). Run `npm run test:automation` to verify ID uniqueness, control coverage, and dynamically rebuilt shopping controls.
+
 The header includes collection search, a wishlist, a shopping cart, and a device-local profile. Cart and wishlist entries retain the selected product options in browser storage. Add to Cart opens a summary; Order on WhatsApp prepares the order using the existing business number. Sending an order does not automatically empty the cart.
 
 The profile is saved only in the current browser; there is no authentication or online order history. Serve the site from its root so absolute asset URLs resolve.
