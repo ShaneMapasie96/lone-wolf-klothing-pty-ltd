@@ -448,6 +448,10 @@ body {
     margin-bottom: 20px;
 }
 
+.category-section .section-heading p {
+    color: #ffffff;
+}
+
 .section-heading h2 {
     margin: 0;
     font-size: clamp(1.6rem, 2vw, 2.4rem);
