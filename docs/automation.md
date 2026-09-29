@@ -17,6 +17,7 @@ Prefer accessible roles and labels for behaviour tests, and `data-testid` for st
 | Filter colours | `filter-colour-all`, `filter-colour-black`, etc. |
 | Hero carousel | `hero-visual`; indicators `hero-slide-0` through `hero-slide-3` |
 | Shopping dialog | `shop-dialog` |
+| Optional first-purchase discount code | `field-discount-code` inside the cart order form |
 | Dialog actions | `action-close`, `action-save-profile`, etc., assigned when the action is created |
 | Cart/wishlist item | `data-item-key` stores the product variant identity; `data-collection` is `cart` or `wishlist` |
 | Cart quantity | `field-quantity` scoped to a shopping item |

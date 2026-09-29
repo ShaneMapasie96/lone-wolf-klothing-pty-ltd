@@ -17,7 +17,7 @@
         const pathname = url.split('#')[0].toLowerCase().replace(/\.html$/, '');
         return collections.find(([, path]) => path.replace(/\.html$/, '') === pathname)?.[1];
     };
-    const orderDetails = { name: '', phone: '', method: 'locker', locker: '' };
+    const orderDetails = { name: '', phone: '', method: 'locker', locker: '', discount: '' };
     const key = 'lw-shop-v1';
     const referenceKey = 'lw-order-reference-v1';
     let draftReference;
@@ -292,6 +292,20 @@
             }
             const customerName = orderInput('name', 'Customer name', 'text', 'name');
             const phone = orderInput('phone', 'Phone number', 'tel', 'tel');
+            const discount = orderInput('discount', 'Discount code (optional)', 'text', 'off');
+            discount.required = false;
+            discount.maxLength = 30;
+            discount.setAttribute('data-testid', 'field-discount-code');
+            discount.setAttribute('aria-describedby', 'shop-discount-note');
+            const discountNote = element('p', 'First purchase? Enter WELCOME10 to request 10% off products. One use per customer, subject to first-purchase verification. Delivery is excluded. Estimates above are before discount; any approved discount will appear on your confirmed quote.', form);
+            discountNote.id = 'shop-discount-note';
+            discountNote.setAttribute('aria-live', 'polite');
+            function validateDiscount() {
+                const code = discount.value.trim().toUpperCase();
+                discount.setCustomValidity(!code || code === 'WELCOME10' ? '' : 'Unknown discount code. Enter WELCOME10 or leave this field blank.');
+                return code;
+            }
+            discount.addEventListener('input', validateDiscount);
             const methodLabel = element('label', 'Delivery method', form);
             const method = element('select', undefined, methodLabel);
             method.name = 'method'; method.setAttribute('aria-label', 'Delivery method');
@@ -320,6 +334,7 @@
             element('p', 'Review your message and press Send in WhatsApp to place your enquiry.', form);
             form.addEventListener('submit', event => {
                 event.preventDefault();
+                const discountCode = validateDiscount();
                 customerName.setCustomValidity(customerName.value.trim() ? '' : 'Please enter your name.');
                 const digits = phone.value.replace(/\D/g, '');
                 phone.setCustomValidity(/^[+\d\s().-]+$/.test(phone.value) && digits.length >= 7 && digits.length <= 15 ? '' : 'Please enter a valid phone number.');
@@ -327,6 +342,7 @@
                 if (!form.reportValidity()) return;
             const message = ['Hello, I would like to order:', ...state.cart.map(item => `${item.name}\nDesign: ${item.design}\nDescription: ${variantImageName(item) || variantDescription(item)}\nColor: ${item.color}\nSize: ${item.size}\nQuantity: ${item.quantity}\nUnit price: ${money(item.price)}\nLine total: ${money(item.price * item.quantity)}`), 'Subtotal: ' + money(subtotalCents / 100), depositText, balanceText, estimateNote, paymentTerms].join('\n\n');
                 const customer = ['Order reference: ' + reference, 'Please include this reference on my confirmed quote and payment instructions.', 'Payment reference for deposit and balance: ' + reference, 'Customer name: ' + customerName.value.trim(), 'Phone number: ' + phone.value.trim(),
+                    ...(discountCode ? ['Discount requested: WELCOME10 - 10% off products only, subject to first-purchase verification. One use per customer. Discount is not included in the estimates; please confirm eligibility and the final quote.'] : []),
                     method.value === 'locker' ? 'Delivery: Courier Guy locker\nPreferred locker: ' + locker.value.trim() + '\nDelivery fee: ' + (freeDelivery ? 'Free - paid by LWK' : 'Courier quote to be confirmed') : 'Delivery: Collection from LWK\nDelivery fee: Free collection'].join('\n');
                 window.open('https://wa.me/27615816059?text=' + encodeURIComponent(customer + '\n\n' + message), '_blank', 'noopener,noreferrer');
                 thanks.textContent = 'Thank you for choosing Lone Wolf Klothing. Your Werewolf journey starts here! Send your enquiry in WhatsApp, then wait for confirmation and payment details. Your reference is ' + reference + '.';

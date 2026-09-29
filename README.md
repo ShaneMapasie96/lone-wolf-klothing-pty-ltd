@@ -6,6 +6,8 @@ The header includes collection search, a wishlist, a shopping cart, and a device
 
 The profile is saved only in the current browser; there is no authentication or online order history. Serve the site from its root so absolute asset URLs resolve.
 
+Checkout accepts the optional code `WELCOME10` (case-insensitive) to request 10% off products on a customer's first purchase, excluding delivery. The WhatsApp enquiry includes the request; displayed estimates remain before discount. Code recognition in the browser does not verify eligibility or prevent repeat use. Before approving a quote, staff must check a central customer/order register using the customer's WhatsApp number, including previous purchases and pending discounted orders. Record an approved request against its order reference, mark it redeemed when the deposit is confirmed, and resolve cancelled reservations manually. Never treat opening WhatsApp as redemption. Automated enforcement requires a backend with verified customer identities, order history and atomic redemption controls.
+
 Run `npm run test:shop` for header and shopping-flow checks and `npm run test:filters` for catalogue regression checks. Both use Playwright with locally installed Microsoft Edge, serve repository files through intercepted requests, and block external requests. No test sends an order.
 
 Run `npm run test:mobile` for all 17 content pages at 320px portrait and 667px landscape, plus homepage header breakpoint checks. It checks menu reachability, touch-target sizes, selector text and horizontal overflow. These Edge checks do not replace iOS Safari or Android device testing.
