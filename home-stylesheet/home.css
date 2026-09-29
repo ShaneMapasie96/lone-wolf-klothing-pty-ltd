@@ -105,7 +105,7 @@ body {
     justify-content: flex-start;
     flex-wrap: nowrap;
     gap: 8px;
-    width: min(1280px, calc(100% - 40px));
+    width: calc(100% - clamp(28px, 4vw, 80px) * 2);
     margin: 0 auto;
     padding: 10px 0;
 }

@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../home-stylesheet/home.css?v=34197efe17">
+    <link rel="stylesheet" href="../home-stylesheet/home.css?v=50065448fd">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="../home-stylesheet/Footer.css?v=e393e25d62">
+    <link rel="stylesheet" href="../home-stylesheet/Footer.css?v=e99300f49a">
 
     <title>Lone Wolf Klothing</title>
     <meta property="og:site_name" content="Lone Wolf Klothing">
     <meta property="og:title" content="Lone Wolf Klothing">
-    <link rel="stylesheet" href="../home-stylesheet/shop-tools.css?v=af00d72133">
+    <link rel="stylesheet" href="../home-stylesheet/shop-tools.css?v=08653a4a3b">
     <meta name="description" content="Discover Lone Wolf Klothing streetwear and accessories. Explore signature designs, choose your favourite pieces and send your order enquiry on WhatsApp.">
     <meta property="og:description" content="Discover Lone Wolf Klothing streetwear and accessories. Explore signature designs, choose your favourite pieces and send your order enquiry on WhatsApp.">
     <meta property="og:type" content="website">
@@ -24,8 +24,9 @@
     <meta name="twitter:image" content="https://lonewolfklothing.co.za/images/newBG.webp">
     <meta name="twitter:image:alt" content="Lone Wolf Klothing wolf emblem">
     <link rel="canonical" href="https://lonewolfklothing.co.za/home-page/home.html">
+    <link rel="stylesheet" href="../home-stylesheet/home-hero.css?v=b06b8587d0">
 </head>
-<body>
+<body class="home-page">
     <div class="navbar-container">
         <div class="custom-navbar compact-navbar">
             <a href="../home-page/home.html" class="custom-logo-link" aria-label="Go to home page">
@@ -79,7 +80,7 @@
     </div>
 
     <main class="home-main">
-        <section class="hero">
+        <section class="hero" aria-label="Lone Wolf Klothing collection">
             <div class="hero-content">
                 <p class="eyebrow">Premium streetwear & accessories</p>
                 <h1>Fresh styles for the everyday grind.</h1>
@@ -93,18 +94,21 @@
                 </div>
             </div>
 
-            <div class="hero-visual">
+            <div class="hero-visual" role="region" aria-roledescription="carousel" aria-label="Hero pieces">
                 <div class="hero-image-frame">
                     <img class="hero-image" src="../images/female-model-in-lw-emblem-hero-piece.webp" alt="Model wearing a red Lone Wolf emblem hoodie and a white beanie" width="941" height="1672" fetchpriority="high" />
                     <img class="hero-image" data-src="../images/female-model-in-wolf-head-hero-piece.webp" alt="Model wearing a pink Wolf Head hoodie" width="941" height="1672" hidden />
                     <img class="hero-image" data-src="../images/male-model-in-ibg-hero-piece.webp" alt="Close-up of a model wearing an Isolation Breeds Growth T-shirt" width="4860" height="3648" hidden />
                     <img class="hero-image" data-src="../images/male-model-white-lw-type-t-shirt.webp" alt="Model wearing a white Lone Wolf typography T-shirt outdoors" width="960" height="1280" hidden />
                 </div>
+                <span class="hero-piece-label" aria-live="polite">Lone Wolf Emblem</span>
                 <div class="hero-image-controls" role="group" aria-label="Hero photos">
-                    <button type="button" class="hero-image-button" data-hero-image="0" aria-pressed="true">Lone Wolf Emblem</button>
-                    <button type="button" class="hero-image-button" data-hero-image="1" aria-pressed="false">Wolf Head</button>
-                    <button type="button" class="hero-image-button" data-hero-image="2" aria-pressed="false">Isolation Breeds Growth</button>
-                    <button type="button" class="hero-image-button" data-hero-image="3" aria-pressed="false">Lone Wolf Typography</button>
+                    <button type="button" class="hero-arrow hero-previous" aria-label="Previous hero piece">&#10094;</button>
+                    <button type="button" class="hero-image-button" data-hero-image="0" aria-label="Show Lone Wolf Emblem" aria-pressed="true"></button>
+                    <button type="button" class="hero-image-button" data-hero-image="1" aria-label="Show Wolf Head" aria-pressed="false"></button>
+                    <button type="button" class="hero-image-button" data-hero-image="2" aria-label="Show Isolation Breeds Growth" aria-pressed="false"></button>
+                    <button type="button" class="hero-image-button" data-hero-image="3" aria-label="Show Lone Wolf Typography" aria-pressed="false"></button>
+                    <button type="button" class="hero-arrow hero-next" aria-label="Next hero piece">&#10095;</button>
                 </div>
             </div>
         </section>
@@ -199,7 +203,7 @@
             <h2 id="meet-the-pack-heading">Meet the Pack</h2>
             <p>Every Werewolf has a story. Show us how you wear your Lone Wolf pieces.</p>
             <p>Want to be featured? Send us your photo, your honest review and the name you would like us to display. Let us know whether we may share your photo, review and display name on this website. We will only publish what you give us permission to share.</p>
-            <p><a class="primary-button" href="https://wa.me/27615816059?text=Hi%20Lone%20Wolf%20Klothing%2C%20I%27d%20like%20to%20submit%20a%20photo%20or%20review%20for%20Meet%20the%20Pack.%20Please%20confirm%20what%20you%20would%20like%20to%20publish%20so%20I%20can%20give%20permission." target="_blank" rel="noopener noreferrer">Share your Pack story</a></p>
+            <a class="primary-button" href="https://wa.me/27615816059?text=Hi%20Lone%20Wolf%20Klothing%2C%20I%27d%20like%20to%20submit%20a%20photo%20or%20review%20for%20Meet%20the%20Pack.%20Please%20confirm%20what%20you%20would%20like%20to%20publish%20so%20I%20can%20give%20permission." target="_blank" rel="noopener noreferrer">Share your Pack story</a>
         </section>
     </main>
 
@@ -255,7 +259,7 @@ c
             <p>&copy; 2026 Lone Wolf Wear (Pty) Ltd, trading as Lone Wolf Klothing. All rights reserved.</p>
         </div>
     </footer>
-    <script src="../javascript-files/home-hero.js" defer></script>
+    <script src="../javascript-files/home-hero.js?v=cab68b144e" defer></script>
     <script src="../javascript-files/shop-tools.js" defer></script>
 </body>
 </html>
