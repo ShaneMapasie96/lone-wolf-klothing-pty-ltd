@@ -1,4 +1,7 @@
 .home-page { --home-header-height: 68px; }
+.home-page .skip-link { position: fixed; top: 8px; left: 8px; z-index: 10000; padding: 12px 20px; border-radius: 4px; background: #fff; color: #19222b; font-weight: 600; transform: translateY(calc(-100% - 16px)); }
+.home-page .skip-link:focus { transform: translateY(0); outline: 3px solid #b50729; outline-offset: 2px; }
+.home-page #main-content, .home-page #collections { scroll-margin-top: calc(var(--home-header-height) + 16px); }
 .home-page .navbar-container { position: sticky; }
 .home-page .home-main { max-width: none; margin: 0; padding: 0 0 64px; }
 .home-page .hero { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: stretch; gap: 0; min-height: calc(100svh - var(--home-header-height)); padding: 0; border: 0; border-radius: 0; background: #19222b; box-shadow: none; }
