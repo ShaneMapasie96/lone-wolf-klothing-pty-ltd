@@ -1,4 +1,4 @@
-# cput-lone-wolf-wear-pty-ltd
+# lone-wolf-wear-pty-ltd
 
 Firebase Firestore setup, security rules, seed script and backend integration requirements are documented in [docs/database.md](docs/database.md).
 
