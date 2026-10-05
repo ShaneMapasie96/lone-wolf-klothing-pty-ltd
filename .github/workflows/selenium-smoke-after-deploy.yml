@@ -1,0 +1,58 @@
+name: Selenium Smoke After Website Deployment
+
+on:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-tests:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+
+    runs-on: windows-latest
+    timeout-minutes: 20
+
+    defaults:
+      run:
+        working-directory: selenium-tests
+
+    steps:
+      - name: Check out Selenium test repository
+        uses: actions/checkout@v7
+        with:
+          repository: ShaneMapasie96/lone-wolf-klothing-selenium-automation
+          token: ${{ secrets.SELENIUM_REPO_TOKEN }}
+          path: selenium-tests
+          persist-credentials: false
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+          cache-dependency-path: selenium-tests/pom.xml
+
+      - name: Run production smoke tests
+        run: >-
+          mvn -B clean test
+          "-DbaseUrl=https://lonewolfklothing.co.za"
+          "-Dheadless=true"
+
+      - name: Upload test reports and screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: selenium-smoke-results
+          path: |
+            selenium-tests/**/target/surefire-reports/**
+            selenium-tests/**/target/screenshots/**
+          if-no-files-found: warn
+          retention-days: 7
